@@ -7,17 +7,17 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    public class User : IdentityUser
+    public class Gebruiker : IdentityUser
     {
-        public override string UserId { get; set; }
+        public override string Id { get; set; }
         public override string UserName { get; set; }
         public override string Email { get; set; }
 
         public string Avatar { get; set; }
-        public string LastName { get; set; }
-        public string FirstName { get; set; }
-        public string PostalCode { get; set; }
-        public DateTime DateOfBirth { get; set; }
+        public string Naam { get; set; }
+        public string Voornaam { get; set; }
+        public string Postcode { get; set; }
+        public DateTime GeboorteDatum { get; set; }
         public string Origin { get; set; }
         public string Steam { get; set; }
         public string Nickname { get; set; }
@@ -29,10 +29,5 @@ namespace Domain.Entities
         // foreign key
         // public int WalletId { get; set; }
         public int TeamId { get; set; }
-
-        // Navigation Properties
-        public ICollection<Order> Orders { get; set; }
-
-
     }
 }
