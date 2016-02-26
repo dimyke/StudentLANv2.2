@@ -57,11 +57,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entities\Bestelling.cs" />
-    <Compile Include="Entities\BestellingLijn.cs" />
-    <Compile Include="Entities\Consumptie.cs" />
-    <Compile Include="Entities\Gebruiker.cs" />
-    <Compile Include="Entities\Wallet.cs" />
+    <Compile Include="Entities\Order.cs" />
+    <Compile Include="Entities\OrderLine.cs" />
+    <Compile Include="Entities\Consumption.cs" />
+    <Compile Include="Entities\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
