@@ -61,6 +61,7 @@
     <Compile Include="Entities\BestellingLijn.cs" />
     <Compile Include="Entities\Consumptie.cs" />
     <Compile Include="Entities\Gebruiker.cs" />
+    <Compile Include="Entities\Wallet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
