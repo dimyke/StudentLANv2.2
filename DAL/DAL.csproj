@@ -54,6 +54,7 @@
   <ItemGroup>
     <Compile Include="StulanContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StulanInitializer.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Domain\Domain.csproj">
