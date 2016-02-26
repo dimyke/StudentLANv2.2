@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using Domain.Entities;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace DAL
 {
@@ -24,6 +25,7 @@ namespace DAL
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingEntitySetNameConvention>();
+            modelBuilder.Entity<IdentityUserLogin>().HasKey<string>(l => l.UserId);
         }
     }
 }
