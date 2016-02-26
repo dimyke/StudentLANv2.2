@@ -9,7 +9,7 @@ namespace Domain.Entities
 {
     public class User : IdentityUser
     {
-        public override string UserId { get; set; }
+        public override string Id { get; set; }
         public override string UserName { get; set; }
         public override string Email { get; set; }
 
