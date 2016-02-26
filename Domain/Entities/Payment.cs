@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    public class Wallet
+    class Payment
     {
-        public int WalletId { get; set; }
+        public int PaymentId { get; set; }
         public double Amount { get; set; }
-
+        public int Type { get; set; }
     }
 }
