@@ -60,7 +60,9 @@
     <Compile Include="Entities\Order.cs" />
     <Compile Include="Entities\OrderLine.cs" />
     <Compile Include="Entities\Consumption.cs" />
+    <Compile Include="Entities\Payment.cs" />
     <Compile Include="Entities\User.cs" />
+    <Compile Include="Entities\Wallet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

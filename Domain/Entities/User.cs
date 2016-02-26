@@ -33,6 +33,15 @@ namespace Domain.Entities
         // Navigation Properties
         public ICollection<Order> Orders { get; set; }
 
+        public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)
+        {
+            return await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
+        }
+
+        public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager, string authenticationType)
+        {
+            return await manager.CreateIdentityAsync(this, authenticationType);
+        }
 
     }
 }

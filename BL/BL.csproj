@@ -86,6 +86,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="Managers\LoginManager.cs" />
+    <Compile Include="Managers\UserRoleManager.cs" />
     <Compile Include="Managers\UsersManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
