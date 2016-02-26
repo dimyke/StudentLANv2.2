@@ -16,7 +16,7 @@ namespace DAL
 
         }
 
-        public DbSet<User> Users { get; set; }
+      
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderLine> Orderlines { get; set; }
         public DbSet<Consumption> Consumptions { get; set; }

@@ -13,11 +13,11 @@ namespace DAL
         {
             var consumptions = new List<Consumption>
             {
-                new Consumption {consumptionId=1, Name="Frieten", Price=2 },
-                new Consumption {consumptionId=2, Name="Crocskes", Price=2 },
-                new Consumption {consumptionId=3, Name="Kevin zijn moeder", Price=0 },
-                new Consumption {consumptionId=4, Name="Bitterballen", Price=2 },
-                new Consumption {consumptionId=5, Name="Pizza", Price=2 }
+                new Consumption {ConsumptionId=1, Name="Frieten", Price=2 },
+                new Consumption {ConsumptionId=2, Name="Crocskes", Price=2 },
+                new Consumption {ConsumptionId=3, Name="Kevin zijn moeder", Price=0 },
+                new Consumption {ConsumptionId=4, Name="Bitterballen", Price=2 },
+                new Consumption {ConsumptionId=5, Name="Pizza", Price=2 }
             };
 
             consumptions.ForEach(s => context.Consumptions.Add(s));
