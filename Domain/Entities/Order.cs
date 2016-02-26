@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    class Bestelling
+    public class Order
     {
-        public int BestellingId { get; set; }
-        public int GebruikerId { get; set; }
+        public int OrderId { get; set; }
+        public int UserId { get; set; }
     }
 }

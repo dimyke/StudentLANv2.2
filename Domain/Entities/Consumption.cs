@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    class Consumptie
+    public class Consumption
     {
-        public int consumptieId { get; set; }
-        public double Prijs { get; set; }
-        public string Naam { get; set; }
+        public int consumptionId { get; set; }
+        public double Price { get; set; }
+        public string Name { get; set; }
     }
 }
