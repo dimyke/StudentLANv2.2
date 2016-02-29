@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using BL.Managers;
 using Domain.Entities;
 
-namespace JPP.BLL.Managers
+namespace BL.Managers
 {
     public class LoginManager : SignInManager<ApplicationUser, string>
     {

@@ -85,10 +85,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="OwinStartup.cs" />
     <Compile Include="Managers\LoginManager.cs" />
     <Compile Include="Managers\UserRoleManager.cs" />
-    <Compile Include="Managers\UsersManager.cs" />
+    <Compile Include="Managers\ApplicationUserManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

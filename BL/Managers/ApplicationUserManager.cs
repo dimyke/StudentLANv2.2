@@ -39,6 +39,7 @@ namespace BL.Managers
             };
             //=====================================
             // Dimi denkt: Two step authentication wat we niet gebruiken
+            // identity config
             //=====================================
 
             // Configure user lockout defaults

@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using Domain.Entities;
 using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace DAL
 {
-    public class StulanContext : DbContext
+    public class StulanContext : IdentityDbContext<ApplicationUser>
     {
         public StulanContext() : base("StulanContext")
         {
@@ -26,6 +21,11 @@ namespace DAL
         {
             modelBuilder.Conventions.Remove<PluralizingEntitySetNameConvention>();
             modelBuilder.Entity<IdentityUserLogin>().HasKey<string>(l => l.UserId);
+        }
+
+        public static StulanContext Create()
+        {
+            return new StulanContext();
         }
     }
 }
