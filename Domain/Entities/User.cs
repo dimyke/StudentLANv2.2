@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    public class User : IdentityUser
+    public class ApplicationUser : IdentityUser
     {
         public override string Id { get; set; }
         public override string UserName { get; set; }
@@ -32,12 +32,12 @@ namespace Domain.Entities
 
         // Navigation Properties
 
-        public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)
+        public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             return await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
         }
 
-        public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager, string authenticationType)
+        public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager, string authenticationType)
         {
             return await manager.CreateIdentityAsync(this, authenticationType);
         }

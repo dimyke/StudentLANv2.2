@@ -8,21 +8,21 @@ using Domain.Entities;
 
 namespace JPP.BLL.Managers
 {
-    public class LoginManager : SignInManager<User, string>
+    public class LoginManager : SignInManager<ApplicationUser, string>
     {
-        private LoginManager(UsersManager userManager, IAuthenticationManager authenticationManager) : base(userManager, authenticationManager)
+        private LoginManager(ApplicationUserManager userManager, IAuthenticationManager authenticationManager) : base(userManager, authenticationManager)
         {
             //
         }
 
         public static LoginManager Create(IdentityFactoryOptions<LoginManager> options, IOwinContext context)
         {
-            return new LoginManager(context.GetUserManager<UsersManager>(), context.Authentication);
+            return new LoginManager(context.GetUserManager<ApplicationUserManager>(), context.Authentication);
         }
 
-        public override Task<ClaimsIdentity> CreateUserIdentityAsync(User user)
+        public override Task<ClaimsIdentity> CreateUserIdentityAsync(ApplicationUser user)
         {
-            return user.GenerateUserIdentityAsync((UsersManager)UserManager);
+            return user.GenerateUserIdentityAsync((ApplicationUserManager)UserManager);
         }
     }
 }
