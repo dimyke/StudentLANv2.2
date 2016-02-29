@@ -1,5 +1,6 @@
 ﻿using Microsoft.Owin;
 using Owin;
+using BL;
 
 [assembly: OwinStartupAttribute(typeof(StudentLANv2.Startup))]
 namespace StudentLANv2
@@ -8,7 +9,7 @@ namespace StudentLANv2
     {
         public void Configuration(IAppBuilder app)
         {
-            ConfigureAuth(app);
+            OwinStartup.ConfigureAuth(app);
         }
     }
 }
