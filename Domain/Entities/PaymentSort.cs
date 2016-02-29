@@ -6,9 +6,6 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    public class Order
-    {
-        public int OrderId { get; set; }
-        public int UserId { get; set; }
-    }
+    public enum PaymentSort
+    {PayPal, Cash,Mollie,Overschrijving}
 }

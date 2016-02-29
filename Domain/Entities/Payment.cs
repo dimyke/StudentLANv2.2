@@ -10,6 +10,8 @@ namespace Domain.Entities
     {
         public int PaymentId { get; set; }
         public double Amount { get; set; }
-        public int Type { get; set; }
+        public PaymentSort Type { get; set; }
+        // foreign key
+        public int OrderID { get; set; }
     }
 }

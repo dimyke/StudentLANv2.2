@@ -31,7 +31,6 @@ namespace Domain.Entities
         public int TeamId { get; set; }
 
         // Navigation Properties
-        public ICollection<Order> Orders { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)
         {

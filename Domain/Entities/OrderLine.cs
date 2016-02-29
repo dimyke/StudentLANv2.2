@@ -10,12 +10,13 @@ namespace Domain.Entities
     {
         public int OrderLineId { get; set; }
 
-        public int Number { get; set; }
+        public int NumberOfItems { get; set; }
+        public double Amount { get; set; }
 
-        public int ConsumptionId { get; set; }
+        // foreign key
 
         public int OrderId { get; set; }
-
+        public int ConsumptionId { get; set; }
 
     }
 }
