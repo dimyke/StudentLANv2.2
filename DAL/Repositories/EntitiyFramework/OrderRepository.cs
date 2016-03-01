@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using DAL.Repositories.Contracts;
 using Domain.Entities;
+using DAL;
 
 namespace DAL.Repositories.EntitiyFramework
 {
@@ -10,7 +11,7 @@ namespace DAL.Repositories.EntitiyFramework
         private StulanContext _ctx = new StulanContext();
         public IEnumerable<KitchenOrder> All()
         {
-            return _ctx.KitchenOrder.AsEnumerable();
+            return _ctx.KitchenOrders.AsEnumerable();
         }
 
         public void CreateKitchenOrder(KitchenOrder kitchenorder)
