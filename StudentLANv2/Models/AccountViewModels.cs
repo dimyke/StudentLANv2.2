@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace StudentLANv2.Models
@@ -79,6 +80,20 @@ namespace StudentLANv2.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+        [Display(Name = "Last Name")]
+        public string LastName { get; set; }
+        [Display(Name = "First Name")]
+        public string FirstName { get; set; }
+        [Display(Name = "Postal code")]
+        public string PostalCode { get; set; }
+        [Display(Name = "Geboortedatum")]
+        public DateTime DateOfBirth { get; set; }
+        public string Origin { get; set; }
+        public string Steam { get; set; }
+        public string Nickname { get; set; }
+        public string BatlleNet { get; set; }
+        public string Wargaming { get; set; }
+
     }
 
     public class ResetPasswordViewModel
