@@ -11,5 +11,6 @@ namespace Domain.Entities
         public int ConsumptionId { get; set; }
         public double Price { get; set; }
         public string Name { get; set; }
+        public Boolean Available { get; set; }
     }
 }
