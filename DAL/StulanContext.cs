@@ -13,7 +13,7 @@ namespace DAL
         }
 
       
-        public DbSet<IOrder> Orders { get; set; }
+        public DbSet<FoodOrder> Orders { get; set; }
         public DbSet<OrderLine> Orderlines { get; set; }
         public DbSet<Consumption> Consumptions { get; set; }
 

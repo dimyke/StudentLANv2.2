@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    class FoodOrder : IOrder
+    public class FoodOrder : IOrder
     {
         public int OrderId { get; set; }
         public DateTime date { get; set; }
