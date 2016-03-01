@@ -66,6 +66,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repositories\Contracts\IConsumptionRepository.cs" />
+    <Compile Include="Repositories\EntitiyFramework\ConsumptionRepository.cs" />
     <Compile Include="StulanContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StulanInitializer.cs" />
@@ -83,9 +84,7 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Repositories\EntitiyFramework\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201603011113265_initial.resx">
       <DependentUpon>201603011113265_initial.cs</DependentUpon>
