@@ -87,6 +87,7 @@ namespace StudentLANv2.Models
         [Display(Name = "Postal code")]
         public string PostalCode { get; set; }
         [Display(Name = "Geboortedatum")]
+        [DataType(DataType.Date)]
         public DateTime DateOfBirth { get; set; }
         public string Origin { get; set; }
         public string Steam { get; set; }
