@@ -8,6 +8,7 @@ namespace Domain.Entities
         int OrderId { get; set; }
         int UserId { get; set; }
         double TotalAmount { get; set; }
-        DateTime date { get; set; }
+        DateTime Date { get; set; }
+        bool Deleted { get; set; }
     }
 }
