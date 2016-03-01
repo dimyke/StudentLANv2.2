@@ -69,6 +69,7 @@
     <Compile Include="Repositories\Contracts\IConsumptionRepository.cs" />
     <Compile Include="Repositories\Contracts\IOrderRepository.cs" />
     <Compile Include="Repositories\EntitiyFramework\ConsumptionRepository.cs" />
+    <Compile Include="Repositories\EntitiyFramework\OrderRepository.cs" />
     <Compile Include="StulanContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StulanInitializer.cs" />
