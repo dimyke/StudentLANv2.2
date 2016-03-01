@@ -9,6 +9,7 @@ namespace Domain.Entities
         int UserId { get; set; }
         double TotalAmount { get; set; }
         DateTime Date { get; set; }
+        bool Completed { get; set; };
         bool Deleted { get; set; }
     }
 }

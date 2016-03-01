@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using DAL.Repositories.Contracts;
 using Domain.Entities;
 using DAL;
+using System.Linq;
 
 namespace DAL.Repositories.EntitiyFramework
 {
@@ -16,12 +17,14 @@ namespace DAL.Repositories.EntitiyFramework
 
         public void CreateKitchenOrder(KitchenOrder kitchenorder)
         {
-            throw new NotImplementedException();
+            _ctx.KitchenOrders.Add(kitchenorder);
+            _ctx.SaveChanges();
         }
 
         public void createOrderLine(OrderLine orderine)
         {
-            throw new NotImplementedException();
+            _ctx.Orderlines.Add(orderine);
+            _ctx.SaveChanges();
         }
 
         public void ToggleOrderDeleted(int id)
