@@ -8,17 +8,17 @@ using System.Data.Entity;
 
 namespace DAL.Repositories.EntitiyFramework
 {
-    class OrderRepository : IOrderRepository
+    public class OrderRepository : IOrderRepository
     {
         private StulanContext _ctx = new StulanContext();
-        public IEnumerable<KitchenOrder> All()
+        public IEnumerable<KitchenOrder> AllKitchenOrder()
         {
             return _ctx.KitchenOrders
                 .Include("Orderline")
                 .AsEnumerable();
         }
 
-        public IEnumerable<KitchenOrder> AllUnfinished()
+        public IEnumerable<KitchenOrder> AllUnfinishedKitchen()
         {
             return _ctx.KitchenOrders
                 .Where(x => (x.Completed == false))
@@ -27,7 +27,7 @@ namespace DAL.Repositories.EntitiyFramework
                 .AsEnumerable();
         }
 
-        public IEnumerable<KitchenOrder> AllFinished()
+        public IEnumerable<KitchenOrder> AllFinishedKitchen()
         {
             return _ctx.KitchenOrders
                 .Where(x => (x.Completed == true))
@@ -48,7 +48,7 @@ namespace DAL.Repositories.EntitiyFramework
             _ctx.SaveChanges();
         }
 
-        public void createOrderLine(OrderLine orderine)
+        public void CreateOrderLine(OrderLine orderine)
         {
             _ctx.Orderlines.Add(orderine);
             _ctx.SaveChanges();
@@ -65,6 +65,11 @@ namespace DAL.Repositories.EntitiyFramework
         }
 
         public IEnumerable<KitchenOrder> UserOrder(string userId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void createOrderLine(OrderLine orderine)
         {
             throw new NotImplementedException();
         }
