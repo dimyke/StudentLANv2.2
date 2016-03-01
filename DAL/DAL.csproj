@@ -60,6 +60,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repositories\Contracts\IConsumptionRepository.cs" />
     <Compile Include="StulanContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

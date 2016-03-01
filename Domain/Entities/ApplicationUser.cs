@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
+
 namespace Domain.Entities
 {
     public class ApplicationUser : IdentityUser
