@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="Entities\FoodOrder.cs" />
     <Compile Include="Entities\IOrder.cs" />
+    <Compile Include="Entities\KitchenOrder.cs" />
     <Compile Include="Entities\OrderLine.cs" />
     <Compile Include="Entities\Consumption.cs" />
     <Compile Include="Entities\Payment.cs" />
