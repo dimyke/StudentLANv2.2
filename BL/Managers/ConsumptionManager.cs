@@ -2,6 +2,8 @@
 using DAL.Repositories.Contracts;
 using DAL.Repositories.EntitiyFramework;
 using Domain.Entities;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace BL.Managers
 {
@@ -12,6 +14,11 @@ namespace BL.Managers
         public Consumption Find(int id)
         {
             return _ConsumptionRepository.Find(id);
+        }
+
+        public IEnumerable<Consumption> All()
+        {
+            return _ConsumptionRepository.All();
         }
     }
 }
