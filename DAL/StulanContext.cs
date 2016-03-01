@@ -20,7 +20,9 @@ namespace DAL
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingEntitySetNameConvention>();
-            //modelBuilder.Entity<IdentityUserLogin>().HasKey<string>(l => l.UserId);
+            modelBuilder.Entity<IdentityUserLogin>().HasKey<string>(l => l.UserId);
+            modelBuilder.Entity<IdentityRole>().HasKey<string>(r => r.Id);
+            modelBuilder.Entity<IdentityUserRole>().HasKey(r => new { r.RoleId, r.UserId });
         }
 
         public static StulanContext Create()
