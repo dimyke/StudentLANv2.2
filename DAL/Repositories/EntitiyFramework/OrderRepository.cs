@@ -4,6 +4,7 @@ using DAL.Repositories.Contracts;
 using Domain.Entities;
 using DAL;
 using System.Linq;
+using System.Data.Entity;
 
 namespace DAL.Repositories.EntitiyFramework
 {
@@ -12,8 +13,34 @@ namespace DAL.Repositories.EntitiyFramework
         private StulanContext _ctx = new StulanContext();
         public IEnumerable<KitchenOrder> All()
         {
-            return _ctx.KitchenOrders.AsEnumerable();
+            return _ctx.KitchenOrders
+                .Include("Orderline")
+                .AsEnumerable();
         }
+
+        public IEnumerable<KitchenOrder> AllUnfinished()
+        {
+            return _ctx.KitchenOrders
+                .Where(x => (x.Completed == false))
+                .Include("Orderline")
+                .Include("ApplicationUser")
+                .AsEnumerable();
+        }
+
+        public IEnumerable<KitchenOrder> AllFinished()
+        {
+            return _ctx.KitchenOrders
+                .Where(x => (x.Completed == true))
+                .Include("Orderline")
+                .Include("ApplicationUser")
+                .AsEnumerable();
+        }
+
+        public IEnumerable<KitchenOrder> UserFinished()
+        {
+            throw new NotImplementedException();
+        }
+
 
         public void CreateKitchenOrder(KitchenOrder kitchenorder)
         {
