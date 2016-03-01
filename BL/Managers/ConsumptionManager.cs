@@ -20,5 +20,20 @@ namespace BL.Managers
         {
             return _ConsumptionRepository.All();
         }
+
+        public void Create(Consumption consumption)
+        {
+            _ConsumptionRepository.Create(consumption);
+        }
+
+        public void Update(int id, Consumption consumption)
+        {
+            _ConsumptionRepository.Update(id, consumption);
+        }
+
+        public void Delete(int id)
+        {
+            _ConsumptionRepository.Delete(id);
+        }
     }
 }
