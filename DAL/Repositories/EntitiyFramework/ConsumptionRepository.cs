@@ -5,7 +5,7 @@ using DAL;
 
 namespace DAL.Repositories.EntitiyFramework
 {
-    class ConsumptionRepository : IConsumptionRepository
+    public class ConsumptionRepository : IConsumptionRepository
     {
         private StulanContext _ctx = new StulanContext();
         public Consumption Find(int id)
