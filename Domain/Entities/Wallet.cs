@@ -10,6 +10,11 @@ namespace Domain.Entities
     {
         public int WalletId { get; set; }
         public double Amount { get; set; }
+        public string ApplicationUserid { get; set; }
+        
+        //navigation properties
+
+        public ICollection<Payment> Payments { get; set; }
 
     }
 }

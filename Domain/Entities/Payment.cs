@@ -13,5 +13,6 @@ namespace Domain.Entities
         public PaymentSort Type { get; set; }
         // foreign key
         public int OrderID { get; set; }
+        public int WalletId { get; set; }
     }
 }
