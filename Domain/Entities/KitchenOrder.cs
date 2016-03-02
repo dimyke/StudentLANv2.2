@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using Domain;
 
 namespace Domain.Entities
 {
@@ -14,5 +15,9 @@ namespace Domain.Entities
 
         //FK
         public string ApplicationUserId { get; set; }
+        
+        //navigation Properties
+
+        public ApplicationUser User { get; set}
     }
 }

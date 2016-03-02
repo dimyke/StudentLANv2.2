@@ -36,9 +36,13 @@ namespace DAL.Repositories.EntitiyFramework
                 .AsEnumerable();
         }
 
-        public IEnumerable<KitchenOrder> UserFinished()
+        public IEnumerable<KitchenOrder> UserFinished(String id)
         {
-            throw new NotImplementedException();
+            return _ctx.Users
+                .Include("Order")
+                .Include("Orderline")
+                .Where(x => (x.Id == id));
+                
         }
 
 
