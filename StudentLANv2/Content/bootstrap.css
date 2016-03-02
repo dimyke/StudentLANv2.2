@@ -59,6 +59,8 @@ html {
 
 body {
   margin: 0;
+
+  /*min-height: 2000px;*/
 }
 
 a:focus {
@@ -6030,7 +6032,7 @@ body.modal-open,
 
 .carousel-inner {
   position: relative;
-  width: 100%;
+  /*width: 100%;*/
   overflow: hidden;
 }
 
@@ -6158,8 +6160,9 @@ body.modal-open,
 }
 
 .carousel-indicators {
-  position: absolute;
-  bottom: 10px;
+  position: relative;
+  bottom: 5px;
+  height: 10px;
   left: 50%;
   z-index: 15;
   width: 60%;
@@ -6179,6 +6182,7 @@ body.modal-open,
   border: 1px solid #ffffff;
   border-radius: 10px;
 }
+
 
 .carousel-indicators .active {
   width: 12px;

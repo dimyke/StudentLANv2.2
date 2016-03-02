@@ -330,6 +330,7 @@
     <Content Include="Views\Consumptions\Details.cshtml" />
     <Content Include="Views\Consumptions\Edit.cshtml" />
     <Content Include="Views\Consumptions\Index.cshtml" />
+    <Content Include="Views\Home\_Carousel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
