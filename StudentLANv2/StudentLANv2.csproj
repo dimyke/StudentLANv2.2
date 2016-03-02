@@ -229,6 +229,9 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\csgo.jpg" />
+    <Content Include="Content\Images\fifa.jpg" />
+    <Content Include="Content\StuLan.css" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
     <Content Include="Content\themes\base\autocomplete.css" />
@@ -326,11 +329,6 @@
     <Content Include="Views\Consumptions\Details.cshtml" />
     <Content Include="Views\Consumptions\Edit.cshtml" />
     <Content Include="Views\Consumptions\Index.cshtml" />
-    <Content Include="Views\KitchenOrders\Create.cshtml" />
-    <Content Include="Views\KitchenOrders\Delete.cshtml" />
-    <Content Include="Views\KitchenOrders\Details.cshtml" />
-    <Content Include="Views\KitchenOrders\Edit.cshtml" />
-    <Content Include="Views\KitchenOrders\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
