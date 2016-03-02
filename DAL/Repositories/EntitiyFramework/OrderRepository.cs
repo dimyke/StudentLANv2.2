@@ -36,14 +36,14 @@ namespace DAL.Repositories.EntitiyFramework
                 .AsEnumerable();
         }
 
-        public IEnumerable<ApplicationUser> UserFinished(String id)
+        public IEnumerable<ApplicationUser> UserOrders(String id)
         {
             return _ctx.Users
                 .Include("KitchenOrder")
                 .Include("Orderline")
+                .Where(x => (x.Id == id))
                 .AsEnumerable();
                 
-
         }
 
 
@@ -59,24 +59,16 @@ namespace DAL.Repositories.EntitiyFramework
             _ctx.SaveChanges();
         }
 
-        public void ToggleOrderDeleted(int id)
-        {
-            throw new NotImplementedException();
-        }
-
         public void UpdateOrder(int id, KitchenOrder kitchenorder)
         {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<KitchenOrder> UserOrder(string userId)
-        {
-            throw new NotImplementedException();
+            _ctx.Entry(_ctx.KitchenOrders.Find(id)).CurrentValues.SetValues(kitchenorder);
+            _ctx.SaveChanges();
         }
 
         public void createOrderLine(OrderLine orderine)
         {
-            throw new NotImplementedException();
+            _ctx.Orderlines.Add(OrderLine);
+            _ctx.SaveChanges();
         }
     }
 }
