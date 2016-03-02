@@ -231,6 +231,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Images\csgo.jpg" />
     <Content Include="Content\Images\fifa.jpg" />
+    <Content Include="Content\Images\logo_big.png" />
     <Content Include="Content\StuLan.css" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
