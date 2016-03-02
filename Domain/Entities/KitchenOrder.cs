@@ -18,6 +18,6 @@ namespace Domain.Entities
         
         //navigation Properties
 
-        public ApplicationUser User { get; set}
+        public ApplicationUser User { get; set; }
     }
 }
