@@ -15,6 +15,7 @@ namespace Domain.Entities
         //navigation properties
 
         public ICollection<Payment> Payments { get; set; }
+        public ApplicationUser ApplicationUser { get; set; }
 
     }
 }

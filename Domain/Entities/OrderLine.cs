@@ -11,12 +11,18 @@ namespace Domain.Entities
         public int OrderLineId { get; set; }
 
         public int NumberOfItems { get; set; }
-        public double Amount { get; set; }
+        public double PriceAmount { get; set; }
 
         // foreign key
 
         public int OrderId { get; set; }
         public int ConsumptionId { get; set; }
+
+        // Navigational Properties
+
+        public KitchenOrder KitchenOrder { get; set; }
+        public Consumption Consumption { get; set; }
+
 
     }
 }

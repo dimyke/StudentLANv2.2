@@ -99,11 +99,124 @@ namespace DAL
                 }
             };
 
+            orders.ForEach(s => context.KitchenOrders.Add(s));
+            context.SaveChanges();
 
 
             #endregion
 
             #region OrderLine 
+            var orderlines = new List<OrderLine>
+            {
+                new OrderLine
+                {
+                    OrderLineId = 1,
+                    NumberOfItems =2,
+                    PriceAmount = 4,
+                    KitchenOrder = orders.ElementAt(0),
+                    Consumption = consumptions.ElementAt(0)                    
+                },
+
+                new OrderLine
+                {
+                    OrderLineId = 2,
+                    NumberOfItems =3,
+                    PriceAmount = 6,
+                    KitchenOrder = orders.ElementAt(0),
+                    Consumption = consumptions.ElementAt(1)
+                },
+
+                new OrderLine
+                {
+                    OrderLineId = 3,
+                    NumberOfItems =2,
+                    PriceAmount = 4,
+                    KitchenOrder = orders.ElementAt(0),
+                    Consumption = consumptions.ElementAt(2)
+                },
+
+                new OrderLine
+                {
+                    OrderLineId = 4,
+                    NumberOfItems =2,
+                    PriceAmount = 4,
+                    KitchenOrder = orders.ElementAt(1),
+                    Consumption = consumptions.ElementAt(0)
+                },
+
+                new OrderLine
+                {
+                    OrderLineId = 5,
+                    NumberOfItems =1,
+                    PriceAmount = 2,
+                    KitchenOrder = orders.ElementAt(1),
+                    Consumption = consumptions.ElementAt(1)
+                },
+
+                new OrderLine
+                {
+                    OrderLineId = 6,
+                    NumberOfItems =2,
+                    PriceAmount = 4,
+                    KitchenOrder = orders.ElementAt(1),
+                    Consumption = consumptions.ElementAt(2)
+                },
+
+            };
+
+            orderlines.ForEach(s => context.Orderlines.Add(s));
+            context.SaveChanges();
+
+            #endregion
+
+            #region Wallet
+            var wallets = new List<Wallet>
+            {
+                new Wallet
+                {
+                    WalletId = 1,
+                    Amount = 100,
+                    ApplicationUser = users.ElementAt(0)
+                },
+
+                 new Wallet
+                {
+                    WalletId = 2,
+                    Amount = 200,
+                    ApplicationUser = users.ElementAt(1)
+                }
+
+            };
+
+            wallets.ForEach(s => context.Wallets.Add(s));
+            context.SaveChanges();
+
+            #endregion
+
+            #region Payment
+            var payments = new List<Payment>
+            {
+                new Payment
+                {
+                    PaymentId = 1,
+                    Amount = 1,
+                    Type = PaymentSort.PayPal,
+                    KitchenOrder = orders.ElementAt(0),
+                    Wallet = wallets.ElementAt(0),
+                    Paid = true
+                },
+
+                new Payment
+                {
+                    PaymentId = 2,
+                    Amount = 1,
+                    Type = PaymentSort.PayPal,
+                    KitchenOrder = orders.ElementAt(1),
+                    Wallet = wallets.ElementAt(1),
+                    Paid = false
+                }
+
+            };
 
             #endregion
         }
