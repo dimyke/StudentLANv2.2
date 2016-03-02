@@ -36,14 +36,15 @@ namespace DAL.Repositories.EntitiyFramework
                 .AsEnumerable();
         }
 
-        //public IEnumerable<KitchenOrder> UserFinished(String id)
-        //{
-        //    return _ctx.Users
-        //        .Include("Order")
-        //        .Include("Orderline")
-        //        .Where(x => (x.Id == id));
+        public IEnumerable<ApplicationUser> UserFinished(String id)
+        {
+            return _ctx.Users
+                .Include("KitchenOrder")
+                .Include("Orderline")
+                .AsEnumerable();
                 
-        //}
+
+        }
 
 
         public void CreateKitchenOrder(KitchenOrder kitchenorder)
