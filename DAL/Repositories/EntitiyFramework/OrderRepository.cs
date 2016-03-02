@@ -53,9 +53,9 @@ namespace DAL.Repositories.EntitiyFramework
             _ctx.SaveChanges();
         }
 
-        public void CreateOrderLine(OrderLine orderine)
+        public void CreateOrderLine(OrderLine orderline)
         {
-            _ctx.Orderlines.Add(orderine);
+            _ctx.Orderlines.Add(orderline);
             _ctx.SaveChanges();
         }
 
@@ -65,10 +65,15 @@ namespace DAL.Repositories.EntitiyFramework
             _ctx.SaveChanges();
         }
 
-        public void createOrderLine(OrderLine orderine)
+        public void createOrderLine(OrderLine orderline)
         {
-            _ctx.Orderlines.Add(OrderLine);
+            _ctx.Orderlines.Add(orderline);
             _ctx.SaveChanges();
+        }
+
+        public IEnumerable<KitchenOrder> UserOrder(string userId)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -11,7 +11,6 @@ namespace DAL.Repositories.Contracts
         IEnumerable<KitchenOrder> UserOrder(string userId);
         void CreateKitchenOrder(KitchenOrder kitchenorder);
         void UpdateOrder(int id, KitchenOrder kitchenorder);
-        void ToggleOrderDeleted(int id);
 
         void createOrderLine(OrderLine orderine);
 
