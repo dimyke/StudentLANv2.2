@@ -61,9 +61,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\201603011113265_initial.cs" />
-    <Compile Include="Migrations\201603011113265_initial.Designer.cs">
-      <DependentUpon>201603011113265_initial.cs</DependentUpon>
+    <Compile Include="Migrations\201603022129203_Initial.cs" />
+    <Compile Include="Migrations\201603022129203_Initial.Designer.cs">
+      <DependentUpon>201603022129203_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repositories\Contracts\IConsumptionRepository.cs" />
@@ -87,10 +87,9 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201603011113265_initial.resx">
-      <DependentUpon>201603011113265_initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201603022129203_Initial.resx">
+      <DependentUpon>201603022129203_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
