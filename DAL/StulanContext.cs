@@ -13,9 +13,13 @@ namespace DAL
         }
 
         public DbSet<KitchenOrder> KitchenOrders { get; set; }
+        public DbSet<Wallet> Wallets { get; set; }
+        public DbSet<Payment> Payments { get; set; }
         public DbSet<FoodOrder> FoodOrders { get; set; }
         public DbSet<OrderLine> Orderlines { get; set; }
         public DbSet<Consumption> Consumptions { get; set; }
+        public override IDbSet<ApplicationUser> Users { get; set; }
+        
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
