@@ -21,8 +21,6 @@ namespace Domain.Entities
         // Navigational Properties
 
         public KitchenOrder KitchenOrder { get; set; }
-        public Consumption Consumption { get; set; }
-
-
+        public Consumption Consumption { get; set; }        
     }
 }

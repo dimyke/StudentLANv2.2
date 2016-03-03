@@ -17,30 +17,35 @@ namespace StudentLANv2.Controllers
         private readonly OrderManager _orderManager = new OrderManager();
         public ActionResult Index()
         {
-            return View(_orderManager.AllFinishedKitchenOrders().ToList());
+            return View(_orderManager.AllKitchenOrders().ToList());
         }
 
+        public ActionResult Details(int id, int? orderLineId)
+        {
+            KitchenOrder kitchenOrder = _orderManager.Find(id);
+            return View(kitchenOrder);
+        }
 
         // GET: KitchenOrders/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
+        //public ActionResult Create()
+        //{
+        //    return View();
+        //}
 
         // POST: KitchenOrders/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "OrderId,Date,TotalAmount,Completed,Deleted,ApplicationUserId")] KitchenOrder kitchenOrder)
-        {
-            if (ModelState.IsValid)
-            {
-                _orderManager.CreateKitchenOrder(kitchenOrder);
-                return RedirectToAction("Index");
-            }
-            return View(kitchenOrder);
-        }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Create([Bind(Include = "OrderId,Date,TotalAmount,Completed,Deleted,ApplicationUserId")] KitchenOrder kitchenOrder)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        _orderManager.CreateKitchenOrder(kitchenOrder);
+        //        return RedirectToAction("Index");
+        //    }
+        //    return View(kitchenOrder);
+        //}
 
         //// GET: KitchenOrders/Edit/5
         //public ActionResult Edit(int? id)

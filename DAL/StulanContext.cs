@@ -2,14 +2,16 @@
 using System.Data.Entity.ModelConfiguration.Conventions;
 using Domain.Entities;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.Data.Entity.Validation;
 
 namespace DAL
 {
+    [DbConfigurationType(typeof(StuLanConfiguration))]
     public class StulanContext : IdentityDbContext<ApplicationUser>
     {
         public StulanContext() : base("StulanContext")
         {
-
+           // Database.SetInitializer(new StulanInitializer());
         }
 
         public DbSet<KitchenOrder> KitchenOrders { get; set; }
@@ -27,6 +29,18 @@ namespace DAL
             modelBuilder.Entity<IdentityUserLogin>().HasKey<string>(l => l.UserId);
             modelBuilder.Entity<IdentityRole>().HasKey<string>(r => r.Id);
             modelBuilder.Entity<IdentityUserRole>().HasKey(r => new { r.RoleId, r.UserId });
+        }
+
+        public override int SaveChanges()
+        {
+            try
+            {
+                return base.SaveChanges();
+            }
+            catch (DbEntityValidationException e)
+            {
+                throw new FormattedDbEntityValidationException(e);
+            }
         }
 
         public static StulanContext Create()

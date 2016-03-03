@@ -13,6 +13,16 @@ namespace BL.Managers
     {
         private readonly IOrderRepository _OrderRepository = new OrderRepository();
 
+        public KitchenOrder Find(int? id)
+        {
+            return _OrderRepository.Find(id);
+        }
+
+        public IEnumerable<KitchenOrder> AllKitchenOrders()
+        {
+            return _OrderRepository.AllKitchenOrder();
+        }
+
         public IEnumerable<KitchenOrder> AllFinishedKitchenOrders()
         {
             return _OrderRepository.AllFinishedKitchen();
@@ -33,6 +43,11 @@ namespace BL.Managers
             _OrderRepository.createOrderLine(orderine);
         }
 
-        
+        public IEnumerable<OrderLine> OrderLineForOrder(int? id)
+        {
+            return _OrderRepository.OrderLineForOrder(id);
+        }
+
+
     }
 }

@@ -1,17 +1,13 @@
 namespace DAL.Migrations
 {
     using System;
-    using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
-    using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Web;
-    using System.Data.Entity;
     using Domain.Entities;
     using Microsoft.AspNet.Identity;
-    using Microsoft.AspNet.Identity.EntityFramework;
+    using System.Data.Entity.Validation;
+    using System.Diagnostics;
 
 
     internal sealed class Configuration : DbMigrationsConfiguration<DAL.StulanContext>
@@ -22,9 +18,9 @@ namespace DAL.Migrations
             SetSqlGenerator("MySql.Data.MySqlClient", new MySql.Data.Entity.MySqlMigrationSqlGenerator());
         }
 
-        protected override void Seed(DAL.StulanContext context)
+        protected override void Seed(StulanContext context)
         {
-
+            try { 
             var hasher = new PasswordHasher();
             #region Consumption
             var consumptions = new List<Consumption>
@@ -228,8 +224,22 @@ namespace DAL.Migrations
                 }
 
             };
+            }
 
             #endregion
+
+            catch (DbEntityValidationException dbEx)
+            {
+                foreach (var validationErrors in dbEx.EntityValidationErrors)
+                {
+                    foreach (var validationError in validationErrors.ValidationErrors)
+                    {
+                        Trace.TraceInformation("Property: {0} Error: {1}",
+                                                validationError.PropertyName,
+                                                validationError.ErrorMessage);
+                    }
+                }
+            }
         }
     }
 }

@@ -18,7 +18,7 @@ namespace Domain.Entities
         public string LastName { get; set; }
         public string FirstName { get; set; }
         public string PostalCode { get; set; }
-        public DateTime DateOfBirth { get; set; }
+        public DateTime? DateOfBirth { get; set; }
         public string Origin { get; set; }
         public string Steam { get; set; }
         public string Nickname { get; set; }

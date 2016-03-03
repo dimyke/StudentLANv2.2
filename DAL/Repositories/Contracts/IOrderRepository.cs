@@ -5,6 +5,7 @@ namespace DAL.Repositories.Contracts
 {
     public interface IOrderRepository
     {
+        KitchenOrder Find(int? id);
         IEnumerable<KitchenOrder> AllKitchenOrder();
         IEnumerable<KitchenOrder> AllUnfinishedKitchen();
         IEnumerable<KitchenOrder> AllFinishedKitchen();
@@ -13,7 +14,7 @@ namespace DAL.Repositories.Contracts
         void UpdateOrder(int id, KitchenOrder kitchenorder);
 
         void createOrderLine(OrderLine orderine);
-
+        IEnumerable<OrderLine> OrderLineForOrder(int? id);
 
     }
 }

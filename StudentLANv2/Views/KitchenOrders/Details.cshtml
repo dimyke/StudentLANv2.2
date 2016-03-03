@@ -49,10 +49,40 @@
         <dd>
             @Html.DisplayFor(model => model.Deleted)
         </dd>
-
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.OrderId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<table class="table">
+    <tr>
+        <th>
+            Aantal
+        </th>
+        <th>
+            Consumptie ID
+        </th>
+        <th>
+            Totaal Prijs
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var line in Model.OrderLines)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => line.NumberOfItems)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => line.ConsumptionId)
+            </td>
+            <td>
+                € @Html.DisplayFor(modelItem => line.PriceAmount)
+            </td>
+        </tr>
+    }
+
+
+
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.OrderId }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</table>

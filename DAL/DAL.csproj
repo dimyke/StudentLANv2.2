@@ -61,11 +61,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormattedDbEntityValidationException.cs" />
+    <Compile Include="Migrations\201603032048457_initial.cs" />
+    <Compile Include="Migrations\201603032048457_initial.Designer.cs">
+      <DependentUpon>201603032048457_initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201603032210388_initial1.cs" />
+    <Compile Include="Migrations\201603032210388_initial1.Designer.cs">
+      <DependentUpon>201603032210388_initial1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repositories\Contracts\IConsumptionRepository.cs" />
     <Compile Include="Repositories\Contracts\IOrderRepository.cs" />
     <Compile Include="Repositories\EntitiyFramework\ConsumptionRepository.cs" />
     <Compile Include="Repositories\EntitiyFramework\OrderRepository.cs" />
+    <Compile Include="StuLanConfiguration.cs" />
     <Compile Include="StulanContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StulanInitializer.cs" />
@@ -82,6 +92,14 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201603032048457_initial.resx">
+      <DependentUpon>201603032048457_initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603032210388_initial1.resx">
+      <DependentUpon>201603032210388_initial1.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -11,10 +11,20 @@ namespace DAL.Repositories.EntitiyFramework
     public class OrderRepository : IOrderRepository
     {
         private StulanContext _ctx = new StulanContext();
+
+        public KitchenOrder Find(int? id)
+        {
+            return _ctx.KitchenOrders
+                .Include(o => o.OrderLines)
+                .SingleOrDefault(x => (x.OrderId == id));
+
+
+        }
+
         public IEnumerable<KitchenOrder> AllKitchenOrder()
         {
             return _ctx.KitchenOrders
-                .Include("Orderline")
+                .Include(x => x.OrderLines)
                 .AsEnumerable();
         }
 
@@ -45,8 +55,6 @@ namespace DAL.Repositories.EntitiyFramework
                 .AsEnumerable();
                 
         }
-
-
         public void CreateKitchenOrder(KitchenOrder kitchenorder)
         {
             _ctx.KitchenOrders.Add(kitchenorder);
@@ -57,6 +65,13 @@ namespace DAL.Repositories.EntitiyFramework
         {
             _ctx.Orderlines.Add(orderline);
             _ctx.SaveChanges();
+        }
+
+        public IEnumerable<OrderLine> OrderLineForOrder(int? id)
+        {
+            return _ctx.Orderlines
+                .Where(x => (x.OrderId == id))
+                .AsEnumerable();
         }
 
         public void UpdateOrder(int id, KitchenOrder kitchenorder)

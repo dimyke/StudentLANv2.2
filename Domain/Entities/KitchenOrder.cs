@@ -1,6 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using Domain;
+using System.Collections.Generic;
 
 namespace Domain.Entities
 {
@@ -15,9 +15,10 @@ namespace Domain.Entities
 
         //FK
         public string ApplicationUserId { get; set; }
-        
+
         //navigation Properties
 
         public ApplicationUser User { get; set; }
+        public ICollection<OrderLine> OrderLines { get; set; }
     }
 }
