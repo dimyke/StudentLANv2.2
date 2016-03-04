@@ -153,7 +153,7 @@ namespace StudentLANv2.Controllers
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email, LastName = model.LastName, FirstName = model.FirstName,
                     PostalCode = model.PostalCode, DateOfBirth = model.DateOfBirth, Origin = model.Origin, Steam = model.Steam, Nickname = model.Nickname,
-                    BatlleNet = model.BatlleNet,Wargaming = model.Wargaming };
+                    BatlleNet = model.BatlleNet,Wargaming = model.Wargaming, Wallet = 0};
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

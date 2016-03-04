@@ -48,7 +48,8 @@ namespace DAL
                     Steam = "Fraans",
                     BatlleNet = "Dimyke#6969",
                     Wargaming ="dimyke",
-                    PasswordHash = hasher.HashPassword("SupahStronkP@ssword")
+                    PasswordHash = hasher.HashPassword("SupahStronkP@ssword"),
+                    Wallet = 656065465
 
                 },
                 new ApplicationUser
@@ -65,7 +66,9 @@ namespace DAL
                     Steam = "xelset",
                     BatlleNet = "xelset#2348",
                     Wargaming ="xelset",
-                    PasswordHash = hasher.HashPassword("SupahStronkP@ssword")
+                    PasswordHash = hasher.HashPassword("SupahStronkP@ssword"),
+                    Wallet = 56754
+
 
                 }
             };
@@ -169,29 +172,7 @@ namespace DAL
 
             #endregion
 
-            #region Wallet
-            var wallets = new List<Wallet>
-            {
-                new Wallet
-                {
-                    WalletId = 1,
-                    Amount = 100,
-                    ApplicationUser = users.ElementAt(0)
-                },
-
-                 new Wallet
-                {
-                    WalletId = 2,
-                    Amount = 200,
-                    ApplicationUser = users.ElementAt(1)
-                }
-
-            };
-
-            wallets.ForEach(s => context.Wallets.Add(s));
-            context.SaveChanges();
-
-            #endregion
+          
 
             #region Payment
             var payments = new List<Payment>
@@ -202,7 +183,7 @@ namespace DAL
                     Amount = 1,
                     Type = PaymentSort.PayPal,
                     KitchenOrder = orders.ElementAt(0),
-                    Wallet = wallets.ElementAt(0),
+                    User = users.ElementAt(0),
                     Paid = true
                 },
 
@@ -212,7 +193,7 @@ namespace DAL
                     Amount = 1,
                     Type = PaymentSort.PayPal,
                     KitchenOrder = orders.ElementAt(1),
-                    Wallet = wallets.ElementAt(1),
+                    User = users.ElementAt(1),
                     Paid = false
                 }
 

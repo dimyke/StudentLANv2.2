@@ -38,15 +38,43 @@ namespace BL.Managers
             _OrderRepository.CreateKitchenOrder(kitchenOrder);
         }
 
-        public void CreateOrderLine(OrderLine orderine)
+        public void CreateOrderLine(OrderLine orderline)
         {
-            _OrderRepository.createOrderLine(orderine);
+            _OrderRepository.createOrderLine(orderline);
         }
 
         public IEnumerable<OrderLine> OrderLineForOrder(int? id)
         {
             return _OrderRepository.OrderLineForOrder(id);
         }
+
+        public void SetFinished(int id)
+        {
+            var order = Find(id);
+            order.Completed = true;
+            UpdateOrder(id, order);
+
+        }
+
+        public void ToggleDeleted(int id)
+        {
+            var order = Find(id);
+
+            order.Deleted = order.Deleted != true;
+        }
+
+        public void UpdateOrder(int id, KitchenOrder order)
+        {
+            _OrderRepository.UpdateOrder(id, order);
+        }
+
+        public IEnumerable<ApplicationUser> GetUserOrders(string id)
+        {
+            return _OrderRepository.UserOrders(id);
+        }
+
+       
+
 
 
     }

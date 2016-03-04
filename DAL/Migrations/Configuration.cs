@@ -1,14 +1,13 @@
+using System.Collections.Generic;
+using Domain.Entities;
+using Microsoft.AspNet.Identity;
+
 namespace DAL.Migrations
 {
     using System;
+    using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
-    using System.Collections.Generic;
-    using Domain.Entities;
-    using Microsoft.AspNet.Identity;
-    using System.Data.Entity.Validation;
-    using System.Diagnostics;
-
 
     internal sealed class Configuration : DbMigrationsConfiguration<DAL.StulanContext>
     {
@@ -16,12 +15,13 @@ namespace DAL.Migrations
         {
             AutomaticMigrationsEnabled = false;
             SetSqlGenerator("MySql.Data.MySqlClient", new MySql.Data.Entity.MySqlMigrationSqlGenerator());
+
         }
 
-        protected override void Seed(StulanContext context)
+        protected override void Seed(DAL.StulanContext context)
         {
-            try { 
             var hasher = new PasswordHasher();
+
             #region Consumption
             var consumptions = new List<Consumption>
             {
@@ -55,7 +55,8 @@ namespace DAL.Migrations
                     Steam = "Fraans",
                     BatlleNet = "Dimyke#6969",
                     Wargaming ="dimyke",
-                    PasswordHash = hasher.HashPassword("SupahStronkP@ssword")
+                    PasswordHash = hasher.HashPassword("SupahStronkP@ssword"),
+                    Wallet = 656065465
 
                 },
                 new ApplicationUser
@@ -72,7 +73,9 @@ namespace DAL.Migrations
                     Steam = "xelset",
                     BatlleNet = "xelset#2348",
                     Wargaming ="xelset",
-                    PasswordHash = hasher.HashPassword("SupahStronkP@ssword")
+                    PasswordHash = hasher.HashPassword("SupahStronkP@ssword"),
+                    Wallet = 56754
+
 
                 }
             };
@@ -176,29 +179,7 @@ namespace DAL.Migrations
 
             #endregion
 
-            #region Wallet
-            var wallets = new List<Wallet>
-            {
-                new Wallet
-                {
-                    WalletId = 1,
-                    Amount = 100,
-                    ApplicationUser = users.ElementAt(0)
-                },
 
-                 new Wallet
-                {
-                    WalletId = 2,
-                    Amount = 200,
-                    ApplicationUser = users.ElementAt(1)
-                }
-
-            };
-
-            wallets.ForEach(s => context.Wallets.Add(s));
-            context.SaveChanges();
-
-            #endregion
 
             #region Payment
             var payments = new List<Payment>
@@ -209,7 +190,7 @@ namespace DAL.Migrations
                     Amount = 1,
                     Type = PaymentSort.PayPal,
                     KitchenOrder = orders.ElementAt(0),
-                    Wallet = wallets.ElementAt(0),
+                    User = users.ElementAt(0),
                     Paid = true
                 },
 
@@ -219,27 +200,13 @@ namespace DAL.Migrations
                     Amount = 1,
                     Type = PaymentSort.PayPal,
                     KitchenOrder = orders.ElementAt(1),
-                    Wallet = wallets.ElementAt(1),
+                    User = users.ElementAt(1),
                     Paid = false
                 }
 
             };
-            }
 
             #endregion
-
-            catch (DbEntityValidationException dbEx)
-            {
-                foreach (var validationErrors in dbEx.EntityValidationErrors)
-                {
-                    foreach (var validationError in validationErrors.ValidationErrors)
-                    {
-                        Trace.TraceInformation("Property: {0} Error: {1}",
-                                                validationError.PropertyName,
-                                                validationError.ErrorMessage);
-                    }
-                }
-            }
         }
     }
 }

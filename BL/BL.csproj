@@ -87,6 +87,7 @@
   <ItemGroup>
     <Compile Include="Managers\ConsumptionManager.cs" />
     <Compile Include="Managers\OrderManager.cs" />
+    <Compile Include="Managers\PaymentManager.cs" />
     <Compile Include="OwinStartup.cs" />
     <Compile Include="Managers\LoginManager.cs" />
     <Compile Include="Managers\UserRoleManager.cs" />

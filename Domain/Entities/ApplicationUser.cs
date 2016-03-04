@@ -24,17 +24,18 @@ namespace Domain.Entities
         public string Nickname { get; set; }
         public string BatlleNet { get; set; }
         public string Wargaming { get; set; }
+        public double Wallet { get; set; }
 
         public bool NewsletterSubscription { get; set; }
 
         // foreign key
-        // public int WalletId { get; set; }
+        // public int ApplicationUserId { get; set; }
         public int TeamId { get; set; }
 
         // Navigation Properties
         public ICollection<KitchenOrder> KitchenOrders { get; set; }
         public ICollection<FoodOrder> FoodOrders { get; set; }
-        public ICollection<Wallet> Wallets { get; set; }
+        
 
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
