@@ -14,10 +14,10 @@ namespace Domain.Entities
         public bool Paid { get; set; }
         // foreign key
         public int OrderID { get; set; }
-        public int WalletId { get; set; }
+        public int ApplicationUserId { get; set; }
 
         //navigational properties
         public KitchenOrder KitchenOrder { get; set; }
-        public Wallet Wallet { get; set; }
+        public ApplicationUser User { get; set; }
     }
 }

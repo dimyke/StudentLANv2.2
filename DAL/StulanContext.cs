@@ -15,7 +15,6 @@ namespace DAL
         }
 
         public DbSet<KitchenOrder> KitchenOrders { get; set; }
-        public DbSet<Wallet> Wallets { get; set; }
         public DbSet<Payment> Payments { get; set; }
         public DbSet<FoodOrder> FoodOrders { get; set; }
         public DbSet<OrderLine> Orderlines { get; set; }

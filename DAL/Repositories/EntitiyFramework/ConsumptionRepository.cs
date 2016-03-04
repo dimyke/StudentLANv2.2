@@ -10,7 +10,7 @@ namespace DAL.Repositories.EntitiyFramework
 {
     public class ConsumptionRepository : IConsumptionRepository
     {
-        private StulanContext _ctx = new StulanContext();
+        private readonly StulanContext _ctx = new StulanContext();
         public Consumption Find(int id)
         {
             return _ctx.Consumptions.Find(id);

@@ -62,19 +62,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FormattedDbEntityValidationException.cs" />
-    <Compile Include="Migrations\201603032048457_initial.cs" />
-    <Compile Include="Migrations\201603032048457_initial.Designer.cs">
-      <DependentUpon>201603032048457_initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201603032210388_initial1.cs" />
-    <Compile Include="Migrations\201603032210388_initial1.Designer.cs">
-      <DependentUpon>201603032210388_initial1.cs</DependentUpon>
+    <Compile Include="Migrations\201603041517582_initial.cs" />
+    <Compile Include="Migrations\201603041517582_initial.Designer.cs">
+      <DependentUpon>201603041517582_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repositories\Contracts\IConsumptionRepository.cs" />
+    <Compile Include="Repositories\Contracts\IPaymentRepository.cs" />
     <Compile Include="Repositories\Contracts\IOrderRepository.cs" />
     <Compile Include="Repositories\EntitiyFramework\ConsumptionRepository.cs" />
     <Compile Include="Repositories\EntitiyFramework\OrderRepository.cs" />
+    <Compile Include="Repositories\EntitiyFramework\PaymentRepository.cs" />
     <Compile Include="StuLanConfiguration.cs" />
     <Compile Include="StulanContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -94,11 +92,8 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201603032048457_initial.resx">
-      <DependentUpon>201603032048457_initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603032210388_initial1.resx">
-      <DependentUpon>201603032210388_initial1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201603041517582_initial.resx">
+      <DependentUpon>201603041517582_initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

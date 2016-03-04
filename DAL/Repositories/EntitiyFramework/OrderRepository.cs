@@ -10,7 +10,7 @@ namespace DAL.Repositories.EntitiyFramework
 {
     public class OrderRepository : IOrderRepository
     {
-        private StulanContext _ctx = new StulanContext();
+        private readonly StulanContext _ctx = new StulanContext();
 
         public KitchenOrder Find(int? id)
         {
@@ -44,6 +44,7 @@ namespace DAL.Repositories.EntitiyFramework
             return _ctx.KitchenOrders
                 .Where(x => (x.Completed == true))
                 .Include("Orderlines")
+                .Include("Orderlines.Consumption")
                 .Include("User")
                 .AsEnumerable();
         }
