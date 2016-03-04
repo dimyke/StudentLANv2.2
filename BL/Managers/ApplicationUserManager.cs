@@ -98,6 +98,13 @@ namespace BL.Managers
             Update(id, user);
         }
 
+        public void Pay(int amount, string id)
+        {
+            var user = Find(id);
+            user.Wallet -= amount;
+            Update(id, user);
+        }
+
         //public void Create(Gebruiker gebruiker)
         //{
         //    _gebruikerRepository.Create(gebruiker);

@@ -23,12 +23,6 @@ namespace BL.Managers
             _paymentRepository.PaymentCreate(payment);
         }
 
-        public void Betaal(string id, double amount)
-        {
-            throw new NotImplementedException();
-        }
-
-
-
+       
     }
 }
