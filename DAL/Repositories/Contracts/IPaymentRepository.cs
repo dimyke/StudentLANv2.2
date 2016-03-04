@@ -11,7 +11,7 @@ namespace DAL.Repositories.Contracts
     {
         Payment FindPayment(int id);
         void PaymentCreate(Payment payment);
-        void Betaal(string id, ApplicationUser user)
+        void Betaal(string id, ApplicationUser user);
 
 
     }
