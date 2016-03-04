@@ -17,5 +17,6 @@ namespace DAL.Repositories.Contracts
         void DeleteUser(string id);
         void ChargeWallet(string id, double amount);
 
+
     }
 }
