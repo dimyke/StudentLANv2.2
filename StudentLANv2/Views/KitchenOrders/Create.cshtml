@@ -37,33 +37,46 @@
             <div class="col-md-10">
                 @*@Html.DropDownList("ConsumptionId", null, htmlAttributes: new { @class = "form-control" })*@
                 @*@Html.DropDownList("ConsumptionId", Model.Consumptions.ToString())*@
+                @*@Html.DropDownList("Consumption")*@
                 @Html.ValidationMessageFor(model => model.OrderLine.ConsumptionId, "", new { @class = "text-danger" })
             </div>
         </div>
         <p>
-            @Html.ActionLink("Create New", "Create")
+            @*@Html.ActionLink("Create New", "Create")*@
         </p>
         <table class="table">
             <tr>
                 <th>
-                    Prijs
+                    Naam
                 </th>
                 <th>
-                    Naam
+                    ID
+                </th>
+                <th>
+                    avaible
+                </th>
+                <th>
+                    price
                 </th>
                 <th></th>
             </tr>
 
             @foreach (var item in Model.Consumptions)
             {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Price)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-            </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ConsumptionId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Available)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                </tr>
             }
 
         </table>
