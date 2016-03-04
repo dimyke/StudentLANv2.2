@@ -32,19 +32,24 @@ namespace StudentLANv2.Controllers
         [HttpPost]
         public ActionResult Create(OrderLine orderLine)
         {
-            //KitchenOrder k = new KitchenOrder();
-            //k.Date = DateTime.Now;
+            KitchenOrder k = new KitchenOrder();
+            k.Date = DateTime.Now;
            
             OrderLine o = new OrderLine();
             o.ConsumptionId = orderLine.ConsumptionId;
             o.NumberOfItems = orderLine.NumberOfItems;
+
+            _orderManager.CreateKitchenOrder(k);
+            o.OrderId = k.OrderId;
+            o.ConsumptionId = 1;
+
             _orderManager.CreateOrderLine(o);
 
-            // o.OrderId = k.OrderId;
+            
             //k.OrderLines.Add(o);
-
-            return Redirect("http://localhost:28891/KitchenOrders/Details/1");
-            //_orderManager.CreateKitchenOrder(k);
+            return Index();
+            // return Redirect("http://localhost:28891/KitchenOrders/Details/1");
+            
 
             //return RedirectToAction("Details", new { id = k.OrderId }); 
         }
