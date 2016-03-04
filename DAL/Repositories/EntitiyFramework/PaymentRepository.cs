@@ -25,6 +25,12 @@ namespace DAL.Repositories.EntitiyFramework
            _ctx.SaveChanges();
        }
 
+        public void Betaal(string id, ApplicationUser user)
+        {
+            _ctx.Entry(_ctx.Users.Find(id)).CurrentValues.SetValues(user);
+            _ctx.SaveChanges();
+        }
+
       
     }
 }
