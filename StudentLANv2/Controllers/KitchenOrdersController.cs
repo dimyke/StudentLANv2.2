@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using BL.Managers;
 using DAL;
 using Domain.Entities;
+using StudentLANv2.Models;
 
 namespace StudentLANv2.Controllers
 {
@@ -27,7 +28,10 @@ namespace StudentLANv2.Controllers
         }
         public ActionResult Create()
         {
-            return View();
+            OrderCreateModel newModel = new OrderCreateModel();
+            ConsumptionManager _consumptionManager = new ConsumptionManager();
+            newModel.Consumptions = _consumptionManager.All();
+            return View(newModel);
         }
         [HttpPost]
         public ActionResult Create(OrderLine orderLine)
@@ -47,11 +51,7 @@ namespace StudentLANv2.Controllers
 
             
             //k.OrderLines.Add(o);
-            return Index();
-            // return Redirect("http://localhost:28891/KitchenOrders/Details/1");
-            
-
-            //return RedirectToAction("Details", new { id = k.OrderId }); 
+            return RedirectToAction("Details", new { id = k.OrderId }); 
         }
 
         // GET: KitchenOrders/Create
