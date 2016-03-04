@@ -27,25 +27,21 @@ namespace DAL.Repositories.EntitiyFramework
 
         public IEnumerable<ApplicationUser> GetAllApplicationUsersRole(int roleId)
         {
-            return _ctx.Users.Where( x => (x.))
-               .Include("Roles")  
-               .Include("Logins")
-               .AsEnumerable();
+            throw new NotImplementedException();
         }
 
         public void UpdateUser(string id, ApplicationUser user)
         {
-            throw new NotImplementedException();
+            _ctx.Entry(_ctx.Users.Find(id)).CurrentValues.SetValues(user);
+            _ctx.SaveChanges();
         }
 
         public void DeleteUser(string id)
         {
-            throw new NotImplementedException();
+            _ctx.Users.Remove(_ctx.Users.Find(id));
+            _ctx.SaveChanges();
         }
 
-        public void ChargeWallet(string id, double amount)
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }

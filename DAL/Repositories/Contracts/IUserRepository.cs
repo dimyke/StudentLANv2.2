@@ -15,7 +15,7 @@ namespace DAL.Repositories.Contracts
         IEnumerable<ApplicationUser> GetAllApplicationUsersRole(int roleId);
         void UpdateUser(string id, ApplicationUser user);
         void DeleteUser(string id);
-        void ChargeWallet(string id, double amount);
+       
 
 
     }
