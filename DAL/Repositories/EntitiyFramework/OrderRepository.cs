@@ -18,9 +18,6 @@ namespace DAL.Repositories.EntitiyFramework
             return _ctx.KitchenOrders
                 .Include(o => o.OrderLines)
                 .SingleOrDefault(x => (x.OrderId == id));
-            _ctx.KitchenOrders
-                
-
         }
 
         public IEnumerable<KitchenOrder> AllKitchenOrder()

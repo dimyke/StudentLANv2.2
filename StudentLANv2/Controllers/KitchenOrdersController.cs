@@ -22,10 +22,27 @@ namespace StudentLANv2.Controllers
 
         public ActionResult Details(int id, int? orderLineId)
         {
-            KitchenOrder kitchenOrder = _orderManager.Find(id);
-            
-            
+            KitchenOrder kitchenOrder = _orderManager.Find(id);            
             return View(kitchenOrder);
+        }
+        public ActionResult Create()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Create(OrderLine orderLine)
+        {
+            KitchenOrder k = new KitchenOrder();
+            k.Date = DateTime.Now;
+            OrderLine o = new OrderLine();
+            o.ConsumptionId = orderLine.ConsumptionId;
+            o.NumberOfItems = orderLine.NumberOfItems;
+            o.OrderId = k.OrderId;
+            k.OrderLines.Add(o);
+            _orderManager.CreateOrderLine(o);
+            _orderManager.CreateKitchenOrder(k);
+
+            return RedirectToAction("Details", new { id = k.OrderId }); 
         }
 
         // GET: KitchenOrders/Create

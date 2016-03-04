@@ -334,6 +334,7 @@
     <Content Include="Views\Home\_Carousel.cshtml" />
     <Content Include="Views\KitchenOrders\Index.cshtml" />
     <Content Include="Views\KitchenOrders\Details.cshtml" />
+    <Content Include="Views\KitchenOrders\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
