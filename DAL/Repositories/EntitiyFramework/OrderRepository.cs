@@ -24,7 +24,8 @@ namespace DAL.Repositories.EntitiyFramework
         public IEnumerable<KitchenOrder> AllKitchenOrder()
         {
             return _ctx.KitchenOrders
-                .Include(x => x.OrderLines)
+                .Include("OrderLines")
+                .Include("Orderlines.Consumption")
                 .AsEnumerable();
         }
 
@@ -32,8 +33,9 @@ namespace DAL.Repositories.EntitiyFramework
         {
             return _ctx.KitchenOrders
                 .Where(x => (x.Completed == false))
-                .Include("Orderline")
-                .Include("ApplicationUser")
+                .Include("OrderLines")
+                .Include("Orderlines.Consumption")
+                .Include("User")
                 .AsEnumerable();
         }
 
@@ -41,16 +43,16 @@ namespace DAL.Repositories.EntitiyFramework
         {
             return _ctx.KitchenOrders
                 .Where(x => (x.Completed == true))
-                .Include("Orderline")
-                .Include("ApplicationUser")
+                .Include("Orderlines")
+                .Include("User")
                 .AsEnumerable();
         }
 
-        public IEnumerable<ApplicationUser> UserOrders(String id)
+        public IEnumerable<ApplicationUser> UserOrders(string id)
         {
             return _ctx.Users
-                .Include("KitchenOrder")
-                .Include("Orderline")
+                .Include("KitchenOrders")
+                .Include("Orderlines")
                 .Where(x => (x.Id == id))
                 .AsEnumerable();
                 
@@ -86,9 +88,5 @@ namespace DAL.Repositories.EntitiyFramework
             _ctx.SaveChanges();
         }
 
-        public IEnumerable<KitchenOrder> UserOrder(string userId)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

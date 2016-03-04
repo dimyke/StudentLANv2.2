@@ -9,7 +9,7 @@ namespace DAL.Repositories.Contracts
         IEnumerable<KitchenOrder> AllKitchenOrder();
         IEnumerable<KitchenOrder> AllUnfinishedKitchen();
         IEnumerable<KitchenOrder> AllFinishedKitchen();
-        IEnumerable<KitchenOrder> UserOrder(string userId);
+        IEnumerable<ApplicationUser> UserOrders(string id);
         void CreateKitchenOrder(KitchenOrder kitchenorder);
         void UpdateOrder(int id, KitchenOrder kitchenorder);
 
