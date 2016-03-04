@@ -57,7 +57,7 @@
             Aantal
         </th>
         <th>
-            Consumptie ID
+            Consumptie Naam
         </th>
         <th>
             Totaal Prijs
@@ -71,7 +71,7 @@
                 @Html.DisplayFor(modelItem => line.NumberOfItems)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => line.ConsumptionId)
+                @Html.DisplayFor(modelItem => line.Consumption.Name)
             </td>
             <td>
                 € @Html.DisplayFor(modelItem => line.PriceAmount)
