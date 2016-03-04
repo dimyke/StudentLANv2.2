@@ -9,7 +9,7 @@ using Domain.Entities;
 
 namespace DAL.Repositories.EntitiyFramework
 {
-    class UserRepository : IUserRepository
+    public class UserRepository : IUserRepository
     {
         private readonly StulanContext _ctx = new StulanContext();
         public ApplicationUser FindUser(string id)

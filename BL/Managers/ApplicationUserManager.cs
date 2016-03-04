@@ -6,12 +6,14 @@ using System.Collections.Generic;
 using DAL;
 using Domain.Entities;
 using System;
+using DAL.Repositories.Contracts;
+using DAL.Repositories.EntitiyFramework;
 
 namespace BL.Managers
 {
     public class ApplicationUserManager: UserManager<ApplicationUser>
     {
-        // private readonly IGebruikerRepository _gebruikerRepository = new EfGebruikerRepository();
+        private readonly IUserRepository _userRepository = new UserRepository();
 
         public ApplicationUserManager(IUserStore<ApplicationUser> store)
             : base(store)
@@ -69,29 +71,40 @@ namespace BL.Managers
             return manager;
         }
 
-        //public IEnumerable<User> All()
-        //{
-        //    return _gebruikerRepository.All();
-        //}
+        public IEnumerable<ApplicationUser> All()
+        {
+            return _userRepository.GetAllApplicationUsers();
+        }
 
-        //public Gebruiker Find(string id)
-        //{
-        //    return _gebruikerRepository.Find(id);
-        //}
+        public ApplicationUser Find(string id)
+        {
+            return _userRepository.FindUser(id);
+        }
+
+        public void Update(string id, ApplicationUser user)
+        {
+            _userRepository.UpdateUser(id, user);
+        }
+
+        public void Delete(string id)
+        {
+            _userRepository.DeleteUser(id);
+        }
+
+        public void ChargeWallet(int amount, string id)
+        {
+            var user = Find(id);
+            user.Wallet += amount;
+            Update(id, user);
+        }
 
         //public void Create(Gebruiker gebruiker)
         //{
         //    _gebruikerRepository.Create(gebruiker);
         //}
 
-        //public void Update(string id, Gebruiker gebruiker)
-        //{
-        //    _gebruikerRepository.Update(id, gebruiker);
-        //}
 
-        //public void Delete(string id)
-        //{
-        //    _gebruikerRepository.Delete(id);
-        //}
+
+
     }
 }
