@@ -23,6 +23,8 @@ namespace StudentLANv2.Controllers
         public ActionResult Details(int id, int? orderLineId)
         {
             KitchenOrder kitchenOrder = _orderManager.Find(id);
+            
+            
             return View(kitchenOrder);
         }
 

@@ -9,7 +9,6 @@ namespace Domain.Entities
     public class OrderLine
     {
         public int OrderLineId { get; set; }
-
         public int NumberOfItems { get; set; }
         public double PriceAmount { get; set; }
 
@@ -20,7 +19,7 @@ namespace Domain.Entities
 
         // Navigational Properties
 
-        public KitchenOrder KitchenOrder { get; set; }
-        public Consumption Consumption { get; set; }        
+        public KitchenOrder _KitchenOrder { get; set; }
+        public Consumption _Consumption { get; set; }        
     }
 }

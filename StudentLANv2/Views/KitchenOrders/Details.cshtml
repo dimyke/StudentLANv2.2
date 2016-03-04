@@ -76,11 +76,11 @@
             <td>
                 € @Html.DisplayFor(modelItem => line.PriceAmount)
             </td>
+            <td>
+                @Html.ActionLink("Consumptie details", "Details", "Consumptions", new { id = line.ConsumptionId }, null)
+            </td>
         </tr>
     }
-
-
-
     <p>
         @Html.ActionLink("Edit", "Edit", new { id = Model.OrderId }) |
         @Html.ActionLink("Back to List", "Index")

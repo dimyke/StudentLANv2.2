@@ -25,8 +25,5 @@ namespace StudentLANv2.Controllers
             Consumption consumptie = _consumptionManager.Find(id);
             return View(consumptie);
         }
-
-      
-
     }
 }

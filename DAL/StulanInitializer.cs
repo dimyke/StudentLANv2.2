@@ -113,8 +113,8 @@ namespace DAL
                     OrderLineId = 1,
                     NumberOfItems =2,
                     PriceAmount = 4,
-                    KitchenOrder = orders.ElementAt(0),
-                    Consumption = consumptions.ElementAt(0)                    
+                    _KitchenOrder = orders.ElementAt(0),
+                    _Consumption = consumptions.ElementAt(0)                    
                 },
 
                 new OrderLine
@@ -122,8 +122,8 @@ namespace DAL
                     OrderLineId = 2,
                     NumberOfItems =3,
                     PriceAmount = 6,
-                    KitchenOrder = orders.ElementAt(0),
-                    Consumption = consumptions.ElementAt(1)
+                    _KitchenOrder = orders.ElementAt(0),
+                    _Consumption = consumptions.ElementAt(1)
                 },
 
                 new OrderLine
@@ -131,8 +131,8 @@ namespace DAL
                     OrderLineId = 3,
                     NumberOfItems =2,
                     PriceAmount = 4,
-                    KitchenOrder = orders.ElementAt(0),
-                    Consumption = consumptions.ElementAt(2)
+                    _KitchenOrder = orders.ElementAt(0),
+                    _Consumption = consumptions.ElementAt(2)
                 },
 
                 new OrderLine
@@ -140,8 +140,8 @@ namespace DAL
                     OrderLineId = 4,
                     NumberOfItems =2,
                     PriceAmount = 4,
-                    KitchenOrder = orders.ElementAt(1),
-                    Consumption = consumptions.ElementAt(0)
+                    _KitchenOrder = orders.ElementAt(1),
+                    _Consumption = consumptions.ElementAt(0)
                 },
 
                 new OrderLine
@@ -149,8 +149,8 @@ namespace DAL
                     OrderLineId = 5,
                     NumberOfItems =1,
                     PriceAmount = 2,
-                    KitchenOrder = orders.ElementAt(1),
-                    Consumption = consumptions.ElementAt(1)
+                    _KitchenOrder = orders.ElementAt(1),
+                    _Consumption = consumptions.ElementAt(1)
                 },
 
                 new OrderLine
@@ -158,8 +158,8 @@ namespace DAL
                     OrderLineId = 6,
                     NumberOfItems =2,
                     PriceAmount = 4,
-                    KitchenOrder = orders.ElementAt(1),
-                    Consumption = consumptions.ElementAt(2)
+                    _KitchenOrder = orders.ElementAt(1),
+                    _Consumption = consumptions.ElementAt(2)
                 },
 
             };

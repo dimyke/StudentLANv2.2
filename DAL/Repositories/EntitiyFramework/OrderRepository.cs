@@ -14,10 +14,12 @@ namespace DAL.Repositories.EntitiyFramework
 
         public KitchenOrder Find(int? id)
         {
+            // dit werkt, blijf eraf of regelet zelf!
             return _ctx.KitchenOrders
                 .Include(o => o.OrderLines)
                 .SingleOrDefault(x => (x.OrderId == id));
-
+            _ctx.KitchenOrders
+                
 
         }
 
