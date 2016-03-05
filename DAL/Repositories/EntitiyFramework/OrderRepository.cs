@@ -14,7 +14,6 @@ namespace DAL.Repositories.EntitiyFramework
 
         public KitchenOrder Find(int? id)
         {
-            // dit werkt, blijf eraf of regelet zelf!
             return _ctx.KitchenOrders
                 .Include("OrderLines")
                 .Include("Orderlines.Consumption")

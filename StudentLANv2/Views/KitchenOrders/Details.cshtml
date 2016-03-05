@@ -81,8 +81,17 @@
             </td>
         </tr>
     }
-    <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.OrderId }) |
-        @Html.ActionLink("Back to List", "Index")
-    </p>
+
 </table>
+
+@if (Model.Completed == false)
+{
+    <p>
+        Hier lijnen toevoegen!
+    </p>
+}
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.OrderId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
