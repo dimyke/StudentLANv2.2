@@ -41,11 +41,15 @@
         </td>
 
 
-        
+
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.OrderId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.OrderId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.OrderId })
+            @using (Html.BeginForm("FinishOrder", "KitchenOrders", new { orderId = item.OrderId}, FormMethod.Post))
+            {
+
+                <input type="submit" value="Finish this order" />
+
+            } 
+            
         </td>
     </tr>
 }

@@ -77,6 +77,13 @@ namespace StudentLANv2.Controllers
             return View();
         }
 
+        [HttpPost]
+        public ActionResult FinishOrder(int orderId)
+        {
+            _orderManager.SetFinished(orderId);
+            return View("KitchenView");
+        }
+
         public ActionResult AddOrderLine(int? id)
         {
 
