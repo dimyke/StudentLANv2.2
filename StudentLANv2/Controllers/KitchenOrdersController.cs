@@ -203,10 +203,10 @@ namespace StudentLANv2.Controllers
         // POST: KitchenOrders/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteOrderLine(int id, int k)
+        public ActionResult DeleteOrderLine(int id, int orderid)
         {
             _orderManager.DelteOrderLine(id);
-            return RedirectToAction("AddOrderLine", new { id = k });
+            return RedirectToAction("AddOrderLine", new { id = orderid });
         }
 
   
@@ -219,5 +219,6 @@ namespace StudentLANv2.Controllers
         //    }
         //    base.Dispose(disposing);
         //}
+
     }
 }
