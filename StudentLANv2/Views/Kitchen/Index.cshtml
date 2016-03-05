@@ -31,12 +31,14 @@
             @Html.DisplayFor(modelItem => item.Date)
         </td>
         <td>
+            
             @foreach (var line in item.OrderLines)
             {
-                @Html.DisplayFor(model => line.Consumption.Name)
-                @Html.DisplayFor(model => line.NumberOfItems)   
+                <pre>
+                @Html.DisplayFor(model => line.NumberOfItems) @Html.DisplayFor(model => line.Consumption.Name)
+                </pre>
             }
-              
+            
         </td>
 
         
