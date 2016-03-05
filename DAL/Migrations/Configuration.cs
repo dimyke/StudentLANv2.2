@@ -45,7 +45,7 @@ namespace DAL.Migrations
                 new ApplicationUser
                 {
                     Id = Guid.NewGuid().ToString(),
-                    UserName = "dimyke",
+                    UserName = "dimitrivantillo@gmail.com",
                     Email="dimitrivantillo@gmail.com",
                     LastName ="Van Tillo",
                     FirstName ="Dimitri",
@@ -57,13 +57,14 @@ namespace DAL.Migrations
                     BatlleNet = "Dimyke#6969",
                     Wargaming ="dimyke",
                     PasswordHash = hasher.HashPassword("SupahStronkP@ssword"),
-                    Wallet = 656065465
+                    Wallet = 656065465,
+                    SecurityStamp = Guid.NewGuid().ToString()
 
                 },
                 new ApplicationUser
                 {
                     Id = Guid.NewGuid().ToString(),
-                    UserName = "pieterjan",
+                    UserName = "pieterjan.kurris@gmail.com",
                     Email="pieterjan.kurris@gmail.com",
                     LastName ="Kurris",
                     FirstName ="Pieterjan",
@@ -75,7 +76,8 @@ namespace DAL.Migrations
                     BatlleNet = "xelset#2348",
                     Wargaming ="xelset",
                     PasswordHash = hasher.HashPassword("SupahStronkP@ssword"),
-                    Wallet = 56754
+                    Wallet = 56754,
+                    SecurityStamp = Guid.NewGuid().ToString()
 
 
                 }

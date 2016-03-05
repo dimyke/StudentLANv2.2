@@ -94,9 +94,6 @@ namespace DAL.Repositories.EntitiyFramework
             _ctx.SaveChanges();
         }
 
-        public void DeleteOrderLine(int id)
-        {
-            throw new NotImplementedException();
-        }
+
     }
 }
