@@ -22,7 +22,8 @@
         
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model)
+{
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.User.UserName)
@@ -30,16 +31,17 @@
         <td>
             @Html.DisplayFor(modelItem => item.Date)
         </td>
+
         <td>
-            
             @foreach (var line in item.OrderLines)
             {
-                <pre>
-                @Html.DisplayFor(model => line.NumberOfItems) @Html.DisplayFor(model => line.Consumption.Name)
-                </pre>
+
+
+            @Html.DisplayFor(model => line.NumberOfItems) @Html.DisplayFor(model => line.Consumption.Name)
+                <br>
             }
-            
         </td>
+
 
         
         <td>
