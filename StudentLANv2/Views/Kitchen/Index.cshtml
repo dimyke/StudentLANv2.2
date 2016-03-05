@@ -35,9 +35,7 @@
         <td>
             @foreach (var line in item.OrderLines)
             {
-
-
-            @Html.DisplayFor(model => line.NumberOfItems) @Html.DisplayFor(model => line.Consumption.Name)
+            @Html.DisplayFor(model => line.NumberOfItems) @Html.Raw(" x ") @Html.DisplayFor(model => line.Consumption.Name)
                 <br>
             }
         </td>
