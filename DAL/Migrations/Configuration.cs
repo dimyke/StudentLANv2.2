@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Domain.Entities;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace DAL.Migrations
 {
@@ -33,7 +34,7 @@ namespace DAL.Migrations
             };
 
             consumptions.ForEach(s => context.Consumptions.Add(s));
-            context.SaveChanges();
+
 
             #endregion
 
@@ -81,7 +82,6 @@ namespace DAL.Migrations
             };
 
             users.ForEach(s => context.Users.Add(s));
-            context.SaveChanges();
 
             #endregion
 
@@ -110,7 +110,6 @@ namespace DAL.Migrations
             };
 
             orders.ForEach(s => context.KitchenOrders.Add(s));
-            context.SaveChanges();
 
 
             #endregion
@@ -175,12 +174,10 @@ namespace DAL.Migrations
             };
 
             orderlines.ForEach(s => context.Orderlines.Add(s));
-            context.SaveChanges();
+
 
             #endregion
-
-
-
+            
             #region Payment
             var payments = new List<Payment>
             {
@@ -205,8 +202,24 @@ namespace DAL.Migrations
                 }
 
             };
-
+            payments.ForEach(p => context.Payments.Add(p));
             #endregion
+
+            #region UserRoles
+            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+
+            roleManager.Create(new IdentityRole("Superadmin"));
+            roleManager.Create(new IdentityRole("Administrator"));
+            roleManager.Create(new IdentityRole("Keuken Admin"));
+            roleManager.Create(new IdentityRole("Deelnemer"));
+
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+
+            userManager.AddToRole(users.ElementAt(0).Id, "Administrator");
+            userManager.AddToRole(users.ElementAt(1).Id, "Superadmin");
+            #endregion
+
+            context.SaveChanges();
         }
     }
 }

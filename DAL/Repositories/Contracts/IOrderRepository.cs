@@ -15,6 +15,7 @@ namespace DAL.Repositories.Contracts
 
         void createOrderLine(OrderLine orderine);
         IEnumerable<OrderLine> OrderLineForOrder(int? id);
+        void DeleteOrderLine(int id);
 
     }
 }

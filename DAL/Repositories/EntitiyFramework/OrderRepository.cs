@@ -67,7 +67,7 @@ namespace DAL.Repositories.EntitiyFramework
         {
             _ctx.Orderlines.Add(orderline);
             _ctx.SaveChanges();
-        }
+        }   
 
         public IEnumerable<OrderLine> OrderLineForOrder(int? id)
         {
@@ -85,6 +85,12 @@ namespace DAL.Repositories.EntitiyFramework
         public void createOrderLine(OrderLine orderline)
         {
             _ctx.Orderlines.Add(orderline);
+            _ctx.SaveChanges();
+        }
+
+        public void DeleteOrderLineDeleteOrderLine(int id)
+        {
+            _ctx.Orderlines.Remove(_ctx.Orderlines.Find(id));
             _ctx.SaveChanges();
         }
 

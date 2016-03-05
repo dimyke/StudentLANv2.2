@@ -73,7 +73,10 @@ namespace BL.Managers
             return _OrderRepository.UserOrders(id);
         }
 
-       
+        public void DelteOrderLine(int id)
+        {
+            _OrderRepository.DeleteOrderLine(id);
+        }
 
 
 

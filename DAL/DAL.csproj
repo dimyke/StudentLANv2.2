@@ -62,9 +62,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FormattedDbEntityValidationException.cs" />
-    <Compile Include="Migrations\201603041517582_initial.cs" />
-    <Compile Include="Migrations\201603041517582_initial.Designer.cs">
-      <DependentUpon>201603041517582_initial.cs</DependentUpon>
+    <Compile Include="Migrations\201603051942111_initial.cs" />
+    <Compile Include="Migrations\201603051942111_initial.Designer.cs">
+      <DependentUpon>201603051942111_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repositories\Contracts\IConsumptionRepository.cs" />
@@ -94,8 +94,8 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201603041517582_initial.resx">
-      <DependentUpon>201603041517582_initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201603051942111_initial.resx">
+      <DependentUpon>201603051942111_initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
