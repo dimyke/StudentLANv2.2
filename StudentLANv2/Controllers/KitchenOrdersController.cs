@@ -193,16 +193,16 @@ namespace StudentLANv2.Controllers
         //    return View(kitchenOrder);
         //}
 
-        //// POST: KitchenOrders/Delete/5
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult DeleteConfirmed(int id)
-        //{
-        //    KitchenOrder kitchenOrder = db.KitchenOrders.Find(id);
-        //    db.KitchenOrders.Remove(kitchenOrder);
-        //    db.SaveChanges();
-        //    return RedirectToAction("Index");
-        //}
+        // POST: KitchenOrders/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteOrderLine(int id, KitchenOrder k)
+        {
+            _orderManager.DelteOrderLine(id);
+            return RedirectToAction("AddOrderLine", new { id = k.OrderId });
+        }
+
+  
 
         //protected override void Dispose(bool disposing)
         //{
