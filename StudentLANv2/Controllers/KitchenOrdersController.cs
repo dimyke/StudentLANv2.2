@@ -22,6 +22,11 @@ namespace StudentLANv2.Controllers
             return View(_orderManager.AllKitchenOrders().ToList());
         }
 
+        public ActionResult KitchenView()
+        {
+            return View(_orderManager.AllUnfinishedKitchenOrders().ToList());
+        }
+
         public ActionResult Details(int id, int? orderLineId)
         {
             KitchenOrder kitchenOrder = _orderManager.Find(id);            
