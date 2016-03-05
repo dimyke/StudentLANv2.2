@@ -9,7 +9,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace DAL
 {
-    public class StulanInitializer : DropCreateDatabaseAlways<StulanContext>
+    public class StulanInitializer : DropCreateDatabaseIfModelChanges<StulanContext>
     {
         protected override void Seed(StulanContext context)
         {
@@ -27,6 +27,7 @@ namespace DAL
 
             consumptions.ForEach(s => context.Consumptions.Add(s));
 
+
             #endregion
 
             #region user
@@ -36,7 +37,7 @@ namespace DAL
                 new ApplicationUser
                 {
                     Id = Guid.NewGuid().ToString(),
-                    UserName = "dimyke",
+                    UserName = "dimitrivantillo@gmail.com",
                     Email="dimitrivantillo@gmail.com",
                     LastName ="Van Tillo",
                     FirstName ="Dimitri",
@@ -48,13 +49,14 @@ namespace DAL
                     BatlleNet = "Dimyke#6969",
                     Wargaming ="dimyke",
                     PasswordHash = hasher.HashPassword("SupahStronkP@ssword"),
-                    Wallet = 656065465
+                    Wallet = 656065465,
+                    SecurityStamp = Guid.NewGuid().ToString()
 
                 },
                 new ApplicationUser
                 {
                     Id = Guid.NewGuid().ToString(),
-                    UserName = "pieterjan",
+                    UserName = "pieterjan.kurris@gmail.com",
                     Email="pieterjan.kurris@gmail.com",
                     LastName ="Kurris",
                     FirstName ="Pieterjan",
@@ -66,7 +68,8 @@ namespace DAL
                     BatlleNet = "xelset#2348",
                     Wargaming ="xelset",
                     PasswordHash = hasher.HashPassword("SupahStronkP@ssword"),
-                    Wallet = 56754
+                    Wallet = 56754,
+                    SecurityStamp = Guid.NewGuid().ToString()
 
 
                 }
@@ -114,7 +117,7 @@ namespace DAL
                     NumberOfItems =2,
                     PriceAmount = 4,
                     KitchenOrder = orders.ElementAt(0),
-                    Consumption = consumptions.ElementAt(0)                    
+                    Consumption = consumptions.ElementAt(0)
                 },
 
                 new OrderLine
@@ -165,9 +168,9 @@ namespace DAL
             };
 
             orderlines.ForEach(s => context.Orderlines.Add(s));
-            
 
-            #endregion    
+
+            #endregion
 
             #region Payment
             var payments = new List<Payment>
@@ -196,10 +199,7 @@ namespace DAL
             payments.ForEach(p => context.Payments.Add(p));
             #endregion
 
-
-
             #region UserRoles
-
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
 
             roleManager.Create(new IdentityRole("Superadmin"));

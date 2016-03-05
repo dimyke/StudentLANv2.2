@@ -83,7 +83,7 @@
                     € @Html.DisplayFor(modelItem => line.PriceAmount)
                 </td>
                 <td>
-                    @Html.ActionLink("Verwijder lijn", "DeleteOrderLine", "KitchenOrders", new { id = line.ConsumptionId, orderid = Model.KitchenOrder.OrderId }, null)
+                    @Html.ActionLink("Verwijder lijn", "DeleteOrderLine", "KitchenOrders", new { id = line.OrderLineId, orderid = Model.KitchenOrder.OrderId }, null)
                 </td>
             </tr>
         }
