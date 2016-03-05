@@ -88,7 +88,7 @@ namespace DAL.Repositories.EntitiyFramework
             _ctx.SaveChanges();
         }
 
-        public void DeleteOrderLineDeleteOrderLine(int id)
+        public void DeleteOrderLine(int id)
         {
             _ctx.Orderlines.Remove(_ctx.Orderlines.Find(id));
             _ctx.SaveChanges();
