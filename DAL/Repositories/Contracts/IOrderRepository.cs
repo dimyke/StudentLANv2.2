@@ -13,6 +13,7 @@ namespace DAL.Repositories.Contracts
         void CreateKitchenOrder(KitchenOrder kitchenorder);
         void UpdateOrder(int id, KitchenOrder kitchenorder);
 
+
         void createOrderLine(OrderLine orderine);
         IEnumerable<OrderLine> OrderLineForOrder(int? id);
         void DeleteOrderLine(int id);

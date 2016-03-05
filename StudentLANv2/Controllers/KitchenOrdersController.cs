@@ -81,7 +81,7 @@ namespace StudentLANv2.Controllers
         public ActionResult FinishOrder(int orderId)
         {
             _orderManager.SetFinished(orderId);
-            return View("KitchenView");
+            return RedirectToAction("KitchenView");
         }
 
         public ActionResult AddOrderLine(int? id)
