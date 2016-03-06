@@ -65,6 +65,14 @@ namespace StudentLANv2.Controllers
             return RedirectToAction("AddOrderLine", new { id = k.OrderId });
         }
 
+        public ActionResult CreateOrder()
+        {
+            KitchenOrder k = new KitchenOrder();
+            k.Date = DateTime.Now;
+            _orderManager.CreateKitchenOrder(k);
+            return RedirectToAction("AddOrderLine", new { id = k.OrderId });
+        }
+
         public ActionResult CreateLine()
         {
             return View();
@@ -200,16 +208,24 @@ namespace StudentLANv2.Controllers
         //    return View(kitchenOrder);
         //}
 
-        // POST: KitchenOrders/Delete/5
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult DeleteOrderLine(int id, int orderid)
-        //{
-        //    _orderManager.DelteOrderLine(id);
-        //    return RedirectToAction("AddOrderLine", new { id = orderid });
-        //}
+        //POST: KitchenOrders/Delete/5
+        // enkel via het overzicht voor een admin.
+        public ActionResult ToggleDelete(int orderid)
+        {
+            KitchenOrder k = _orderManager.Find(orderid);;
+            if(k.Deleted)
+            {
+                k.Deleted = false;
+            }
+            else
+            {
+                k.Deleted = true;
+            }
+            _orderManager.UpdateOrder(orderid, k);
+            return RedirectToAction("Index");
+        }
 
-  
+
 
         //protected override void Dispose(bool disposing)
         //{
@@ -220,10 +236,15 @@ namespace StudentLANv2.Controllers
         //    base.Dispose(disposing);
         //}
 
-        public ActionResult DeleteOrderLine(int id, int orderid)
+
+        public ActionResult DeleteOrderLine(int orderLineId, int kitchenId, double price)
         {
-            _orderManager.DelteOrderLine(id);
-            return RedirectToAction("AddOrderLine", new { id = orderid });
+            KitchenOrder k = _orderManager.Find(kitchenId);
+            k.TotalAmount -= price;
+            _orderManager.DelteOrderLine(orderLineId);
+            _orderManager.UpdateOrder(k.OrderId,k);
+            return RedirectToAction("AddOrderLine", new { id = k.OrderId });
         }
     }
 }
+;
