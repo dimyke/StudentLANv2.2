@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<Domain.Entities.KitchenOrder>
+@using Microsoft.AspNet.Identity
 
 @{
     ViewBag.Title = "Index";
@@ -46,14 +47,21 @@
         <td>
             @Html.DisplayFor(modelItem => item.Deleted)
         </td>
-        
-
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.OrderId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.OrderId }) |
-            @Html.ActionLink("Toggle delete", "ToggleDelete", new { orderid = item.OrderId })
+            @if (Request.IsAuthenticated && User.IsInRole("Superadmin"))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ActionLink("Edit", "Edit", new { id = item.OrderId }) @Html.Raw(" | ")
+                @Html.ActionLink("Details", "Details", new { id = item.OrderId }) @Html.Raw(" | ")
+                @Html.ActionLink("Toggle delete", "ToggleDelete", new { orderid = item.OrderId })
+
+            }
+           
+           
+           
         </td>
+       
     </tr>
 }
-
+    
 </table>
