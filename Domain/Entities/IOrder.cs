@@ -11,5 +11,6 @@ namespace Domain.Entities
         DateTime Date { get; set; }
         bool Completed { get; set; }
         bool Deleted { get; set; }
+        DateTime? DateEdited { get; set; }
     }
 }

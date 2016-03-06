@@ -11,6 +11,7 @@ namespace Domain.Entities
         public double TotalAmount { get; set; }       
         public bool Completed { get; set; }
         public bool Deleted { get; set; }
+        public DateTime? DateEdited { get; set; }
 
         //FK
         public string ApplicationUserId { get; set; }

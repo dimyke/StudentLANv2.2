@@ -13,6 +13,8 @@ namespace Domain.Entities
         public bool Completed { get; set; }
         public bool Deleted { get; set; }
         public bool Paid { get; set; }
+        public bool InProces { get; set; }
+        public DateTime? DateEdited { get; set; }
 
         //FK
         public string ApplicationUserId { get; set; }
