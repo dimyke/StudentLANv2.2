@@ -48,14 +48,14 @@
             @Html.DisplayFor(modelItem => item.Deleted)
         </td>
         <td>
-            @if (Request.IsAuthenticated && User.IsInRole("Superadmin"))
-            {
+            @*@if (Request.IsAuthenticated && User.IsInRole("Superadmin"))
+            {*@
                 @Html.AntiForgeryToken()
                 @Html.ActionLink("Edit", "Edit", new { id = item.OrderId }) @Html.Raw(" | ")
                 @Html.ActionLink("Details", "Details", new { id = item.OrderId }) @Html.Raw(" | ")
                 @Html.ActionLink("Toggle delete", "ToggleDelete", new { orderid = item.OrderId })
 
-            }
+            @*}*@
            
            
            

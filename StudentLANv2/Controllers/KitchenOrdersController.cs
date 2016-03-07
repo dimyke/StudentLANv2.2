@@ -34,36 +34,36 @@ namespace StudentLANv2.Controllers
         }
 
         // intialisatie create kitchenorder pagina
-        public ActionResult Create()
-        {
-            OrderCreateModel newModel = new OrderCreateModel();            
-            newModel.Consumptions = _consumptionManager.All();
-            return View(newModel);
-        }
-        // create kitchenorder met 1 orderline
-        [HttpPost]
-        public ActionResult Create(OrderLine orderLine)
-        {          
-            OrderLine o = new OrderLine();
-            o.ConsumptionId = orderLine.ConsumptionId;
-            o.NumberOfItems = orderLine.NumberOfItems;
-            double price = _consumptionManager.Find(orderLine.ConsumptionId).Price * orderLine.NumberOfItems;
-            o.PriceAmount = price;
+        //public ActionResult Create()
+        //{
+        //    OrderCreateModel newModel = new OrderCreateModel();            
+        //    newModel.Consumptions = _consumptionManager.All();
+        //    return View(newModel);
+        //}
+        //// create kitchenorder met 1 orderline
+        //[HttpPost]
+        //public ActionResult Create(OrderLine orderLine)
+        //{          
+        //    OrderLine o = new OrderLine();
+        //    o.ConsumptionId = orderLine.ConsumptionId;
+        //    o.NumberOfItems = orderLine.NumberOfItems;
+        //    double price = _consumptionManager.Find(orderLine.ConsumptionId).Price * orderLine.NumberOfItems;
+        //    o.PriceAmount = price;
 
-            KitchenOrder k = new KitchenOrder();
-            k.Date = DateTime.Now;
-            k.TotalAmount += price;
+        //    KitchenOrder k = new KitchenOrder();
+        //    k.Date = DateTime.Now;
+        //    k.TotalAmount += price;
             
-            _orderManager.CreateKitchenOrder(k);
-            o.OrderId = k.OrderId;
+        //    _orderManager.CreateKitchenOrder(k);
+        //    o.OrderId = k.OrderId;
 
-            _orderManager.CreateOrderLine(o);
+        //    _orderManager.CreateOrderLine(o);
 
 
-            //k.OrderLines.Add(o);
-            //return RedirectToAction("Details", new { id = k.OrderId }); 
-            return RedirectToAction("AddOrderLine", new { id = k.OrderId });
-        }
+        //    //k.OrderLines.Add(o);
+        //    //return RedirectToAction("Details", new { id = k.OrderId }); 
+        //    return RedirectToAction("AddOrderLine", new { id = k.OrderId });
+        //}
 
         public ActionResult CreateOrder()
         {
@@ -172,41 +172,6 @@ namespace StudentLANv2.Controllers
             return View(kitchenOrder);
         }
 
-        // GET: KitchenOrders/Create
-        //public ActionResult Create()
-        //{
-        //    return View();
-        //}
-
-        // POST: KitchenOrders/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Create([Bind(Include = "OrderId,Date,TotalAmount,Completed,Deleted,ApplicationUserId")] KitchenOrder kitchenOrder)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        _orderManager.CreateKitchenOrder(kitchenOrder);
-        //        return RedirectToAction("Index");
-        //    }
-        //    return View(kitchenOrder);
-        //}
-
-        //// GET: KitchenOrders/Delete/5
-        //public ActionResult Delete(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    KitchenOrder kitchenOrder = db.KitchenOrders.Find(id);
-        //    if (kitchenOrder == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(kitchenOrder);
-        //}
 
         //POST: KitchenOrders/Delete/5
         // enkel via het overzicht voor een admin.
@@ -223,6 +188,14 @@ namespace StudentLANv2.Controllers
             }
             _orderManager.UpdateOrder(orderid, k);
             return RedirectToAction("Index");
+        }
+
+        public ActionResult ToggleInProces(int orderid)
+        {
+            KitchenOrder k = _orderManager.Find(orderid); 
+            k.InProces = true;
+            _orderManager.UpdateOrder(orderid, k);
+            return RedirectToAction("AddOrderLine", new { id = k.OrderId });
         }
 
 
