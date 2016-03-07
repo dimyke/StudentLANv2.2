@@ -11,10 +11,12 @@ using Domain.Entities;
 using BL.Managers;
 namespace StudentLANv2.Controllers
 {
+    [Authorize(Roles = "Superadmin, Administrator")]
     public class ConsumptionsController : Controller
     {
         private readonly ConsumptionManager _consumptionManager = new ConsumptionManager();
 
+        [AllowAnonymous]
         public ActionResult Index()
         {
             return View(_consumptionManager.All().ToList());
