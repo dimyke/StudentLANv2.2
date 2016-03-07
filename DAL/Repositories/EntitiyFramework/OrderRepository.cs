@@ -16,6 +16,7 @@ namespace DAL.Repositories.EntitiyFramework
         {
             return _ctx.KitchenOrders
                 .Include("OrderLines")
+                .Include("User")
                 .Include("Orderlines.Consumption")
                 .SingleOrDefault(x => (x.OrderId == id));
         }
