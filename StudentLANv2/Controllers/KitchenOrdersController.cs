@@ -17,11 +17,7 @@ namespace StudentLANv2.Controllers
             return View(_orderManager.AllKitchenOrders().ToList());
         }
 
-        public ActionResult KitchenView()
-        {
-            return View(_orderManager.AllUnfinishedKitchenOrders().ToList());
-        }
-
+        // only shows some stuff. Not important
         public ActionResult Details(int id, int? orderLineId)
         {
             KitchenOrder kitchenOrder = _orderManager.Find(id);
@@ -82,48 +78,7 @@ namespace StudentLANv2.Controllers
             return RedirectToAction("AddOrderLine", new { id = k.OrderId });
         }
 
-
-
-        // GET: KitchenOrders/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            KitchenOrder kitchenOrder = _orderManager.Find(id);
-            if (kitchenOrder == null)
-            {
-                return HttpNotFound();
-            }
-            //ViewBag.ApplicationUserId = new SelectList(_orderManager. ApplicationUser, "Id", "UserName", kitchenOrder.ApplicationUserId);
-            return View(kitchenOrder);
-        }
-
-        //// POST: KitchenOrders/Edit/5
-        //// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        //// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, KitchenOrder kitchenOrder)
-        {
-            if (ModelState.IsValid)
-            {
-                _orderManager.UpdateOrder(id, kitchenOrder);
-                return RedirectToAction("Index");
-            }
-            return View(kitchenOrder);
-        }
-
-
-        [HttpPost]
-        public ActionResult FinishOrder(int orderId)
-        {
-            _orderManager.SetFinished(orderId);
-            return RedirectToAction("KitchenView");
-        }
-
-        //delete an orderine from an order.
+        //delete an orderline from an order.
         // TODO: only for orders not in proces , not completed
         public ActionResult DeleteOrderLine(int orderLineId, int kitchenId, double price)
         {
@@ -134,21 +89,8 @@ namespace StudentLANv2.Controllers
             return RedirectToAction("AddOrderLine", new { id = k.OrderId });
         }
 
-        public ActionResult ToggleDelete(int orderid)
-        {
-            KitchenOrder k = _orderManager.Find(orderid); ;
-            if (k.Deleted)
-            {
-                k.Deleted = false;
-            }
-            else
-            {
-                k.Deleted = true;
-            }
-            _orderManager.UpdateOrder(orderid, k);
-            return RedirectToAction("Index");
-        }
 
+        //TODO: if = inproces && role = admin then toggle else u have 2 b admin!
         public ActionResult ToggleInProces(int orderid)
         {
             KitchenOrder k = _orderManager.Find(orderid);
