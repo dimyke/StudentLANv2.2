@@ -13,6 +13,9 @@
 <table class="table">
     <tr>
         <th>
+            @Html.DisplayNameFor(model => model.User.Nickname)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.User.UserName)
         </th>
         <th>
@@ -20,6 +23,9 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.TotalAmount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InProces)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Completed)
@@ -33,6 +39,9 @@
 @foreach (var item in Model) {
     <tr>
         <td>
+            @Html.DisplayFor(modelItem => item.User.Nickname)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.User.UserName)
         </td>
         <td>
@@ -40,6 +49,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.TotalAmount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InProces)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Completed)
