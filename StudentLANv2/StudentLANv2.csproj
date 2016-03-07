@@ -338,7 +338,6 @@
     <Content Include="Views\Home\_Carousel.cshtml" />
     <Content Include="Views\Kitchen\Index.cshtml" />
     <Content Include="Views\KitchenOrders\Details.cshtml" />
-    <Content Include="Views\KitchenOrders\Create.cshtml" />
     <Content Include="Views\KitchenAdmin\Edit.cshtml" />
     <Content Include="Views\KitchenOrders\AddOrderLine.cshtml" />
     <Content Include="Views\Kitchen\KitchenView.cshtml" />

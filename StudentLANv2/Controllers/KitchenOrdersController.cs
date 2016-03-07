@@ -5,6 +5,7 @@ using System.Web.Mvc;
 using BL.Managers;
 using Domain.Entities;
 using StudentLANv2.Models;
+using Microsoft.AspNet.Identity;
 
 namespace StudentLANv2.Controllers
 {
@@ -23,8 +24,12 @@ namespace StudentLANv2.Controllers
         // this method on its turn calls "addorderine"
         public ActionResult CreateOrder()
         {
+            //private readonly ApplicationUserManager _applicationUserManager = new ApplicationUserManager(ApplicationUser);
             KitchenOrder k = new KitchenOrder();
             k.Date = DateTime.Now;
+            k.ApplicationUserId = User.Identity.GetUserId();
+
+            
             _orderManager.CreateKitchenOrder(k);
             return RedirectToAction("AddOrderLine", new { id = k.OrderId });
         }
