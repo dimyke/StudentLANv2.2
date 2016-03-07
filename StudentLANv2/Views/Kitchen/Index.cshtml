@@ -66,9 +66,9 @@
             @*@if (Request.IsAuthenticated && User.IsInRole("Superadmin"))
             {*@
                 @Html.AntiForgeryToken()
-                @Html.ActionLink("Edit", "Edit", new { id = item.OrderId }) @Html.Raw(" | ")
-                @Html.ActionLink("Details", "Details", new { id = item.OrderId }) @Html.Raw(" | ")
-                @Html.ActionLink("Toggle delete", "ToggleDelete", new { orderid = item.OrderId })
+                @Html.ActionLink("Edit", "Edit","KitchenAdmin", new { id = item.OrderId },null) @Html.Raw(" | ")
+                @Html.ActionLink("Details", "Details","KitchenOrders", new { id = item.OrderId },null) @Html.Raw(" | ")
+                @Html.ActionLink("Toggle delete", "ToggleDelete", "KitchenAdmin", new { orderid = item.OrderId },null)
 
             @*}*@
            

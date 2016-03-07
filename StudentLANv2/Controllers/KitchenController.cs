@@ -7,10 +7,15 @@ using System.Web.Mvc;
 
 namespace StudentLANv2.Controllers
 {
+    [Authorize(Roles = "Keuken, Keuken Admin")]
     public class KitchenController : Controller
     {
-        // GET: Kitchen
         OrderManager _orderManager = new OrderManager();
+        public ActionResult Index()
+        {
+            return View(_orderManager.AllKitchenOrders().ToList());
+        }
+
         public ActionResult KitchenView()
         {
             return View(_orderManager.AllUnfinishedKitchenOrders().ToList());

@@ -12,10 +12,6 @@ namespace StudentLANv2.Controllers
     {
         private readonly OrderManager _orderManager = new OrderManager();
         private readonly ConsumptionManager _consumptionManager = new ConsumptionManager();
-        public ActionResult Index()
-        {
-            return View(_orderManager.AllKitchenOrders().ToList());
-        }
 
         // only shows some stuff. Not important
         public ActionResult Details(int id, int? orderLineId)

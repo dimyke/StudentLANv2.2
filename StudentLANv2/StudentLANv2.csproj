@@ -336,17 +336,15 @@
     <Content Include="Views\Consumptions\Edit.cshtml" />
     <Content Include="Views\Consumptions\Index.cshtml" />
     <Content Include="Views\Home\_Carousel.cshtml" />
-    <Content Include="Views\KitchenOrders\Index.cshtml" />
+    <Content Include="Views\Kitchen\Index.cshtml" />
     <Content Include="Views\KitchenOrders\Details.cshtml" />
     <Content Include="Views\KitchenOrders\Create.cshtml" />
-    <Content Include="Views\KitchenOrders\Edit.cshtml" />
+    <Content Include="Views\KitchenAdmin\Edit.cshtml" />
     <Content Include="Views\KitchenOrders\AddOrderLine.cshtml" />
-    <Content Include="Views\KitchenOrders\KitchenView.cshtml" />
+    <Content Include="Views\Kitchen\KitchenView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\KitchenAdmin\" />
-    <Folder Include="Views\Kitchen\" />
     <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>

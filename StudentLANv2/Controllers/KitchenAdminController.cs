@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace StudentLANv2.Controllers
 {
+    [Authorize(Roles="Keuken Admin")]
     public class KitchenAdminController : Controller
     {
         // GET: KitchenAdmin
@@ -26,7 +27,7 @@ namespace StudentLANv2.Controllers
                 k.Deleted = true;
             }
             _orderManager.UpdateOrder(orderid, k);
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Kitchen");
         }
 
         // GET: KitchenOrders/Edit/5
@@ -55,7 +56,7 @@ namespace StudentLANv2.Controllers
             if (ModelState.IsValid)
             {
                 _orderManager.UpdateOrder(id, kitchenOrder);
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Kitchen");
             }
             return View(kitchenOrder);
         }

@@ -98,6 +98,27 @@ namespace DAL
                 new ApplicationUser
                 {
                     Id = Guid.NewGuid().ToString(),
+                    UserName = "keukenadmin@gmail.com",
+                    Email="keukenadmin@gmail.com",
+                    LastName ="keuken",
+                    FirstName ="keuken",
+                    PostalCode ="2930",
+                    DateOfBirth = new DateTime(1991, 11, 8),
+                    Nickname = "keuken",
+                    Origin = "keuken",
+                    Steam = "keuken",
+                    BatlleNet = "keukent#2348",
+                    Wargaming ="keuken",
+                    PasswordHash = hasher.HashPassword("SupahStronkP@ssword"),
+                    Wallet = 56754,
+                    SecurityStamp = Guid.NewGuid().ToString()
+
+
+                },
+
+                new ApplicationUser
+                {
+                    Id = Guid.NewGuid().ToString(),
                     UserName = "deelnemer@gmail.com",
                     Email="deelnemer@gmail.com",
                     LastName ="deelnemer",
@@ -247,14 +268,16 @@ namespace DAL
             roleManager.Create(new IdentityRole("Superadmin"));
             roleManager.Create(new IdentityRole("Administrator"));
             roleManager.Create(new IdentityRole("Keuken Admin"));
+            roleManager.Create(new IdentityRole("Keuken"));
             roleManager.Create(new IdentityRole("Deelnemer"));
 
             var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
 
             userManager.AddToRole(users.ElementAt(0).Id, "Administrator");
             userManager.AddToRole(users.ElementAt(1).Id, "Superadmin");
-            userManager.AddToRole(users.ElementAt(2).Id, "Keuken Admin");
-            userManager.AddToRole(users.ElementAt(1).Id, "Deelnemer");
+            userManager.AddToRole(users.ElementAt(2).Id, "Keuken");
+            userManager.AddToRole(users.ElementAt(3).Id, "Keuken Admin");
+            userManager.AddToRole(users.ElementAt(4).Id, "Deelnemer");
             #endregion
 
             context.SaveChanges();
