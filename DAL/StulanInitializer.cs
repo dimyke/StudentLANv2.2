@@ -9,7 +9,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace DAL
 {
-    public class StulanInitializer : DropCreateDatabaseIfModelChanges<StulanContext>
+    public class StulanInitializer : DropCreateDatabaseAlways<StulanContext>
     {
         protected override void Seed(StulanContext context)
         {

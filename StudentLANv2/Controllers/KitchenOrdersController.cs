@@ -160,11 +160,10 @@ namespace StudentLANv2.Controllers
         //// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, [Bind(Include = "OrderId,Date,TotalAmount,Completed,Deleted,ApplicationUserId")] KitchenOrder kitchenOrder)
+        public ActionResult Edit(int id, KitchenOrder kitchenOrder)
         {
             if (ModelState.IsValid)
             {
-
                 _orderManager.UpdateOrder(id, kitchenOrder);
                 return RedirectToAction("Index");
             }
