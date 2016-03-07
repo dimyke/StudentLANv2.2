@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using BL.Managers;
-using DAL;
 using Domain.Entities;
 using StudentLANv2.Models;
 
@@ -29,7 +24,7 @@ namespace StudentLANv2.Controllers
 
         public ActionResult Details(int id, int? orderLineId)
         {
-            KitchenOrder kitchenOrder = _orderManager.Find(id);            
+            KitchenOrder kitchenOrder = _orderManager.Find(id);
             return View(kitchenOrder);
         }
         // the menu item 'maak order' calls this method.
