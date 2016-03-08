@@ -31,7 +31,7 @@ namespace StudentLANv2.Controllers
 
             
             _orderManager.CreateKitchenOrder(k);
-            return RedirectToAction("AddOrderLine", new { id = k.OrderId });
+            return RedirectToAction("AddOrder", new { id = k.OrderId });
         }
 
         public ActionResult AddOrder(int? id)
