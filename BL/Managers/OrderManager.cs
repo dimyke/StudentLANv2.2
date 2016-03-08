@@ -68,7 +68,7 @@ namespace BL.Managers
             _OrderRepository.UpdateOrder(id, order);
         }
 
-        public IEnumerable<ApplicationUser> GetUserOrders(string id)
+        public IEnumerable<KitchenOrder> GetUserOrders(string id)
         {
             return _OrderRepository.UserOrders(id);
         }
