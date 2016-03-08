@@ -356,7 +356,6 @@
     <Content Include="Views\Kitchen\KitchenView.cshtml" />
     <Content Include="Views\Payment\Index.cshtml" />
     <Content Include="Views\Payment\FailureView.cshtml" />
-    <Content Include="Views\Payment\SuccessView.cshtml" />
     <Content Include="Views\Shared\_AdminPartial.cshtml" />
     <Content Include="Views\Consumptions\Index.cshtml" />
     <Content Include="Views\Consumptions\Edit.cshtml" />

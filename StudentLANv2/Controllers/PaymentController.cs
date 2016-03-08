@@ -41,8 +41,10 @@ namespace StudentLANv2.Controllers
             };
             _paymentManager.CreatePayment(walletPayment);
             _userManager.Pay(order.TotalAmount, user.Id);
-            
-            return View("SuccessView");
+            order.Paid = true;
+            order.InProces = true;
+
+            return RedirectToAction("Index", "KitchenOrders");
         }
 
         public ActionResult PaymentWithPaypal(int orderid)
@@ -106,9 +108,10 @@ namespace StudentLANv2.Controllers
 
             
             order.InProces = true;
+            order.Paid = true;
             _orderManager.UpdateOrder(orderid, order);
             _paymentManager.CreatePayment(paymentToSave);
-            return View("SuccessView");
+            return RedirectToAction("Index", "KitchenOrders");
 
         }
 
