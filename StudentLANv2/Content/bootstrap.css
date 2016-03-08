@@ -6177,7 +6177,8 @@ body.modal-open,
   margin: 1px;
   text-indent: -999px;
   cursor: pointer;
-  border: 1px solid #ffffff;
+  /*border: 1px solid #ffffff;*/
+  background: #3b3a3a ;
   border-radius: 10px;
 }
 
@@ -6186,7 +6187,7 @@ body.modal-open,
   width: 12px;
   height: 12px;
   margin: 0;
-  background-color: #ffffff;
+  background-color: #000000;
 }
 
 .carousel-caption {

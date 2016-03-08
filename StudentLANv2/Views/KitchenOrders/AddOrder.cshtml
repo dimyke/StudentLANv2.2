@@ -57,40 +57,42 @@
             </dd>
         </dl>
     </div>
-    <table class="table">
-        <tr>
-            <th>
-                Aantal
-            </th>
-            <th>
-                Consumptie Naam
-            </th>
-            <th>
-                Totaal Prijs
-            </th>
-            <th></th>
-        </tr>
-        @foreach (var line in Model.KitchenOrder.OrderLines)
-        {
+    <table class="table table-striped">
+        <thead>
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => line.NumberOfItems)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => line.Consumption.Name)
-                </td>
-                <td>
-                    € @Html.DisplayFor(modelItem => line.PriceAmount)
-                </td>
-                <td>
-                    @if (Model.KitchenOrder.InProces == false)
-                    {  <input type="button" class="btn btn-default" value="Verwijder Lijn" onclick="location.href='@Url.Action("DeleteOrderLine", "KitchenOrders", new { orderLineId = line.OrderLineId, kitchenId = Model.KitchenOrder.OrderId, price = line.PriceAmount })'" />
-                          }                 
-                </td>    
+                <th>
+                    Aantal
+                </th>
+                <th>
+                    Consumptie Naam
+                </th>
+                <th>
+                    Totaal Prijs
+                </th>
+                <th></th>
             </tr>
-        }
+        </thead>
+            @foreach (var line in Model.KitchenOrder.OrderLines)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => line.NumberOfItems)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => line.Consumption.Name)
+                    </td>
+                    <td>
+                        € @Html.DisplayFor(modelItem => line.PriceAmount)
+                    </td>
+                    <td>
+                        @if (Model.KitchenOrder.InProces == false)
+                    {  <input type="button" class="btn btn-default" value="Verwijder Lijn" onclick="location.href='@Url.Action("DeleteOrderLine", "KitchenOrders", new { orderLineId = line.OrderLineId, kitchenId = Model.KitchenOrder.OrderId, price = line.PriceAmount })'" />
+                        }
+                    </td>
+                </tr>
+            }
 
-    </table>
+</table>
     if(!Model.KitchenOrder.InProces){ 
     <div class="form-horizontal">
         <h4>OrderLine</h4>
@@ -136,7 +138,7 @@
 
     </div>
 
-    <table class="table table-striped table-bordered">
+    <table class="table table-striped">
         <thead>
             <tr>
                 <th>

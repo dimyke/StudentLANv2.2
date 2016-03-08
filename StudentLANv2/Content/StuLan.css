@@ -5,7 +5,8 @@
 
 .carousel-indicators {
     position: absolute;
-    top: 400px;
+    opacity: 0.8;
+    /*top: 400px;*/
 }
 
 .navbar {
