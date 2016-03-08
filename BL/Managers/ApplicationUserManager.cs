@@ -71,10 +71,6 @@ namespace BL.Managers
             return manager;
         }
 
-        public IEnumerable<ApplicationUser> All()
-        {
-            return _userRepository.GetAllApplicationUsers();
-        }
 
         public ApplicationUser Find(string id)
         {
@@ -86,25 +82,7 @@ namespace BL.Managers
             _userRepository.UpdateUser(id, user);
         }
 
-        public void Delete(string id)
-        {
-            _userRepository.DeleteUser(id);
-        }
-
-        public void ChargeWallet(int amount, string id)
-        {
-            var user = Find(id);
-            user.Wallet += amount;
-            Update(id, user);
-        }
-
-        public void Pay(int amount, string id)
-        {
-            var user = Find(id);
-            user.Wallet -= amount;
-            Update(id, user);
-        }
-
+       
         //public void Create(Gebruiker gebruiker)
         //{
         //    _gebruikerRepository.Create(gebruiker);

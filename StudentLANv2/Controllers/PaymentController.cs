@@ -18,6 +18,7 @@ namespace StudentLANv2.Controllers
     {
         private readonly OrderManager _orderManager = new OrderManager();
         private readonly PaymentManager _paymentManager = new PaymentManager();
+        private UserManager _userManager = new UserManager();
         private PayPal.Api.Payment payment;
         // GET: Payment
         public ActionResult Index()
@@ -25,9 +26,23 @@ namespace StudentLANv2.Controllers
             return View();
         }
 
-        public ActionResult PaymentWithWallet()
+        public ActionResult PaymentWithWallet(int orderid)
         {
-            return View("FailureView");
+            var order = _orderManager.Find(orderid);
+            var user = order.User;
+
+            if (!(user.Wallet >= order.TotalAmount)) return View("FailureView");
+            var walletPayment = new Domain.Entities.Payment()
+            {
+                Amount = order.TotalAmount,
+                ApplicationUserId = user.Id,
+                OrderID = order.OrderId,
+                Type = PaymentSort.Cash
+            };
+            _paymentManager.CreatePayment(walletPayment);
+            _userManager.Pay(order.TotalAmount, user.Id);
+            
+            return View("SuccessView");
         }
 
         public ActionResult PaymentWithPaypal(int orderid)
@@ -44,7 +59,7 @@ namespace StudentLANv2.Controllers
                 {
                    
                     string baseURI = Request.Url.Scheme + "://" + Request.Url.Authority +
-                                "/Payment/PaymentWithPayPal/" + orderid +"?";
+                                "/Payment/PaymentWithPayPal?orderid=" + orderid +"&";
 
                     var guid = Convert.ToString((new Random()).Next(100000));
                     var createdPayment = this.CreatePayment(apiContext, baseURI + "guid=" + guid, order);

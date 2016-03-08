@@ -43,7 +43,7 @@
 
 
         <td>
-            @using (Html.BeginForm("FinishOrder", "KitchenOrders", new { orderId = item.OrderId}, FormMethod.Post))
+            @using (Html.BeginForm("FinishOrder", "Kitchen", new { orderId = item.OrderId}, FormMethod.Post))
             {
 
                 <input type="submit" value="Finish this order" />

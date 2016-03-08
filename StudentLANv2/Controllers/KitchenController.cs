@@ -10,7 +10,7 @@ namespace StudentLANv2.Controllers
     [Authorize(Roles = "Keuken, Keuken Admin, Superadmin")]
     public class KitchenController : Controller
     {
-        OrderManager _orderManager = new OrderManager();
+        private OrderManager _orderManager = new OrderManager();
         public ActionResult Index()
         {
             return View(_orderManager.AllKitchenOrders().ToList());

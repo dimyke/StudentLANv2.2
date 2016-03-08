@@ -121,9 +121,13 @@
                     <input type="submit" value="Finish this order" class="btn btn-default" />
                 }*@
 
-                <a href='@Url.Action("PaymentWithPaypal", "Payment", new { orderid = Model.KitchenOrder.OrderId }, null)'>
-                    +                        <img src='@Url.Content("~/content/images/paypal.png")' />
-                    +
+                <a href='@Url.Action("PaymentWithPaypal", "Payment", new {orderid = Model.KitchenOrder.OrderId}, null)'>
+                    <img src='@Url.Content("~/content/images/paypal.png")'/>
+
+                </a>
+                <a href='@Url.Action("PaymentWithWallet", "Payment", new { orderid = Model.KitchenOrder.OrderId }, null)'>
+                    <img src='@Url.Content("~/content/images/paypal.png")' />
+
                 </a>
 
             </div>
