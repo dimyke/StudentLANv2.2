@@ -34,7 +34,7 @@ namespace StudentLANv2.Controllers
             return RedirectToAction("AddOrderLine", new { id = k.OrderId });
         }
 
-        public ActionResult AddOrderLine(int? id)
+        public ActionResult AddOrder(int? id)
         {
 
             if (id == null)
@@ -58,7 +58,7 @@ namespace StudentLANv2.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AddOrderLine(int id, OrderLine orderline)
+        public ActionResult AddOrder(int id, OrderLine orderline)
         {
             KitchenOrder k = new KitchenOrder();
             if (ModelState.IsValid)
@@ -74,9 +74,9 @@ namespace StudentLANv2.Controllers
                 k.TotalAmount += price;
 
                 _orderManager.UpdateOrder(id, k);
-                return RedirectToAction("AddOrderLine", new { id = k.OrderId });
+                return RedirectToAction("AddOrder", new { id = k.OrderId });
             }
-            return RedirectToAction("AddOrderLine", new { id = k.OrderId });
+            return RedirectToAction("AddOrder", new { id = k.OrderId });
         }
 
         //delete an orderline from an order.
@@ -87,7 +87,7 @@ namespace StudentLANv2.Controllers
             k.TotalAmount -= price;
             _orderManager.DelteOrderLine(orderLineId);
             _orderManager.UpdateOrder(k.OrderId, k);
-            return RedirectToAction("AddOrderLine", new { id = k.OrderId });
+            return RedirectToAction("AddOrder", new { id = k.OrderId });
         }
 
 
@@ -97,7 +97,7 @@ namespace StudentLANv2.Controllers
             KitchenOrder k = _orderManager.Find(orderid);
             k.InProces = true;
             _orderManager.UpdateOrder(orderid, k);
-            return RedirectToAction("AddOrderLine", new { id = k.OrderId });
+            return RedirectToAction("AddOrder", new { id = k.OrderId });
         }
 
         //protected override void Dispose(bool disposing)
