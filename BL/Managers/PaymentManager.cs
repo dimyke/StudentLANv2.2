@@ -23,6 +23,8 @@ namespace BL.Managers
             _paymentRepository.PaymentCreate(payment);
         }
 
+
+
        
     }
 }
