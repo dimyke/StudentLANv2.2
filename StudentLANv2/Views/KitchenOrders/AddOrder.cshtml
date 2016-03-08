@@ -83,7 +83,8 @@
                     € @Html.DisplayFor(modelItem => line.PriceAmount)
                 </td>
                 <td>
-                    @Html.ActionLink("Verwijder lijn", "DeleteOrderLine", "KitchenOrders", new { orderLineId = line.OrderLineId, kitchenId = Model.KitchenOrder.OrderId, price = line.PriceAmount }, null)
+                    @if (Model.KitchenOrder.InProces == false)
+                    {   @Html.ActionLink("Verwijder lijn", "DeleteOrderLine", "KitchenOrders", new { orderLineId = line.OrderLineId, kitchenId = Model.KitchenOrder.OrderId, price = line.PriceAmount }, null) }                 
                 </td>
             </tr>
         }

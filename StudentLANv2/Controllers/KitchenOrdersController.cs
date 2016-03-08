@@ -14,6 +14,11 @@ namespace StudentLANv2.Controllers
         private readonly OrderManager _orderManager = new OrderManager();
         private readonly ConsumptionManager _consumptionManager = new ConsumptionManager();
 
+        public ActionResult Index()
+        {
+            return View(_orderManager.GetUserOrders(User.Identity.GetUserId()).ToList());
+        }
+
         // only shows some stuff. Not important
         public ActionResult Details(int id, int? orderLineId)
         {
@@ -60,7 +65,7 @@ namespace StudentLANv2.Controllers
             KitchenOrder k = new KitchenOrder();
             k = _orderManager.Find(id);
             Consumption c = _consumptionManager.Find(orderline.ConsumptionId);
-            if (ModelState.IsValid && c.Available)
+            if (ModelState.IsValid && c.Available && k.InProces == false)
             {
                 OrderLine o = orderline;
                 o.OrderId = id;
@@ -79,13 +84,16 @@ namespace StudentLANv2.Controllers
         }
 
         //delete an orderline from an order.
-        // TODO: only for orders not in proces , not completed
+        // TODO: only for orders not completed. Find another way to get the price.
         public ActionResult DeleteOrderLine(int orderLineId, int kitchenId, double price)
         {
             KitchenOrder k = _orderManager.Find(kitchenId);
-            k.TotalAmount -= price;
-            _orderManager.DelteOrderLine(orderLineId);
-            _orderManager.UpdateOrder(k.OrderId, k);
+            if(k.InProces == false)
+            {
+                k.TotalAmount -= price;
+                _orderManager.DelteOrderLine(orderLineId);
+                _orderManager.UpdateOrder(k.OrderId, k);                
+            }
             return RedirectToAction("AddOrder", new { id = k.OrderId });
         }
 
@@ -98,6 +106,8 @@ namespace StudentLANv2.Controllers
             _orderManager.UpdateOrder(orderid, k);
             return RedirectToAction("AddOrder", new { id = k.OrderId });
         }
+
+
 
         //protected override void Dispose(bool disposing)
         //{

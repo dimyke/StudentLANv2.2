@@ -51,14 +51,21 @@ namespace DAL.Repositories.EntitiyFramework
                 .AsEnumerable();
         }
 
-        public IEnumerable<ApplicationUser> UserOrders(string id)
+        //public IEnumerable<ApplicationUser> UserOrders(string id)
+        //{
+        //    return _ctx.Users
+        //        .Include("KitchenOrders")
+        //        .Include("KitchenOrders.Orderlines")
+        //        .Where(x => (x.Id == id))
+        //        .AsEnumerable();                
+        //}
+
+        public IEnumerable<KitchenOrder> UserOrders(string id)
         {
-            return _ctx.Users
-                .Include("KitchenOrders")
-                .Include("Orderlines")
-                .Where(x => (x.Id == id))
+            return _ctx.KitchenOrders
+                .Include("User")
+                .Where(x => (x.ApplicationUserId == id))
                 .AsEnumerable();
-                
         }
         public void CreateKitchenOrder(KitchenOrder kitchenorder)
         {

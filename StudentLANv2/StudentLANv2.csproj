@@ -359,6 +359,8 @@
     <Content Include="Views\Shared\_AdminPartial.cshtml" />
     <Content Include="Views\Consumptions\Index.cshtml" />
     <Content Include="Views\Consumptions\Edit.cshtml" />
+    <Content Include="Views\Shared\_AccountPartial.cshtml" />
+    <Content Include="Views\KitchenOrders\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
