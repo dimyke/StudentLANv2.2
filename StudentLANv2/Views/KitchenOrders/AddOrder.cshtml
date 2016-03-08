@@ -115,11 +115,16 @@
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Voeg product toe!" class="btn btn-default" />
-                @Html.ActionLink("Sent it to the kitchen", "ToggleInProces", "KitchenOrders", new { orderid = Model.KitchenOrder.OrderId }, null)
+                @*@Html.ActionLink("Sent it to the kitchen", "ToggleInProces", "KitchenOrders", new { orderid = Model.KitchenOrder.OrderId }, null)*@
                 @*@using(Html.BeginForm("ToggleInProces", "KitchenOrders", new { orderid = Model.KitchenOrder.OrderId }, FormMethod.Post))
                 {
                     <input type="submit" value="Finish this order" class="btn btn-default" />
-                }*@ 
+                }*@
+
+                <a href='@Url.Action("PaymentWithPaypal", "Payment", new { orderid = Model.KitchenOrder.OrderId }, null)'>
+                    +                        <img src='@Url.Content("~/content/images/paypal.png")' />
+                    +
+                </a>
 
             </div>
            

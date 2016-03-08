@@ -11,10 +11,9 @@ namespace Domain.Entities
         public int PaymentId { get; set; }
         public double Amount { get; set; }
         public PaymentSort Type { get; set; }
-        public bool Paid { get; set; }
         // foreign key
         public int OrderID { get; set; }
-        public int ApplicationUserId { get; set; }
+        public string ApplicationUserId { get; set; }
 
         //navigational properties
         public KitchenOrder KitchenOrder { get; set; }

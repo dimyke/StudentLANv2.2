@@ -44,7 +44,7 @@ namespace StudentLANv2.Controllers
                 {
                    
                     string baseURI = Request.Url.Scheme + "://" + Request.Url.Authority +
-                                "/Payment/PaymentWithPayPal?orderid=" + orderid;
+                                "/Payment/PaymentWithPayPal/" + orderid +"?";
 
                     var guid = Convert.ToString((new Random()).Next(100000));
                     var createdPayment = this.CreatePayment(apiContext, baseURI + "guid=" + guid, order);
@@ -79,7 +79,22 @@ namespace StudentLANv2.Controllers
                 return View("FailureView");
             }
 
+            var paymentToSave = new Domain.Entities.Payment()
+            {
+                Amount = order.TotalAmount,
+                ApplicationUserId = order.ApplicationUserId,
+                OrderID = orderid,
+                Type = PaymentSort.PayPal
+
+
+            };
+
+            
+            order.InProces = true;
+            _orderManager.UpdateOrder(orderid, order);
+            _paymentManager.CreatePayment(paymentToSave);
             return View("SuccessView");
+
         }
 
         private Payment ExecutePayment(APIContext apiContext, string payerId, string paymentId)
