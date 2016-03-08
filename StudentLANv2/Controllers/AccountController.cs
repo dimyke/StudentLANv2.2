@@ -483,5 +483,31 @@ namespace StudentLANv2.Controllers
             }
         }
         #endregion
+
+
+        public ActionResult EditAccount()
+        {
+            ApplicationUser user = UserManager.Find(User.Identity.GetUserId());
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+            return View(user);
+        }
+
+        // POST: KitchenOrders/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditAccount(ApplicationUser user)
+        {
+            if (ModelState.IsValid)
+            {
+                UserManager.Update(User.Identity.GetUserId(), user);
+                return RedirectToAction("Index");
+            }
+            return View(user);
+        }
     }
 }

@@ -362,6 +362,7 @@
     <Content Include="Views\Consumptions\Edit.cshtml" />
     <Content Include="Views\Shared\_AccountPartial.cshtml" />
     <Content Include="Views\KitchenOrders\Index.cshtml" />
+    <Content Include="Views\Account\EditAccount.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
