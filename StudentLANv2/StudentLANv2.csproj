@@ -226,6 +226,8 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ConsumptionsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\KitchenAdminController.cs" />
+    <Compile Include="Controllers\KitchenController.cs" />
     <Compile Include="Controllers\KitchenOrdersController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -345,13 +347,11 @@
     <Content Include="Views\Consumptions\Edit.cshtml" />
     <Content Include="Views\Consumptions\Index.cshtml" />
     <Content Include="Views\Home\_Carousel.cshtml" />
-    <Content Include="Views\KitchenOrders\Index.cshtml" />
+    <Content Include="Views\Kitchen\Index.cshtml" />
     <Content Include="Views\KitchenOrders\Details.cshtml" />
-    <Content Include="Views\KitchenOrders\Create.cshtml" />
-    <Content Include="Views\KitchenOrders\CreateLine.cshtml" />
-    <Content Include="Views\KitchenOrders\Edit.cshtml" />
+    <Content Include="Views\KitchenAdmin\Edit.cshtml" />
     <Content Include="Views\KitchenOrders\AddOrderLine.cshtml" />
-    <Content Include="Views\KitchenOrders\KitchenView.cshtml" />
+    <Content Include="Views\Kitchen\KitchenView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
