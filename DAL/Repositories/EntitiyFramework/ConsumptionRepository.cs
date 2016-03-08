@@ -21,6 +21,12 @@ namespace DAL.Repositories.EntitiyFramework
             return _ctx.Consumptions.AsEnumerable();
         }
 
+        public IEnumerable<Consumption> AllAvaible()
+        {
+            return _ctx.Consumptions.Where(x => (x.Available == true)).AsEnumerable();
+        }
+
+
         public void Create(Consumption consumption)
         {
             _ctx.Consumptions.Add(consumption);

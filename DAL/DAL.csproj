@@ -67,10 +67,10 @@
       <DependentUpon>201603051942111_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Repositories\EntitiyFramework\Contracts\IConsumptionRepository.cs" />
-    <Compile Include="Repositories\EntitiyFramework\Contracts\IUserRepository.cs" />
-    <Compile Include="Repositories\EntitiyFramework\Contracts\IPaymentRepository.cs" />
-    <Compile Include="Repositories\EntitiyFramework\Contracts\IOrderRepository.cs" />
+    <Compile Include="Repositories\Contracts\IConsumptionRepository.cs" />
+    <Compile Include="Repositories\Contracts\IUserRepository.cs" />
+    <Compile Include="Repositories\Contracts\IPaymentRepository.cs" />
+    <Compile Include="Repositories\Contracts\IOrderRepository.cs" />
     <Compile Include="Repositories\EntitiyFramework\ConsumptionRepository.cs" />
     <Compile Include="Repositories\EntitiyFramework\OrderRepository.cs" />
     <Compile Include="Repositories\EntitiyFramework\PaymentRepository.cs" />

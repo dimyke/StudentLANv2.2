@@ -55,6 +55,7 @@ namespace StudentLANv2.Controllers
         {
             if (ModelState.IsValid)
             {
+                kitchenOrder.DateEdited = DateTime.Now;
                 _orderManager.UpdateOrder(id, kitchenOrder);
                 return RedirectToAction("Index", "Kitchen");
             }

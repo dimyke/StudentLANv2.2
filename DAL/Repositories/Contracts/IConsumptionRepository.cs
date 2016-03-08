@@ -7,6 +7,7 @@ namespace DAL.Repositories.Contracts
     {
         Consumption Find(int id);
         IEnumerable<Consumption> All();
+        IEnumerable<Consumption> AllAvaible();
         void Create(Consumption consumption);
         void Update(int id, Consumption consumption);
         void Delete(int id);

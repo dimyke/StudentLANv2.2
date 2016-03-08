@@ -99,6 +99,9 @@ namespace StudentLANv2.Controllers
                 name = "Bestelling van " + order.User.Nickname,
                 currency = "EUR",
                 price = order.TotalAmount.ToString(),
+                quantity = "1",
+                sku = order.OrderId.ToString()
+
                 
             });
 
@@ -128,8 +131,8 @@ namespace StudentLANv2.Controllers
 
             transactionList.Add(new Transaction()
             {
-                description = "Transaction description.",
-                invoice_number = "your invoice number",
+                description = "Betaling van een order",
+                invoice_number = order.OrderId.ToString(),
                 amount = amount,
                 item_list = itemList
             });

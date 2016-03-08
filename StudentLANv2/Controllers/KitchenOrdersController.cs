@@ -34,14 +34,13 @@ namespace StudentLANv2.Controllers
 
         public ActionResult AddOrder(int? id)
         {
-
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
             AddOrderLineModel newModel = new AddOrderLineModel();
-            newModel.Consumptions = _consumptionManager.All();
+            newModel.Consumptions = _consumptionManager.AllAvaible();
             KitchenOrder kitchenOrder = _orderManager.Find(id);
 
             if (kitchenOrder == null)
@@ -59,16 +58,18 @@ namespace StudentLANv2.Controllers
         public ActionResult AddOrder(int id, OrderLine orderline)
         {
             KitchenOrder k = new KitchenOrder();
-            if (ModelState.IsValid)
+            k = _orderManager.Find(id);
+            Consumption c = _consumptionManager.Find(orderline.ConsumptionId);
+            if (ModelState.IsValid && c.Available)
             {
                 OrderLine o = orderline;
                 o.OrderId = id;
-                double price = _consumptionManager.Find(orderline.ConsumptionId).Price * orderline.NumberOfItems;
+                double price = c.Price * orderline.NumberOfItems;
                 o.PriceAmount += price;
 
                 _orderManager.CreateOrderLine(orderline);
 
-                k = _orderManager.Find(id);
+                
                 k.TotalAmount += price;
 
                 _orderManager.UpdateOrder(id, k);
