@@ -84,8 +84,9 @@
                 </td>
                 <td>
                     @if (Model.KitchenOrder.InProces == false)
-                    {   @Html.ActionLink("Verwijder lijn", "DeleteOrderLine", "KitchenOrders", new { orderLineId = line.OrderLineId, kitchenId = Model.KitchenOrder.OrderId, price = line.PriceAmount }, null) }                 
-                </td>
+                    {  <input type="button" class="btn btn-default" value="Verwijder Lijn" onclick="location.href='@Url.Action("DeleteOrderLine", "KitchenOrders", new { orderLineId = line.OrderLineId, kitchenId = Model.KitchenOrder.OrderId, price = line.PriceAmount })'" />
+                          }                 
+                </td>    
             </tr>
         }
 
@@ -119,8 +120,7 @@
                 @*@using(Html.BeginForm("ToggleInProces", "KitchenOrders", new { orderid = Model.KitchenOrder.OrderId }, FormMethod.Post))
                 {
                     <input type="submit" value="Finish this order" class="btn btn-default" />
-                }*@
-
+                }*@                
                 <a href='@Url.Action("PaymentWithPaypal", "Payment", new {orderid = Model.KitchenOrder.OrderId}, null)'>
                     <img src='@Url.Content("~/content/images/paypal.png")'/>
 

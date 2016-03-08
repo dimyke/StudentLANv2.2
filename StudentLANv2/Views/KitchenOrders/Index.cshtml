@@ -6,69 +6,69 @@
 
 <h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.User.UserName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Date)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TotalAmount)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Completed)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Deleted)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Paid)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.InProces)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DateEdited)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.User.UserName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TotalAmount)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Completed)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Deleted)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Paid)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.InProces)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DateEdited)
-        </td>
-        <td>
-            @if(item.InProces == false) {@Html.ActionLink("Edit", "AddOrder", new { id = item.OrderId }) @Html.Raw("|") }            
-            @Html.ActionLink("Details", "Details", new { id=item.OrderId })
-        </td>
-    </tr>
-}
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.User.UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalAmount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Completed)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Deleted)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Paid)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InProces)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateEdited)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.UserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalAmount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Completed)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Deleted)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Paid)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InProces)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateEdited)
+                </td>
+                <td>
+                    @if (item.InProces == false)
+                    {@Html.ActionLink("Edit", "AddOrder", new { id = item.OrderId }) @Html.Raw("|") }
+                    @Html.ActionLink("Details", "Details", new { id = item.OrderId })
+                </td>
+            </tr>
+        }
 
 </table>

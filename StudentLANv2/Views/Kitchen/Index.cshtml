@@ -7,69 +7,71 @@
 
 <h2>Index</h2>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.User.Nickname)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.User.UserName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Date)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TotalAmount)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.InProces)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Paid)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Completed)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Deleted)
-        </th>
-        <th></th>
-    </tr>
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.User.Nickname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User.UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalAmount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InProces)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Paid)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Completed)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Deleted)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.Nickname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.UserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalAmount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InProces)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Paid)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Completed)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Deleted)
+                </td>
+                <td>
+                    @Html.AntiForgeryToken()
+                    @Html.ActionLink("Edit", "Edit", "KitchenAdmin", new { id = item.OrderId }, null) @Html.Raw(" | ")
+                    @Html.ActionLink("Details", "Details", "KitchenOrders", new { id = item.OrderId }, null) @Html.Raw(" | ")
+                    @Html.ActionLink("Toggle delete", "ToggleDelete", "KitchenAdmin", new { orderid = item.OrderId }, null)
+                </td>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.User.Nickname)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.User.UserName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TotalAmount)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.InProces)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Paid)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Completed)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Deleted)
-        </td>
-        <td>
-                @Html.AntiForgeryToken()
-                @Html.ActionLink("Edit", "Edit","KitchenAdmin", new { id = item.OrderId },null) @Html.Raw(" | ")
-                @Html.ActionLink("Details", "Details","KitchenOrders", new { id = item.OrderId },null) @Html.Raw(" | ")
-                @Html.ActionLink("Toggle delete", "ToggleDelete", "KitchenAdmin", new { orderid = item.OrderId },null)      
-        </td>
-       
-    </tr>
-}
-    
+            </tr>
+        }
+
 </table>

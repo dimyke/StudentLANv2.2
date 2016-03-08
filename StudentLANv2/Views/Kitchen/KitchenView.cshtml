@@ -8,50 +8,51 @@
 
 
 <table class="table">
-    <tr>
-        <th>
-            Besteld Door
-        </th>
-        <th>
-            Besteld Op
-        </th>
-        <th>
-            Te maken
-        </th>
-        <th></th>
-        
-    </tr>
+    <thead>
+        <tr>
+            <th>
+                Besteld Door
+            </th>
+            <th>
+                Besteld Op
+            </th>
+            <th>
+                Te maken
+            </th>
+            <th></th>
 
-@foreach (var item in Model)
-{
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.User.UserName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Date)
-        </td>
+        </tr>
+    </thead>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.UserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
 
-        <td>
-            @foreach (var line in item.OrderLines)
-            {
-            @Html.DisplayFor(model => line.NumberOfItems) @Html.Raw(" x ") @Html.DisplayFor(model => line.Consumption.Name)
-                <br>
-            }
-        </td>
+                <td>
+                    @foreach (var line in item.OrderLines)
+                    {
+                        @Html.DisplayFor(model => line.NumberOfItems) @Html.Raw(" x ") @Html.DisplayFor(model => line.Consumption.Name)
+                        <br>
+                    }
+                </td>
 
 
 
-        <td>
-            @using (Html.BeginForm("FinishOrder", "Kitchen", new { orderId = item.OrderId}, FormMethod.Post))
-            {
+                <td>
+                    @using (Html.BeginForm("FinishOrder", "Kitchen", new { orderId = item.OrderId }, FormMethod.Post))
+                    {
 
-                <input type="submit" value="Finish this order" />
+                        <input type="submit" value="Finish this order" class="btn btn-default" />
 
-            } 
-            
-        </td>
-    </tr>
-}
+                    }
+
+                </td>
+            </tr>
+        }
 
 </table>

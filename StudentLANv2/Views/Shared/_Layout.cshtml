@@ -30,13 +30,10 @@
                         <a href = "#" class="dropdown-toggle" data-toggle="dropdown">Orders<b class="caret"></b></a>
                         <ul class="dropdown-menu" aria-labelledby="OrderDropdown">
                             <li>@Html.ActionLink("Maak order", "CreateOrder", "KitchenOrders")</li>
-                            @if(User.IsInRole("Superadmin") || User.IsInRole("Keuken") || User.IsInRole("Keuken Admin"))
-                            {
-                            <li>@Html.ActionLink("Admin overzicht", "Index", "Kitchen")</li>
-                            <li>@Html.ActionLink("Keuken overzicht", "KitchenView", "Kitchen")</li> }
+                            <li>@Html.ActionLink("Order overzicht", "Index", "KitchenOrders")</li>                            
                         </ul>
                     </li>}
-                    @if (User.IsInRole("Superadmin")){ @Html.Partial("_AdminPartial")}
+                    @if (User.IsInRole("Superadmin") || User.IsInRole("Keuken") || User.IsInRole("Keuken Admin")){ @Html.Partial("_AdminPartial")}
                     @Html.Partial("_LoginPartial")
                 </ul>
             </div>
