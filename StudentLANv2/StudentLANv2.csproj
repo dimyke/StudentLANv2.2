@@ -347,7 +347,6 @@
     <Content Include="Views\Consumptions\Create.cshtml" />
     <Content Include="Views\Consumptions\Delete.cshtml" />
     <Content Include="Views\Consumptions\Details.cshtml" />
-    <Content Include="Views\Consumptions\Edit.cshtml" />
     <Content Include="Views\Home\_Carousel.cshtml" />
     <Content Include="Views\Kitchen\Index.cshtml" />
     <Content Include="Views\KitchenOrders\Details.cshtml" />
@@ -359,6 +358,7 @@
     <Content Include="Views\Payment\SuccessView.cshtml" />
     <Content Include="Views\Shared\_AdminPartial.cshtml" />
     <Content Include="Views\Consumptions\Index.cshtml" />
+    <Content Include="Views\Consumptions\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -29,6 +29,7 @@ namespace StudentLANv2.Controllers
             return View(consumptie);
         }
 
+        // make it nullable
         public ActionResult Edit(int id)
         {
            Consumption consumption = _consumptionManager.Find(id);
@@ -44,14 +45,55 @@ namespace StudentLANv2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, Consumption consumption)
+        public ActionResult Edit(int id, [Bind(Include = "Price,Name,Available")] Consumption consumption)
         {
             if (ModelState.IsValid)
             {
                 _consumptionManager.Update(id, consumption);
-                return RedirectToAction("Index", "Kitchen");
+                return RedirectToAction("Index");
             }
             return View(consumption);
+        }
+
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "Price,Name,Available")] Consumption consumption)
+        {
+            if (ModelState.IsValid)
+            {
+                _consumptionManager.Create(consumption);
+                return RedirectToAction("Index");
+            }
+            return View(consumption);
+        }
+
+        // GET:
+        public ActionResult Delete(int id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Consumption consumption = _consumptionManager.Find(id);
+            if (consumption == null)
+            {
+                return HttpNotFound();
+            }
+            return View(consumption);
+        }
+
+        // POST
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            _consumptionManager.Delete(id);
+            return RedirectToAction("Index");
         }
     }
 }
