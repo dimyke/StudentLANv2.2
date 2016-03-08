@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace StudentLANv2.Controllers
 {
-    [Authorize(Roles = "Keuken, Keuken Admin")]
+    [Authorize(Roles = "Keuken, Keuken Admin, Superadmin")]
     public class KitchenController : Controller
     {
         OrderManager _orderManager = new OrderManager();

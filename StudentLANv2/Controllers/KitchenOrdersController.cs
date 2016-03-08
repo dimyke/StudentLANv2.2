@@ -24,12 +24,10 @@ namespace StudentLANv2.Controllers
         // this method on its turn calls "addorderine"
         public ActionResult CreateOrder()
         {
-            //private readonly ApplicationUserManager _applicationUserManager = new ApplicationUserManager(ApplicationUser);
             KitchenOrder k = new KitchenOrder();
             k.Date = DateTime.Now;
             k.ApplicationUserId = User.Identity.GetUserId();
-
-            
+                        
             _orderManager.CreateKitchenOrder(k);
             return RedirectToAction("AddOrder", new { id = k.OrderId });
         }

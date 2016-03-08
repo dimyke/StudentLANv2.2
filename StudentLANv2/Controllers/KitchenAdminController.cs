@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace StudentLANv2.Controllers
 {
-    [Authorize(Roles="Keuken Admin")]
+    [Authorize(Roles= "Keuken Admin, Superadmin")]
     public class KitchenAdminController : Controller
     {
         // GET: KitchenAdmin

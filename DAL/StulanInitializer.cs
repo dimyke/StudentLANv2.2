@@ -131,7 +131,49 @@ namespace DAL
                     BatlleNet = "deelnemer#2348",
                     Wargaming ="deelnemer",
                     PasswordHash = hasher.HashPassword("SupahStronkP@ssword"),
-                    Wallet = 56754,
+                    Wallet = 1,
+                    SecurityStamp = Guid.NewGuid().ToString()
+                }
+                ,
+
+                new ApplicationUser
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    UserName = "superadmin@gmail.com",
+                    Email="superadmin@gmail.com",
+                    LastName ="superadmin",
+                    FirstName ="superadmin",
+                    PostalCode ="2930",
+                    DateOfBirth = new DateTime(1991, 11, 8),
+                    Nickname = "superadmin",
+                    Origin = "superadmin",
+                    Steam = "superadmin",
+                    BatlleNet = "superadmin#2348",
+                    Wargaming ="superadmin",
+                    PasswordHash = hasher.HashPassword("SupahStronkP@ssword"),
+                    Wallet = 50,
+                    SecurityStamp = Guid.NewGuid().ToString()
+
+
+                }
+                ,
+
+                new ApplicationUser
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    UserName = "admin@gmail.com",
+                    Email="admin@gmail.com",
+                    LastName ="admin",
+                    FirstName ="admin",
+                    PostalCode ="2930",
+                    DateOfBirth = new DateTime(1991, 11, 8),
+                    Nickname = "admin",
+                    Origin = "admin",
+                    Steam = "admin",
+                    BatlleNet = "admin#2348",
+                    Wargaming ="admin",
+                    PasswordHash = hasher.HashPassword("SupahStronkP@ssword"),
+                    Wallet = 10,
                     SecurityStamp = Guid.NewGuid().ToString()
 
 
@@ -278,6 +320,8 @@ namespace DAL
             userManager.AddToRole(users.ElementAt(2).Id, "Keuken");
             userManager.AddToRole(users.ElementAt(3).Id, "Keuken Admin");
             userManager.AddToRole(users.ElementAt(4).Id, "Deelnemer");
+            userManager.AddToRole(users.ElementAt(5).Id, "Superadmin");
+            userManager.AddToRole(users.ElementAt(6).Id, "Administrator");
             #endregion
 
             context.SaveChanges();
