@@ -18,7 +18,7 @@
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
-    <IISExpressSSLPort />
+    <IISExpressSSLPort>44300</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -230,13 +230,16 @@
     <Compile Include="Controllers\KitchenController.cs" />
     <Compile Include="Controllers\KitchenOrdersController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AddOrderLineModel.cs" />
+    <Compile Include="Models\PaypalLogger.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\OrderCreateModel.cs" />
+    <Compile Include="Models\PayPalConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -352,6 +355,9 @@
     <Content Include="Views\KitchenAdmin\Edit.cshtml" />
     <Content Include="Views\KitchenOrders\AddOrder.cshtml" />
     <Content Include="Views\Kitchen\KitchenView.cshtml" />
+    <Content Include="Views\Payment\Index.cshtml" />
+    <Content Include="Views\Payment\FailureView.cshtml" />
+    <Content Include="Views\Payment\SuccessView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -397,7 +403,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>28891</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:28891/</IISUrl>
+          <IISUrl>https://localhost:44300/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
