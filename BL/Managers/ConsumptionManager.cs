@@ -21,6 +21,11 @@ namespace BL.Managers
             return _ConsumptionRepository.All();
         }
 
+        public IEnumerable<Consumption> AllAvaible()
+        {
+            return _ConsumptionRepository.AllAvaible();
+        }
+
         public void Create(Consumption consumption)
         {
             _ConsumptionRepository.Create(consumption);
