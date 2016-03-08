@@ -1,19 +1,23 @@
-﻿using System;
+﻿    using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using log4net.Repository.Hierarchy;
+    using BL.Managers;
+    using Domain.Entities;
+    using log4net.Repository.Hierarchy;
 using PayPal.Api;
 using StudentLANv2.Models;
+    using Payment = PayPal.Api.Payment;
 
 
 namespace StudentLANv2.Controllers
 {
     public class PaymentController : Controller
     {
-
+        private readonly OrderManager _orderManager = new OrderManager();
+        private readonly PaymentManager _paymentManager = new PaymentManager();
         private PayPal.Api.Payment payment;
         // GET: Payment
         public ActionResult Index()
@@ -21,10 +25,16 @@ namespace StudentLANv2.Controllers
             return View();
         }
 
-        public ActionResult PaymentWithPaypal()
+        public ActionResult PaymentWithWallet()
+        {
+            return View("FailureView");
+        }
+
+        public ActionResult PaymentWithPaypal(int orderid)
         {
             
             APIContext apiContext = PayPalConfiguration.GetAPIContext();
+            var order = _orderManager.Find(orderid);
 
             try
             {
@@ -34,10 +44,10 @@ namespace StudentLANv2.Controllers
                 {
                    
                     string baseURI = Request.Url.Scheme + "://" + Request.Url.Authority +
-                                "/Paypal/PaymentWithPayPal?";
+                                "/Payment/PaymentWithPayPal?orderid=" + orderid;
 
                     var guid = Convert.ToString((new Random()).Next(100000));
-                    var createdPayment = this.CreatePayment(apiContext, baseURI + "guid=" + guid);
+                    var createdPayment = this.CreatePayment(apiContext, baseURI + "guid=" + guid, order);
                     var links = createdPayment.links.GetEnumerator();
                     string paypalRedirectUrl = null;
                     while (links.MoveNext())
@@ -79,18 +89,17 @@ namespace StudentLANv2.Controllers
             return this.payment.Execute(apiContext, paymentExecution);
         }
 
-        private Payment CreatePayment(APIContext apiContext, string redirectUrl)
+        private Payment CreatePayment(APIContext apiContext, string redirectUrl, KitchenOrder order)
         {
             //eff tijdelijk test ding
            var itemList = new ItemList() { items = new List<Item>() };
 
             itemList.items.Add(new Item()
             {
-                name = "Item Name",
-                currency = "USD",
-                price = "5",
-                quantity = "1",
-                sku = "sku"
+                name = "Bestelling van " + order.User.Nickname,
+                currency = "EUR",
+                price = order.TotalAmount.ToString(),
+                
             });
 
             var payer = new Payer() { payment_method = "paypal" };
@@ -103,15 +112,15 @@ namespace StudentLANv2.Controllers
 
             var details = new Details()
             {
-                tax = "1",
-                shipping = "1",
-                subtotal = "5"
+                tax = "0",
+                shipping = "0",
+                subtotal = order.TotalAmount.ToString()
             };
 
             var amount = new Amount()
             {
-                currency = "USD",
-                total = "7", // Total must be equal to sum of shipping, tax and subtotal.
+                currency = "EUR",
+                total = order.TotalAmount.ToString(),
                 details = details
             };
 

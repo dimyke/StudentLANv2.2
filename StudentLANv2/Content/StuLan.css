@@ -1,17 +1,26 @@
-﻿    .carousel-inner .item .carousel-caption {  
-    position:absolute;  
-    top: 200px  
+﻿.carousel-inner .item .carousel-caption {
+    position: absolute;
+    top: 200px;
+}
 
-    }  
-    .carousel-indicators {  
-    position: absolute;  
-    top: 400px;  
-    }  
-    .navbar {  
-    margin-bottom:0;  
-    }  
+.carousel-indicators {
+    position: absolute;
+    top: 400px;
+}
 
-    /*.navbar-nav>li>a {  
+.navbar {
+    margin-bottom: 0;
+}
+
+a.paypal {
+    background: url(https://www.paypalobjects.com/webstatic/en_US/i/buttons/buy-logo-large.png) no-repeat top left;
+    display: block;
+    width: 150px;
+    height: 150px;
+    text-indent: -9999px;
+}
+
+/*.navbar-nav>li>a {  
     line-height: 50px;  
     font-size: 16px  
-    }*/  
+    }*/
