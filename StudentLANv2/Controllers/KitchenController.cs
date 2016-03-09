@@ -11,9 +11,16 @@ namespace StudentLANv2.Controllers
     public class KitchenController : Controller
     {
         private OrderManager _orderManager = new OrderManager();
-        public ActionResult Index()
+        public ActionResult Index(string searchString)
         {
-            return View(_orderManager.AllKitchenOrders().ToList());
+            var orders = _orderManager.AllKitchenOrders().ToList();
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                orders = _orderManager.GetUserOrdersByName(searchString).ToList();
+            }
+
+            return View(orders);
         }
 
         public ActionResult KitchenView()
