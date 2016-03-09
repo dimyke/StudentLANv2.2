@@ -25,26 +25,5 @@ namespace Domain.Entities
 
         public KitchenOrder KitchenOrder { get; set; }
         public Consumption Consumption { get; set; }        
-    }
-
-    public class PosNumber : ValidationAttribute
-    {
-        public override bool IsValid(object value)
-        {
-            if (value == null)
-            {
-                return true;
-            }
-            int getal;
-            if (int.TryParse(value.ToString(), out getal))
-            {
-                if (getal == 0)
-                    return false;
-
-                if (getal >= 0)
-                    return true;
-            }
-            return false;
-        }
-    }
+    }   
 }
