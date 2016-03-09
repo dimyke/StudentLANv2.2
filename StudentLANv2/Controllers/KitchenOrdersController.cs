@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
@@ -45,7 +46,7 @@ namespace StudentLANv2.Controllers
             }
 
             AddOrderLineModel newModel = new AddOrderLineModel();
-            newModel.Consumptions = _consumptionManager.AllAvaible();
+            newModel.Consumptions = GetSelectListItems(_consumptionManager.AllAvaible());
             KitchenOrder kitchenOrder = _orderManager.Find(id);
 
             if (kitchenOrder == null)
@@ -105,6 +106,28 @@ namespace StudentLANv2.Controllers
             k.InProces = true;
             _orderManager.UpdateOrder(orderid, k);
             return RedirectToAction("AddOrder", new { id = k.OrderId });
+        }
+
+
+        private IEnumerable<SelectListItem> GetSelectListItems(IEnumerable<Consumption> elements)
+        {
+            // Create an empty list to hold result of the operation
+            var selectList = new List<SelectListItem>();
+
+            // For each string in the 'elements' variable, create a new SelectListItem object
+            // that has both its Value and Text properties set to a particular value.
+            // This will result in MVC rendering each item as:
+            //     <option value="State Name">State Name</option>
+            foreach (var element in elements)
+            {
+                selectList.Add(new SelectListItem
+                {
+                    Value = element.ConsumptionId.ToString(),
+                    Text = "€ " + element.Price.ToString() + " - " + element.Name
+                });
+            }
+
+            return selectList;
         }
 
 
