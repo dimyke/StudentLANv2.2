@@ -85,12 +85,13 @@ namespace StudentLANv2.Controllers
 
         //delete an orderline from an order.
         // TODO: only for orders not completed. Find another way to get the price.
-        public ActionResult DeleteOrderLine(int orderLineId, int kitchenId, double price)
+        public ActionResult DeleteOrderLine(int orderLineId, int orderid)
         {
-            KitchenOrder k = _orderManager.Find(kitchenId);
-            if(k.InProces == false)
+            KitchenOrder k = _orderManager.Find(orderid);
+
+            if(k.InProces == false && k.Completed == false)
             {
-                k.TotalAmount -= price;
+                k.TotalAmount -= k.OrderLines.SingleOrDefault(x => (x.OrderLineId == orderLineId)).PriceAmount;
                 _orderManager.DelteOrderLine(orderLineId);
                 _orderManager.UpdateOrder(k.OrderId, k);                
             }

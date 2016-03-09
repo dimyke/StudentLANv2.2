@@ -93,7 +93,7 @@
                     </td>
                     <td>
                         @if (Model.KitchenOrder.InProces == false)
-                    {  <input type="button" class="btn btn-default" value="Verwijder Lijn" onclick="location.href='@Url.Action("DeleteOrderLine", "KitchenOrders", new { orderLineId = line.OrderLineId, kitchenId = Model.KitchenOrder.OrderId, price = line.PriceAmount })'" />
+                    {  <input type="button" class="btn btn-default" value="Verwijder Lijn" onclick="location.href='@Url.Action("DeleteOrderLine", "KitchenOrders", new { orderLineId = line.OrderLineId, orderid = Model.KitchenOrder.OrderId })'" />
                         }
                     </td>
                 </tr>
