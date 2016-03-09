@@ -75,7 +75,7 @@ namespace StudentLANv2.Controllers
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            var result = await SignInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -151,7 +151,7 @@ namespace StudentLANv2.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, LastName = model.LastName, FirstName = model.FirstName,
+                var user = new ApplicationUser { UserName = model.UserName, Email = model.Email, LastName = model.LastName, FirstName = model.FirstName,
                     PostalCode = model.PostalCode, DateOfBirth = model.DateOfBirth, Origin = model.Origin, Steam = model.Steam, Nickname = model.Nickname,
                     BatlleNet = model.BatlleNet,Wargaming = model.Wargaming, Wallet = 0};
                 var result = await UserManager.CreateAsync(user, model.Password);
