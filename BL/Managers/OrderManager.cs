@@ -73,6 +73,11 @@ namespace BL.Managers
             return _OrderRepository.UserOrders(id);
         }
 
+        public IEnumerable<KitchenOrder> GetUserOrdersByName(string nick)
+        {
+            return _OrderRepository.UserOrdersByName(nick);
+        }
+
         public void DelteOrderLine(int id)
         {
             _OrderRepository.DeleteOrderLine(id);

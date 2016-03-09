@@ -67,6 +67,14 @@ namespace DAL.Repositories.EntitiyFramework
                 .Where(x => (x.ApplicationUserId == id))
                 .AsEnumerable();
         }
+
+        public IEnumerable<KitchenOrder> UserOrdersByName(string nick)
+        {
+            return _ctx.KitchenOrders
+                .Include("User")
+                .Where(x => (x.User.Nickname == nick))
+                .AsEnumerable();
+        }
         public void CreateKitchenOrder(KitchenOrder kitchenorder)
         {
             _ctx.KitchenOrders.Add(kitchenorder);
