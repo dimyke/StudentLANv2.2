@@ -45,13 +45,12 @@ namespace DAL.Migrations
                 new ApplicationUser
                 {
                     Id = Guid.NewGuid().ToString(),
-                    UserName = "dimitrivantillo@gmail.com",
+                    UserName = "dimyke",
                     Email="dimitrivantillo@gmail.com",
                     LastName ="Van Tillo",
                     FirstName ="Dimitri",
                     PostalCode ="2040",
                     DateOfBirth = new DateTime(1993, 10, 19),
-                    Nickname = "dimyke",
                     Origin = "dimyke",
                     Steam = "Fraans",
                     BatlleNet = "Dimyke#6969",
@@ -64,13 +63,12 @@ namespace DAL.Migrations
                 new ApplicationUser
                 {
                     Id = Guid.NewGuid().ToString(),
-                    UserName = "pieterjan.kurris@gmail.com",
+                    UserName = "xelset",
                     Email="pieterjan.kurris@gmail.com",
                     LastName ="Kurris",
                     FirstName ="Pieterjan",
                     PostalCode ="2930",
                     DateOfBirth = new DateTime(1991, 11, 8),
-                    Nickname = "xelset",
                     Origin = "xelset",
                     Steam = "xelset",
                     BatlleNet = "xelset#2348",
@@ -85,13 +83,12 @@ namespace DAL.Migrations
                 new ApplicationUser
                 {
                     Id = Guid.NewGuid().ToString(),
-                    UserName = "keuken@gmail.com",
+                    UserName = "keuken",
                     Email="keuken@gmail.com",
                     LastName ="keuken",
                     FirstName ="keuken",
                     PostalCode ="2930",
                     DateOfBirth = new DateTime(1991, 11, 8),
-                    Nickname = "keuken",
                     Origin = "keuken",
                     Steam = "keuken",
                     BatlleNet = "keukent#2348",
@@ -106,13 +103,12 @@ namespace DAL.Migrations
                 new ApplicationUser
                 {
                     Id = Guid.NewGuid().ToString(),
-                    UserName = "deelnemer@gmail.com",
+                    UserName = "deelnemer",
                     Email="deelnemer@gmail.com",
                     LastName ="deelnemer",
                     FirstName ="deelnemer",
                     PostalCode ="2930",
                     DateOfBirth = new DateTime(1991, 11, 8),
-                    Nickname = "deelnemer",
                     Origin = "deelnemer",
                     Steam = "deelnemer",
                     BatlleNet = "deelnemer#2348",

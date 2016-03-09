@@ -10,7 +10,7 @@
         @using (Html.BeginForm())
     {
         <p>
-             Nickname: @Html.TextBox("SearchString") 
+             Username: @Html.TextBox("SearchString") 
             <input type="submit" value="Filter" class="btn btn-default"/>
         </p>
     }
@@ -24,9 +24,6 @@
 <table class="table table-striped table-bordered">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.User.Nickname)
-            </th>
             <th>
                 @Html.DisplayNameFor(model => model.User.UserName)
             </th>
@@ -54,9 +51,6 @@
     @foreach (var item in Model)
     {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.User.Nickname)
-            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.User.UserName)
             </td>

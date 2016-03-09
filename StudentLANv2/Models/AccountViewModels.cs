@@ -95,7 +95,6 @@ namespace StudentLANv2.Models
         public DateTime? DateOfBirth { get; set; }
         public string Origin { get; set; }
         public string Steam { get; set; }
-        public string Nickname { get; set; }
         public string BatlleNet { get; set; }
         public string Wargaming { get; set; }
 

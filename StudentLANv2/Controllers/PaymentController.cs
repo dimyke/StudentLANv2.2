@@ -130,7 +130,7 @@ namespace StudentLANv2.Controllers
 
             itemList.items.Add(new Item()
             {
-                name = "Bestelling van " + order.User.Nickname,
+                name = "Bestelling van " + order.User.UserName,
                 currency = "EUR",
                 price = order.TotalAmount.ToString(),
                 quantity = "1",

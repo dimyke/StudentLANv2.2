@@ -37,13 +37,12 @@ namespace DAL
                 new ApplicationUser
                 {
                     Id = Guid.NewGuid().ToString(),
-                    UserName = "dimitrivantillo@gmail.com",
+                    UserName = "dimyke",
                     Email="dimitrivantillo@gmail.com",
                     LastName ="Van Tillo",
                     FirstName ="Dimitri",
                     PostalCode ="2040",
                     DateOfBirth = new DateTime(1993, 10, 19),
-                    Nickname = "dimyke",
                     Origin = "dimyke",
                     Steam = "Fraans",
                     BatlleNet = "Dimyke#6969",
@@ -56,13 +55,12 @@ namespace DAL
                 new ApplicationUser
                 {
                     Id = Guid.NewGuid().ToString(),
-                    UserName = "pieterjan.kurris@gmail.com",
+                    UserName = "xelset",
                     Email="pieterjan.kurris@gmail.com",
                     LastName ="Kurris",
                     FirstName ="Pieterjan",
                     PostalCode ="2930",
                     DateOfBirth = new DateTime(1991, 11, 8),
-                    Nickname = "xelset",
                     Origin = "xelset",
                     Steam = "xelset",
                     BatlleNet = "xelset#2348",
@@ -77,13 +75,12 @@ namespace DAL
                 new ApplicationUser
                 {
                     Id = Guid.NewGuid().ToString(),
-                    UserName = "keuken@gmail.com",
+                    UserName = "keuken",
                     Email="keuken@gmail.com",
                     LastName ="keuken",
                     FirstName ="keuken",
                     PostalCode ="2930",
                     DateOfBirth = new DateTime(1991, 11, 8),
-                    Nickname = "keuken",
                     Origin = "keuken",
                     Steam = "keuken",
                     BatlleNet = "keukent#2348",
@@ -98,13 +95,12 @@ namespace DAL
                 new ApplicationUser
                 {
                     Id = Guid.NewGuid().ToString(),
-                    UserName = "keukenadmin@gmail.com",
+                    UserName = "keukenadmin",
                     Email="keukenadmin@gmail.com",
                     LastName ="keuken",
                     FirstName ="keuken",
                     PostalCode ="2930",
                     DateOfBirth = new DateTime(1991, 11, 8),
-                    Nickname = "keuken",
                     Origin = "keuken",
                     Steam = "keuken",
                     BatlleNet = "keukent#2348",
@@ -119,13 +115,12 @@ namespace DAL
                 new ApplicationUser
                 {
                     Id = Guid.NewGuid().ToString(),
-                    UserName = "deelnemer@gmail.com",
+                    UserName = "deelnemer",
                     Email="deelnemer@gmail.com",
                     LastName ="deelnemer",
                     FirstName ="deelnemer",
                     PostalCode ="2930",
                     DateOfBirth = new DateTime(1991, 11, 8),
-                    Nickname = "deelnemer",
                     Origin = "deelnemer",
                     Steam = "deelnemer",
                     BatlleNet = "deelnemer#2348",
@@ -139,13 +134,12 @@ namespace DAL
                 new ApplicationUser
                 {
                     Id = Guid.NewGuid().ToString(),
-                    UserName = "superadmin@gmail.com",
+                    UserName = "superadmin",
                     Email="superadmin@gmail.com",
                     LastName ="superadmin",
                     FirstName ="superadmin",
                     PostalCode ="2930",
                     DateOfBirth = new DateTime(1991, 11, 8),
-                    Nickname = "superadmin",
                     Origin = "superadmin",
                     Steam = "superadmin",
                     BatlleNet = "superadmin#2348",
@@ -161,13 +155,12 @@ namespace DAL
                 new ApplicationUser
                 {
                     Id = Guid.NewGuid().ToString(),
-                    UserName = "admin@gmail.com",
+                    UserName = "admin",
                     Email="admin@gmail.com",
                     LastName ="admin",
                     FirstName ="admin",
                     PostalCode ="2930",
                     DateOfBirth = new DateTime(1991, 11, 8),
-                    Nickname = "admin",
                     Origin = "admin",
                     Steam = "admin",
                     BatlleNet = "admin#2348",

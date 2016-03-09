@@ -72,7 +72,7 @@ namespace DAL.Repositories.EntitiyFramework
         {
             return _ctx.KitchenOrders
                 .Include("User")
-                .Where(x => (x.User.Nickname == nick))
+                .Where(x => (x.User.UserName == nick))
                 .AsEnumerable();
         }
         public void CreateKitchenOrder(KitchenOrder kitchenorder)
