@@ -110,7 +110,7 @@
             <div class="form-group">
                 @*@Html.LabelFor(model => model.OrderLine.NumberOfItems, htmlAttributes: new { @class = "control-label col-md-2" })*@
                 <div class="col-md-3">
-                    @Html.DropDownListFor(m => m.OrderLine.ConsumptionId, Model.Consumptions, "- Please select a Consumption -", new { @class = "form-control" })
+                    @Html.DropDownListFor(m => m.OrderLine.ConsumptionId, Model.Consumptions, "- Gelieve een consumptie te kiezen -", new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.OrderLine.ConsumptionId, "", new { @class = "text-danger" })
                 </div>
                 <div class="col-md-3">
