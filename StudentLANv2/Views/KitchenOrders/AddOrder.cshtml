@@ -127,28 +127,23 @@
 
         <div class="form">
             <br />
+            <br />
+            <br />
             <h4>Betalen doe je zo:</h4>
             <hr />
             <div class="form-group">
-                <div class="col-md-10">
-
-                    @using (Html.BeginForm("PaymentWithWallet", "Payment", new { orderid = Model.KitchenOrder.OrderId }, FormMethod.Post))
+                <div class="col-md-12">
+                    <input type="button" class="btn btn-default" value="Betaal met je wallet" onclick="location.href='@Url.Action("PaymentWithWallet", "Payment", new { orderid = Model.KitchenOrder.OrderId })'" />
+                    @*@using (Html.BeginForm("PaymentWithWallet", "Payment", new { orderid = Model.KitchenOrder.OrderId }, FormMethod.Post))
                     {
                         <input type="submit" value="Betaal met je wallet" class="btn btn-default" />
-                    }
+                    }*@
                     <a alt="Pay using Paypal" href='@Url.Action("PaymentWithPaypal", "Payment", new {orderid = Model.KitchenOrder.OrderId}, null)'>
                         <img src='@Url.Content("~/content/images/paypal.png")' />
 
                     </a>
-                    @*<a href='@Url.Action("PaymentWithWallet", "Payment", new { orderid = Model.KitchenOrder.OrderId }, null)'>
-                            <img src='@Url.Content("~/content/images/paypal.png")' />
-
-                        </a>*@
-
                 </div>
-
             </div>
-
         </div>
 
 
