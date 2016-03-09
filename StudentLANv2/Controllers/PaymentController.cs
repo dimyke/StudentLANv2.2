@@ -44,6 +44,7 @@ namespace StudentLANv2.Controllers
             order.Paid = true;
             order.InProces = true;
 
+            _orderManager.UpdateOrder(orderid, order);
             return RedirectToAction("Index", "KitchenOrders");
         }
 
