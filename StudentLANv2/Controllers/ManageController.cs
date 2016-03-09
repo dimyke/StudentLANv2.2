@@ -8,6 +8,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using StudentLANv2.Models;
 using BL.Managers;
+using Domain.Entities;
 
 namespace StudentLANv2.Controllers
 {
@@ -330,9 +331,9 @@ namespace StudentLANv2.Controllers
             }
 
             base.Dispose(disposing);
-        }
+        }                
 
-#region Helpers
+        #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
 
