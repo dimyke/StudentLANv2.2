@@ -100,7 +100,8 @@
             }
 
 </table>
-    if(!Model.KitchenOrder.InProces){ 
+    if (!Model.KitchenOrder.InProces)
+    {
     <div class="form-horizontal">
         <h4>OrderLine</h4>
         <hr />
@@ -112,15 +113,12 @@
                 @Html.ValidationMessageFor(model => model.OrderLine.NumberOfItems, "", new { @class = "text-danger" })
             </div>
         </div>
-
-
         <div class="form-group">
-            @Html.LabelFor(model => model.OrderLine.ConsumptionId, "ConsumptionId", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.OrderLine.ConsumptionId, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownListFor(m => m.OrderLine.ConsumptionId, Model.Consumptions, "- Please select a Consumption -", new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.OrderLine.ConsumptionId, "", new { @class = "text-danger" })
+
             </div>
-        </div>
+
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
@@ -131,7 +129,7 @@
                     <input type="submit" value="Finish this order" class="btn btn-default" />
                 }*@                
                 <a href='@Url.Action("PaymentWithPaypal", "Payment", new {orderid = Model.KitchenOrder.OrderId}, null)'>
-                    <img src='@Url.Content("~/content/images/paypal.png")'/>
+                        <img src='@Url.Content("~/content/images/paypal.png")' />
 
                 </a>
                 <a href='@Url.Action("PaymentWithWallet", "Payment", new { orderid = Model.KitchenOrder.OrderId }, null)'>
@@ -145,44 +143,7 @@
 
     </div>
 
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.OrderLine.Consumption.Name)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.OrderLine.ConsumptionId)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.OrderLine.Consumption.Available)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.OrderLine.Consumption.Price)
-                </th>
 
-            </tr>
-        </thead>
-        <tbody data-link="row" class="rowlink">
-            @foreach (var item in Model.Consumptions)
-                {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ConsumptionId)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Available)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Price)
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
     }
     else
     {

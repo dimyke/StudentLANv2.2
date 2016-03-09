@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace StudentLANv2.Models
 {
@@ -10,6 +11,6 @@ namespace StudentLANv2.Models
     {
         public KitchenOrder KitchenOrder{ get; set; }
         public OrderLine OrderLine { get; set; }
-        public IEnumerable<Consumption> Consumptions { get; set; }
+        public IEnumerable<SelectListItem> Consumptions { get; set; }
     }
 }
