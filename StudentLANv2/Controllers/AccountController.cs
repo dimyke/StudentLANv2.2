@@ -509,5 +509,10 @@ namespace StudentLANv2.Controllers
             }
             return View(user);
         }
+
+        public ActionResult Details()
+        {
+            return View(UserManager.Find(User.Identity.GetUserId()));
+        }
     }
 }
