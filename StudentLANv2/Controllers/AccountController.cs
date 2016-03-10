@@ -514,5 +514,10 @@ namespace StudentLANv2.Controllers
         {
             return View(UserManager.Find(User.Identity.GetUserId()));
         }
+
+        public ActionResult ChargeWallet()
+        {
+            return View();
+        }
     }
 }

@@ -369,6 +369,7 @@ img {
   display: block;
   height: auto;
   max-width: 100%;
+    margin: 0 auto;
 }
 
 .img-rounded {
@@ -2092,8 +2093,8 @@ fieldset[disabled] .btn-default.active {
 }
 
 .btn-primary {
-  color: #ffffff;
-  background-color: #428bca;
+  color: #009ff1;
+    background-color: white;
   border-color: #357ebd;
 }
 
@@ -3624,7 +3625,7 @@ input[type="button"].btn-block {
 .btn-group-justified .btn {
   display: table-cell;
   float: none;
-  width: 1%;
+  width: 100%
 }
 
 [data-toggle="buttons"] > .btn > input[type="radio"],
