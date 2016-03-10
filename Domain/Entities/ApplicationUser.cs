@@ -32,9 +32,7 @@ namespace Domain.Entities
         public int TeamId { get; set; }
 
         // Navigation Properties
-        public ICollection<KitchenOrder> KitchenOrders { get; set; }
-        public ICollection<FoodOrder> FoodOrders { get; set; }
-        
+        public ICollection<KitchenOrder> KitchenOrders { get; set; }        
 
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
