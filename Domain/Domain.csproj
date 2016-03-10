@@ -57,7 +57,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entities\FoodOrder.cs" />
     <Compile Include="Entities\IOrder.cs" />
     <Compile Include="Entities\KitchenOrder.cs" />
     <Compile Include="Entities\OrderLine.cs" />
@@ -65,6 +64,7 @@
     <Compile Include="Entities\Payment.cs" />
     <Compile Include="Entities\PaymentSort.cs" />
     <Compile Include="Entities\ApplicationUser.cs" />
+    <Compile Include="Entities\WalletOrder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
