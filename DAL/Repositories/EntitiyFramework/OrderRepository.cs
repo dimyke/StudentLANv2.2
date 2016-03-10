@@ -34,7 +34,7 @@ namespace DAL.Repositories.EntitiyFramework
         {
             return _ctx.KitchenOrders
                 .Where(x => (x.Completed == false))
-                .Where(x => (x.InProces == false))
+                .Where(x => (x.InProces == true))
                 .Where(x => (x.Deleted == false))
                 .Include("OrderLines")
                 .Include("Orderlines.Consumption")
