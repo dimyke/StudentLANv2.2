@@ -11,7 +11,7 @@ namespace Domain.Entities
     {
         public int OrderLineId { get; set; }
         [Required(ErrorMessage = "Gelieve een aantal in te geven")]
-        [Range(0, int.MaxValue, ErrorMessage = "Je moet wel een possitief getal ingeven hé makker!")]
+        [Range(1, int.MaxValue, ErrorMessage = "Je moet wel een possitief getal ingeven hé makker!")]
         public int NumberOfItems { get; set; }
         public double PriceAmount { get; set; }
 

@@ -5,65 +5,36 @@
     ViewBag.Title = "AddOrder";
 }
 
-<h2>Bestel hier je consumptie!</h2>
+<h2>Bestel hier je consumpties!</h2>
 
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-
-    <div>
-        <h4>Jouw bestelling:</h4>
+    <div class="form">
+        <h4>Kies je product</h4>
         <hr />
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.KitchenOrder.User.UserName)
-            </dt>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @*@Html.LabelFor(model => model.OrderLine.NumberOfItems, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <div class="col-md-3">
+                @Html.DropDownListFor(m => m.OrderLine.ConsumptionId, Model.Consumptions, "- Gelieve een consumptie te kiezen -", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.OrderLine.ConsumptionId, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-3">
+                @Html.EditorFor(model => model.OrderLine.NumberOfItems, new { htmlAttributes = new { @class = "form-control", placeholder = "Aantal items" } })
+                @Html.ValidationMessageFor(model => model.OrderLine.NumberOfItems, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-6">
+                <input type="submit" value="Voeg product toe!" class="btn btn-default" />
+            </div>
+        </div>
 
-            <dd>
-                @Html.DisplayFor(model => model.KitchenOrder.User.UserName)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.KitchenOrder.Date)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.KitchenOrder.Date)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.KitchenOrder.TotalAmount)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.KitchenOrder.TotalAmount)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.KitchenOrder.Completed)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.KitchenOrder.Completed)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.KitchenOrder.InProces)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.KitchenOrder.InProces)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.KitchenOrder.Paid)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.KitchenOrder.Paid)
-            </dd>
-        </dl>
     </div>
+    <br />
+    <br />
+    <h4>Overzicht:</h4>
+    <hr />
     <table class="table table-striped">
         <thead>
             <tr>
@@ -91,61 +62,39 @@
                 <td>
                     € @Html.DisplayFor(modelItem => line.PriceAmount)
                 </td>
-                <td>
+                <td align="right">
                     @if (Model.KitchenOrder.InProces == false)
                     {  <input type="button" class="btn btn-default" value="Verwijder Lijn" onclick="location.href='@Url.Action("DeleteOrderLine", "KitchenOrders", new { orderLineId = line.OrderLineId, orderid = Model.KitchenOrder.OrderId })'" />
                     }
                 </td>
             </tr>
         }
-
+        <tr>
+            <td />
+            <td align="right">
+                Totaal bedrag:
+            </td>
+            <td>
+                € @Html.DisplayFor(model => model.KitchenOrder.TotalAmount)
+            </td>
+            <td> 
+                
+            </td>
+        </tr>
     </table>
     if (!Model.KitchenOrder.InProces)
     {
         <br />
         <div class="form">
-            <h4>Kies je product</h4>
-            <hr />
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <div class="form-group">
-                @*@Html.LabelFor(model => model.OrderLine.NumberOfItems, htmlAttributes: new { @class = "control-label col-md-2" })*@
-                <div class="col-md-3">
-                    @Html.DropDownListFor(m => m.OrderLine.ConsumptionId, Model.Consumptions, "- Gelieve een consumptie te kiezen -", new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.OrderLine.ConsumptionId, "", new { @class = "text-danger" })
-                </div>
-                <div class="col-md-3">
-                    @Html.EditorFor(model => model.OrderLine.NumberOfItems, new { htmlAttributes = new { @class = "form-control", placeholder ="Aantal items" } })
-                    @Html.ValidationMessageFor(model => model.OrderLine.NumberOfItems, "", new { @class = "text-danger" })
-                </div>
-                <div class="col-md-6">
-                    <input type="submit" value="Voeg product toe!" class="btn btn-default" />
-                </div>
-             </div>
-
-        </div>
-        <br />
-
-        <div class="form">
-            <br />
-            <br />
-            <br />
-            <h4>Betalen doe je zo:</h4>
-            <hr />
             <div class="form-group">
                 <div class="col-md-12">
                     <input type="button" class="btn btn-default" value="Betaal met je wallet" onclick="location.href='@Url.Action("PaymentWithWallet", "Payment", new { orderid = Model.KitchenOrder.OrderId })'" />
-                    @*@using (Html.BeginForm("PaymentWithWallet", "Payment", new { orderid = Model.KitchenOrder.OrderId }, FormMethod.Post))
-                    {
-                        <input type="submit" value="Betaal met je wallet" class="btn btn-default" />
-                    }*@
                     <a alt="Pay using Paypal" href='@Url.Action("PaymentWithPaypal", "Payment", new {orderid = Model.KitchenOrder.OrderId}, null)'>
                         <img src='@Url.Content("~/content/images/paypal.png")' />
-
                     </a>
                 </div>
-            </div>
+                </div>
         </div>
-
 
     }
     else
