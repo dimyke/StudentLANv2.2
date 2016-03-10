@@ -263,9 +263,10 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\Images\csgo.jpg" />
     <Content Include="Content\Images\fifa.jpg" />
+    <Content Include="Content\Images\league.jpg" />
     <Content Include="Content\Images\logo_s.png" />
     <Content Include="Content\Images\paypal.png" />
-    <Content Include="Content\Images\wallet_icon.jpg" />
+    <Content Include="Content\Images\swarm-screenshot31-full1.jpg" />
     <Content Include="Content\StuLan.css" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
