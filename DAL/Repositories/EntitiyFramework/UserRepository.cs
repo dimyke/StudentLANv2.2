@@ -42,6 +42,11 @@ namespace DAL.Repositories.EntitiyFramework
             _ctx.SaveChanges();
         }
 
+        public bool UserExists(string id)
+        {
+            return _ctx.Users.Any(o => o.UserName == id);
+        }
+
         
     }
 }
