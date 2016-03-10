@@ -11,6 +11,7 @@ namespace DAL.Repositories.Contracts
     public interface IUserRepository
     {
         ApplicationUser FindUser(string id);
+        bool UserExists(string id);
         IEnumerable<ApplicationUser> GetAllApplicationUsers();
         IEnumerable<ApplicationUser> GetAllApplicationUsersRole(int roleId);
         void UpdateUser(string id, ApplicationUser user);

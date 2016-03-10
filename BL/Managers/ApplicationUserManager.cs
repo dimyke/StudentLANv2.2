@@ -82,6 +82,11 @@ namespace BL.Managers
             _userRepository.UpdateUser(id, user);
         }
 
+        public bool UserExists(string id)
+        {
+            return _userRepository.UserExists(id);
+        }
+
        
         //public void Create(Gebruiker gebruiker)
         //{
