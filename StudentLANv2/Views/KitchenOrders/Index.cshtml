@@ -59,8 +59,8 @@
                 </td>
                 <td>
                     @if (item.InProces == false)
-                    {@Html.ActionLink("Edit", "AddOrder", new { id = item.OrderId }) @Html.Raw("|") }
-                    @Html.ActionLink("Details", "Details", new { id = item.OrderId })
+                    {@Html.ActionLink("Ga verder met je bestelling", "AddOrder", new { id = item.OrderId }) @Html.Raw("|") }
+                    @Html.ActionLink("Overzicht", "Details", new { id = item.OrderId })
                 </td>
             </tr>
         }

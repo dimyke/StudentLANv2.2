@@ -34,6 +34,7 @@ namespace DAL.Repositories.EntitiyFramework
         {
             return _ctx.KitchenOrders
                 .Where(x => (x.Completed == false))
+                .Where(x => (x.InProces == false))
                 .Where(x => (x.Deleted == false))
                 .Include("OrderLines")
                 .Include("Orderlines.Consumption")
@@ -50,15 +51,6 @@ namespace DAL.Repositories.EntitiyFramework
                 .Include("User")
                 .AsEnumerable();
         }
-
-        //public IEnumerable<ApplicationUser> UserOrders(string id)
-        //{
-        //    return _ctx.Users
-        //        .Include("KitchenOrders")
-        //        .Include("KitchenOrders.Orderlines")
-        //        .Where(x => (x.Id == id))
-        //        .AsEnumerable();                
-        //}
 
         public IEnumerable<KitchenOrder> UserOrders(string id)
         {
