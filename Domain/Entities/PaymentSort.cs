@@ -7,5 +7,5 @@ using System.Threading.Tasks;
 namespace Domain.Entities
 {
     public enum PaymentSort
-    {PayPal, Cash,Mollie,Overschrijving}
+    {PayPal,Cash,Mollie,Overschrijving, Wallet}
 }

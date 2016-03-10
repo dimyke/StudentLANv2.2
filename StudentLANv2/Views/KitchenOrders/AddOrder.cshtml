@@ -11,6 +11,7 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
+    if (!Model.KitchenOrder.InProces) { 
     <div class="form">
         <h4>Kies je product</h4>
         <hr />
@@ -28,9 +29,9 @@
             <div class="col-md-6">
                 <input type="submit" value="Voeg product toe!" class="btn btn-default" />
             </div>
-        </div>
-
+        </div>        
     </div>
+    }
     <br />
     <br />
     <h4>Overzicht:</h4>
@@ -50,6 +51,23 @@
                 <th></th>
             </tr>
         </thead>
+        @if (Model.KitchenOrder.OrderLines.Count < 1)
+        {
+            <tr>
+                <td>
+                    0
+                </td>
+                <td>
+                    Wat lekkers
+                </td>
+                <td>
+                    € x,xx
+                </td>
+                <td>
+                   
+                </td>
+            </tr>
+        }
         @foreach (var line in Model.KitchenOrder.OrderLines)
         {
             <tr>
