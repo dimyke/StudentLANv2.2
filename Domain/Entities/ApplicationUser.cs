@@ -33,6 +33,7 @@ namespace Domain.Entities
 
         // Navigation Properties
         public ICollection<KitchenOrder> KitchenOrders { get; set; }
+        public ICollection<WalletOrder> WalletOrders { get; set; } 
         
         
 

@@ -83,6 +83,21 @@ namespace BL.Managers
             _OrderRepository.DeleteOrderLine(id);
         }
 
+        public void CreateWalletOrder(WalletOrder order)
+        {
+            _OrderRepository.CreateWalletOrder(order);
+        }
+
+        public WalletOrder getWalletOrder(int orderid)
+        {
+            return _OrderRepository.FindWalletOrder(orderid);
+        }
+
+        public IEnumerable<WalletOrder> GetWalletOrders()
+        {
+            return _OrderRepository.AllWalletOrders();
+        } 
+
 
 
     }

@@ -1,0 +1,32 @@
+﻿@using StudentLANv2.Models
+@model WalletOrderModel
+@{
+    ViewBag.Title = "ChargeWalletCash";
+}
+
+<h2>ChargeWalletCash</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="form">
+        <h4>Laad iemand zijn Wallet op</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <div class="col-md-3">
+                @Html.EditorFor(model => model.WalletOrder.TotalAmount, new { htmlAttributes = new { @class = "form-control", placeholder = "Totaal op te laden bedrag" } })
+                @Html.ValidationMessageFor(model => model.WalletOrder.TotalAmount, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-3">
+                @Html.EditorFor(model => model.User.UserName, new { htmlAttributes = new { @class = "form-control", placeholder = "Username" } })
+                @Html.ValidationMessageFor(model => model.User.UserName, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="col-md-6">
+                <input type="submit" value="Voeg product toe!" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+

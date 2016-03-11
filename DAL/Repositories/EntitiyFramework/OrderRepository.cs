@@ -104,6 +104,26 @@ namespace DAL.Repositories.EntitiyFramework
             _ctx.SaveChanges();
         }
 
+        public WalletOrder FindWalletOrder(int? id)
+        {
+            return _ctx.WalletOrders
+                .Include("User")
+                .SingleOrDefault(x => (x.OrderId == id));
+        }
+
+        public IEnumerable<WalletOrder> AllWalletOrders()
+        {
+            return _ctx.WalletOrders
+                .Include("User")
+                .AsEnumerable();
+        }
+
+        public void CreateWalletOrder(WalletOrder order)
+        {
+            _ctx.WalletOrders.Add(order);
+            _ctx.SaveChanges();
+        }
+
 
     }
 }

@@ -7,7 +7,8 @@ using System.Web.Mvc;
     using BL.Managers;
     using Domain.Entities;
     using log4net.Repository.Hierarchy;
-using PayPal.Api;
+    using Microsoft.AspNet.Identity;
+    using PayPal.Api;
 using StudentLANv2.Models;
     using Payment = PayPal.Api.Payment;
 
@@ -46,6 +47,21 @@ namespace StudentLANv2.Controllers
 
             _orderManager.UpdateOrder(orderid, order);
             return RedirectToAction("Index", "KitchenOrders");
+        }
+
+        public ActionResult ChargeWalletCash(int? id)
+        {
+            return View();
+        }
+
+        public ActionResult CreateOrder()
+        {
+           WalletOrder  k = new WalletOrder();
+            k.Date = DateTime.Now;
+            k.ApplicationUserId = User.Identity.GetUserId();
+
+            _orderManager.CreateWalletOrder(k);
+            return RedirectToAction("ChargeWalletCash", new { id = k.OrderId });
         }
 
         public ActionResult PaymentWithPaypal(int orderid)
@@ -181,6 +197,13 @@ namespace StudentLANv2.Controllers
 
             return this.payment.Create(apiContext);
         }
+
+        /*private WalletOrder CreateWalletOrder()
+        {
+            WalletOrder w = new WalletOrder();
+            w.Date = DateTime.Now;
+            w.ApplicationUserId = User.Identity.GetUserId();
+        } */
 
 
 
