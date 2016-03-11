@@ -10,6 +10,8 @@ namespace StudentLANv2.Models
     {
         public WalletOrder WalletOrder { get; set; }
         public ApplicationUser User { get; set; }
+        public IEnumerable<ApplicationUser> AllUsers { get; set; } 
+
 
     }
 }

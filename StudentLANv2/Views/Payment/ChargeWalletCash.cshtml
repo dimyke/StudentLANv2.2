@@ -24,7 +24,7 @@
             </div>
 
             <div class="col-md-6">
-                <input type="submit" value="Voeg product toe!" class="btn btn-default" />
+                <input type="submit" value="Charge Wallet!" class="btn btn-default" onclick="location.href='@Url.Action("Paymen", "KitchenOrders", new { orderLineId = line.OrderLineId, orderid = Model.KitchenOrder.OrderId })'" />
             </div>
         </div>
     </div>

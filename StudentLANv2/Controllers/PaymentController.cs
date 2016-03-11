@@ -50,6 +50,11 @@ namespace StudentLANv2.Controllers
             return RedirectToAction("Index", "KitchenOrders");
         }
 
+        public ActionResult ChargeWalletPayment(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public ActionResult ChargeWalletCash(int? id)
         {
 
@@ -72,8 +77,9 @@ namespace StudentLANv2.Controllers
 
         public ActionResult CreateOrder()
         {
-           WalletOrder  k = new WalletOrder();
+            WalletOrder  k = new WalletOrder();
             k.Date = DateTime.Now;
+            
             
             _orderManager.CreateWalletOrder(k);
             return RedirectToAction("ChargeWalletCash", new { id = k.OrderId });
