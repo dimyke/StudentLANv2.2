@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
-using System.Web;
+    using System.Net;
+    using System.Web;
 using System.Web.Mvc;
     using BL.Managers;
     using Domain.Entities;
@@ -51,7 +52,22 @@ namespace StudentLANv2.Controllers
 
         public ActionResult ChargeWalletCash(int? id)
         {
-            return View();
+
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            WalletOrderModel newModel = new WalletOrderModel();
+            WalletOrder order = _orderManager.GetWalletOrder(id);
+
+            if (order == null)
+            {
+                return HttpNotFound();
+            }
+
+            newModel.WalletOrder = order;
+            return View(newModel);
         }
 
         public ActionResult CreateOrder()

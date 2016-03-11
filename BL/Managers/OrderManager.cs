@@ -88,7 +88,7 @@ namespace BL.Managers
             _OrderRepository.CreateWalletOrder(order);
         }
 
-        public WalletOrder getWalletOrder(int orderid)
+        public WalletOrder GetWalletOrder(int? orderid)
         {
             return _OrderRepository.FindWalletOrder(orderid);
         }
