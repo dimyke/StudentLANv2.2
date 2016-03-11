@@ -1,10 +1,11 @@
 ﻿using System;
-
+using System.ComponentModel.DataAnnotations;
 
 namespace Domain.Entities
 {
     public interface IOrder
     {
+        [Key]
         int OrderId { get; set; }
         DateTime Date { get; set; }
         double TotalAmount { get; set; }
