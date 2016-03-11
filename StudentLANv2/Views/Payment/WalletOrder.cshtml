@@ -2,17 +2,19 @@
 
 
 @{
-    ViewBag.Title = "WalletOrder";
+    ViewBag.Title = "Cash Wallet Charging";
 }
 
-<h2>WalletOrder</h2>
+<h2>Users:</h2>
 <div>
-    @using (Html.BeginForm())
-    {
-        <p>
-            Username: @Html.TextBox("SearchString")
-            <input type="submit" value="Filter" class="btn btn-default" />
-        </p>
+        @using (Html.BeginForm())
+        {
+            <p>
+                Voor welke user wil je de wallet opladen? Vul zijn nickname gedeeltelijk of volledig in.
+            <br/>
+                Username: @Html.TextBox("SearchString")
+                <input type="submit" value="Zoek" class="btn btn-default" />
+            </p>
     }
 
 </div>

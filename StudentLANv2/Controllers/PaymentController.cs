@@ -28,28 +28,7 @@ namespace StudentLANv2.Controllers
             return View();
         }
 
-        public ActionResult WalletOrder1(string searchString)
-        {
-            WalletOrderModel newModel = new WalletOrderModel();
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                newModel.users = _userManager.GetUsersWithFirstName(searchString);
-                return View(newModel);
-            }
-            return View(newModel);
-        }
-
-        //[HttpPost]
-        //public ActionResult CreateWalletOrder1(WalletOrder TotalAmount, string user)
-        //{
-        //    WalletOrder w = new WalletOrder();
-        //    w.ApplicationUserId = user;
-        //    w.Date = DateTime.Now;
-        //    w.Paid = true;
-        //    _orderManager.CreateWalletOrder(w);
-        //    return View(w);
-        //}
-
+        [Authorize(Roles = "Superadmin")]
         public ActionResult WalletOrder(string searchString)
         {
             if (!String.IsNullOrEmpty(searchString))
@@ -58,8 +37,7 @@ namespace StudentLANv2.Controllers
             }
             return View();
         }
-
-        //TODO: CHECK THIS
+        [Authorize(Roles = "Superadmin")]
         public ActionResult CreateWalletOrder(string id)
         {
             WalletOrder w = new WalletOrder();
@@ -70,7 +48,7 @@ namespace StudentLANv2.Controllers
             _orderManager.CreateWalletOrder(w);
             return View(w);
         }
-
+        [Authorize(Roles = "Superadmin")]
         [HttpPost]
         public ActionResult CreateWalletOrder(int OrderId, WalletOrder wallet)
         {
@@ -83,7 +61,7 @@ namespace StudentLANv2.Controllers
             _userManager.Update(w.ApplicationUserId, u);
             return RedirectToAction("CompleteCashWallerOrder", new { id = wallet.OrderId });
         }
-
+        [Authorize(Roles = "Superadmin")]
         public ActionResult CompleteCashWallerOrder(int id)
         {
             WalletOrder w = _orderManager.GetWalletOrder(id);

@@ -3,16 +3,16 @@
     <ul class="dropdown-menu" aria-labelledby="OrderDropdown">
         @if(User.IsInRole("Superadmin") || User.IsInRole("Keuken") || User.IsInRole("Keuken Admin"))
         {
-            <li>@Html.ActionLink("Keuken overzicht", "KitchenView", "Kitchen")</li>
+            <li>@Html.ActionLink("Lopende keuken orders", "KitchenView", "Kitchen")</li>
         }
         @if (User.IsInRole("Superadmin") || User.IsInRole("Keuken Admin"))
         {
-            <li>@Html.ActionLink("Admin keuken", "Index", "Kitchen")</li>
+            <li>@Html.ActionLink("Admin keuken  orders", "Index", "Kitchen")</li>
         }
         @if (User.IsInRole("Superadmin"))
         {
-            <li>@Html.ActionLink("Consumpties", "Index", "Consumptions")</li>
-            <li>@Html.ActionLink("Charge Wallet", "WalletOrder", "Payment")</li>
+            <li>@Html.ActionLink("Consumptiebeheer", "Index", "Consumptions")</li>
+            <li>@Html.ActionLink("Cash charge user wallet", "WalletOrder", "Payment")</li>
         }
     </ul>
 </li>
