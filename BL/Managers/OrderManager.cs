@@ -96,9 +96,12 @@ namespace BL.Managers
         public IEnumerable<WalletOrder> GetWalletOrders()
         {
             return _OrderRepository.AllWalletOrders();
-        } 
+        }
 
-
+        public void UpdateWalletOrder(int id, WalletOrder order)
+        {
+            _OrderRepository.UpdateWalletOrder(id, order);
+        }
 
     }
 }

@@ -170,7 +170,26 @@ namespace DAL
                     SecurityStamp = Guid.NewGuid().ToString()
 
 
+                },
+                new ApplicationUser
+                {
+                    Id = "paypal",
+                    UserName = "paypal",
+                    Email="paypal@studentlan.be",
+                    LastName ="paypal",
+                    FirstName ="paypal",
+                    PostalCode ="2930",
+                    DateOfBirth = new DateTime(1991, 11, 8),
+                    Origin = "paypal",
+                    Steam = "paypal",
+                    BatlleNet = "paypal",
+                    Wargaming ="paypal",
+                    PasswordHash = hasher.HashPassword("SupahStronkPAYPALP@ssword"),
+                    Wallet = 10,
+                    SecurityStamp = Guid.NewGuid().ToString()
                 }
+
+                
             };
 
             users.ForEach(s => context.Users.Add(s));

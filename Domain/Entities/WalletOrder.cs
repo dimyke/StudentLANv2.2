@@ -17,5 +17,10 @@ namespace Domain.Entities
 
         //FK
         public string ApplicationUserId { get; set; }
+        public string AdminId { get; set; }
+
+        //Navigational properties
+        public ApplicationUser User { get; set; }
+        public ApplicationUser Admin { get; set; }
     }
 }
