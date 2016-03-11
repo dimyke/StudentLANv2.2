@@ -28,28 +28,68 @@ namespace StudentLANv2.Controllers
             return View();
         }
 
-        public ActionResult WalletOrder(string searchString)
+        public ActionResult WalletOrder1(string searchString)
         {
             WalletOrderModel newModel = new WalletOrderModel();
             if (!String.IsNullOrEmpty(searchString))
             {
-                newModel.users = _userManager.GetUsersWithFirstName(searchString).ToList();
+                newModel.users = _userManager.GetUsersWithFirstName(searchString);
                 return View(newModel);
-            }            
+            }
             return View(newModel);
         }
 
-        // TODO: CHECK THIS
-        public ActionResult ChargeWalletCash(string id, double amount)
+        //[HttpPost]
+        //public ActionResult CreateWalletOrder1(WalletOrder TotalAmount, string user)
+        //{
+        //    WalletOrder w = new WalletOrder();
+        //    w.ApplicationUserId = user;
+        //    w.Date = DateTime.Now;
+        //    w.Paid = true;
+        //    _orderManager.CreateWalletOrder(w);
+        //    return View(w);
+        //}
+
+        public ActionResult WalletOrder(string searchString)
+        {
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                return View(_userManager.GetUsersWithFirstName(searchString).ToList());
+            }
+            return View();
+        }
+
+        //TODO: CHECK THIS
+        public ActionResult CreateWalletOrder(string id)
         {
             WalletOrder w = new WalletOrder();
             w.ApplicationUserId = id;
             w.Date = DateTime.Now;
-            w.Paid = true;
-            w.TotalAmount = amount;
+            w.Paid = false;
+            w.AdminId = User.Identity.GetUserId();
             _orderManager.CreateWalletOrder(w);
-            return View();
+            return View(w);
         }
+
+        [HttpPost]
+        public ActionResult CreateWalletOrder(int OrderId, WalletOrder wallet)
+        {
+            WalletOrder w = _orderManager.GetWalletOrder(OrderId);
+            w.TotalAmount = wallet.TotalAmount;
+            w.Paid = true;
+            _orderManager.UpdateWalletOrder(OrderId, w);
+            ApplicationUser u = _userManager.Find(w.ApplicationUserId);
+            u.Wallet += wallet.TotalAmount;
+            _userManager.Update(w.ApplicationUserId, u);
+            return RedirectToAction("CompleteCashWallerOrder", new { id = wallet.OrderId });
+        }
+
+        public ActionResult CompleteCashWallerOrder(int id)
+        {
+            WalletOrder w = _orderManager.GetWalletOrder(id);
+            return View(w);
+        }
+
 
         public ActionResult PaymentWithWallet(int orderid)
         {

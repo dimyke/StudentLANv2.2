@@ -127,6 +127,7 @@ namespace DAL.Repositories.EntitiyFramework
         public void UpdateWalletOrder(int id, WalletOrder order)
         {
             _ctx.Entry(_ctx.WalletOrders.Find(id)).CurrentValues.SetValues(order);
+            _ctx.SaveChanges();
         }
 
 
