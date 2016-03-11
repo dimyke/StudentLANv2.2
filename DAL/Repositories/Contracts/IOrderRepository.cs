@@ -16,6 +16,7 @@ namespace DAL.Repositories.Contracts
         void CreateKitchenOrder(KitchenOrder kitchenorder);
         void UpdateOrder(int id, KitchenOrder kitchenorder);
         void CreateWalletOrder(WalletOrder order);
+        void UpdateWalletOrder(int id, WalletOrder order);
 
 
         void createOrderLine(OrderLine orderine);

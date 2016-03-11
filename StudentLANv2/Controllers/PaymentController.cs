@@ -85,12 +85,83 @@ namespace StudentLANv2.Controllers
             return RedirectToAction("ChargeWalletCash", new { id = k.OrderId });
         }
 
-        public ActionResult CreatePaypalOrder()
+        public ActionResult CreatePaypalOrder(double amount)
         {
             WalletOrder k = new WalletOrder();
             k.Date = DateTime.Now;
             k.ApplicationUserId = User.Identity.GetUserId();
-           
+            k.AdminId = "paypal";
+            k.TotalAmount = amount;
+            _orderManager.CreateWalletOrder(k);
+            return RedirectToAction("WalletPaymentWithPaypal", new { id = k.OrderId });
+
+        }
+
+        public ActionResult WalletPaymentWithPaypal(int orderid)
+        {
+
+            APIContext apiContext = PayPalConfiguration.GetAPIContext();
+            var order = _orderManager.GetWalletOrder(orderid);
+
+            try
+            {
+                string payerId = Request.Params["PayerID"];
+
+                if (string.IsNullOrEmpty(payerId))
+                {
+
+                    string baseURI = Request.Url.Scheme + "://" + Request.Url.Authority +
+                                "/Payment/WalletPaymentWithPayPal?orderid=" + orderid + "&";
+
+                    var guid = Convert.ToString((new Random()).Next(100000));
+                    var createdPayment = this.CreatePayment(apiContext, baseURI + "guid=" + guid, order);
+                    var links = createdPayment.links.GetEnumerator();
+                    string paypalRedirectUrl = null;
+                    while (links.MoveNext())
+                    {
+                        Links lnk = links.Current;
+
+                        if (lnk.rel.ToLower().Trim().Equals("approval_url"))
+                        {
+                            paypalRedirectUrl = lnk.href;
+                        }
+                    }
+
+                    Session.Add(guid, createdPayment.id);
+                    return Redirect(paypalRedirectUrl);
+                }
+                else
+                {
+                    var guid = Request.Params["guid"];
+                    var executedPayment = ExecutePayment(apiContext, payerId, Session[guid] as string);
+                    if (executedPayment.state.ToLower() != "approved")
+                    {
+                        return View("FailureView");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                PaypalLogger.Log("Error" + ex.Message);
+                return View("FailureView");
+            }
+
+            var paymentToSave = new Domain.Entities.Payment()
+            {
+                Amount = order.TotalAmount,
+                ApplicationUserId = order.ApplicationUserId,
+                OrderID = orderid,
+                Type = PaymentSort.PayPal
+
+
+            };
+
+
+            order.Paid = true;
+            _orderManager.UpdateWalletOrder(orderid, order);
+            _paymentManager.CreatePayment(paymentToSave);
+            return RedirectToAction("Index", "KitchenOrders");
+
         }
 
         public ActionResult PaymentWithPaypal(int orderid)
@@ -226,16 +297,65 @@ namespace StudentLANv2.Controllers
 
             return this.payment.Create(apiContext);
         }
-
-        /*private WalletOrder CreateWalletOrder()
+        private Payment CreatePayment(APIContext apiContext, string redirectUrl, WalletOrder order)
         {
-            WalletOrder w = new WalletOrder();
-            w.Date = DateTime.Now;
-            w.ApplicationUserId = User.Identity.GetUserId();
-        } */
+            //eff tijdelijk test ding
+            var itemList = new ItemList() { items = new List<Item>() };
+
+            itemList.items.Add(new Item()
+            {
+                name = "Oplading van " + order.User.UserName,
+                currency = "EUR",
+                price = order.TotalAmount.ToString(),
+                quantity = "1",
+                sku = order.OrderId.ToString()
 
 
+            });
 
+            var payer = new Payer() { payment_method = "paypal" };
 
+            var redirUrls = new RedirectUrls()
+            {
+                cancel_url = redirectUrl,
+                return_url = redirectUrl
+            };
+
+            var details = new Details()
+            {
+                tax = "0",
+                shipping = "0",
+                subtotal = order.TotalAmount.ToString()
+            };
+
+            var amount = new Amount()
+            {
+                currency = "EUR",
+                total = order.TotalAmount.ToString(),
+                details = details
+            };
+
+            var transactionList = new List<Transaction>();
+
+            transactionList.Add(new Transaction()
+            {
+                description = "Betaling van een oplading",
+                invoice_number = order.OrderId.ToString(),
+                amount = amount,
+                item_list = itemList
+            });
+
+            this.payment = new Payment()
+            {
+                intent = "sale",
+                payer = payer,
+                transactions = transactionList,
+                redirect_urls = redirUrls
+            };
+
+            return this.payment.Create(apiContext);
+        }
+
+        
     }
 }
