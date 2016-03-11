@@ -85,6 +85,14 @@ namespace StudentLANv2.Controllers
             return RedirectToAction("ChargeWalletCash", new { id = k.OrderId });
         }
 
+        public ActionResult CreatePaypalOrder()
+        {
+            WalletOrder k = new WalletOrder();
+            k.Date = DateTime.Now;
+            k.ApplicationUserId = User.Identity.GetUserId();
+           
+        }
+
         public ActionResult PaymentWithPaypal(int orderid)
         {
             
