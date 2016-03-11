@@ -46,7 +46,10 @@ namespace DAL.Repositories.EntitiyFramework
         {
             return _ctx.Users.Any(o => o.UserName == id);
         }
+        public IEnumerable<ApplicationUser> GetUsersWithFirstName(string name)
+        {
+            return _ctx.Users.Where(u => u.FirstName.ToLower().Contains(name.ToLower()));
+        }
 
-        
     }
 }

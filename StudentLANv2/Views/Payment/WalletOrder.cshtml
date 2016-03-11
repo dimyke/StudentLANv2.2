@@ -1,0 +1,69 @@
+﻿@using StudentLANv2.Models
+@model WalletOrderModel
+
+@{
+    ViewBag.Title = "WalletOrder";
+}
+
+<h2>WalletOrder</h2>
+<div>
+    @using (Html.BeginForm())
+    {
+        <p>
+            Username: @Html.TextBox("SearchString")
+            <input type="submit" value="Filter" class="btn btn-default" />
+        </p>
+    }
+
+</div>
+
+@Html.AntiForgeryToken()
+@if (Model != null && Model.users != null)
+{
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>
+                    first
+                </th>
+                <th>
+                    last
+                </th>
+                <th>
+                    mnoney
+                </th>
+            </tr>
+        </thead>
+        @foreach (var user in Model.users)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(u => user.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(u => user.LastName)
+                </td>
+                <td>
+                    € @Html.DisplayFor(u => user.Wallet)
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.WalletOrder.TotalAmount, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.WalletOrder.TotalAmount, "", new { @class = "text-danger" })
+                </td>
+                <td>
+                    <input type="button" class="btn btn-default" value="Laad wallet op!" onclick="location.href='@Url.Action("ChargeWalletCash", "Payment", new { id = user.Id, amount = Model.WalletOrder.TotalAmount })'" />
+                </td>
+                @*<td align="right">
+                        @if (Model.KitchenOrder.InProces == false)
+                            {  <input type="button" class="btn btn-default" value="Verwijder Lijn" onclick="location.href='@Url.Action("DeleteOrderLine", "KitchenOrders", new { orderLineId = line.OrderLineId, orderid = Model.KitchenOrder.OrderId })'" />
+                        }
+                    </td>*@
+            </tr>
+        }
+    </table>
+}
+     
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

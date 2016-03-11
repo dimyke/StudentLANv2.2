@@ -28,6 +28,29 @@ namespace StudentLANv2.Controllers
             return View();
         }
 
+        public ActionResult WalletOrder(string searchString)
+        {
+            WalletOrderModel newModel = new WalletOrderModel();
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                newModel.users = _userManager.GetUsersWithFirstName(searchString).ToList();
+                return View(newModel);
+            }            
+            return View(newModel);
+        }
+
+        // TODO: CHECK THIS
+        public ActionResult ChargeWalletCash(string id, double amount)
+        {
+            WalletOrder w = new WalletOrder();
+            w.ApplicationUserId = id;
+            w.Date = DateTime.Now;
+            w.Paid = true;
+            w.TotalAmount = amount;
+            _orderManager.CreateWalletOrder(w);
+            return View();
+        }
+
         public ActionResult PaymentWithWallet(int orderid)
         {
             var order = _orderManager.Find(orderid);
@@ -39,7 +62,7 @@ namespace StudentLANv2.Controllers
                 Amount = order.TotalAmount,
                 ApplicationUserId = user.Id,
                 OrderID = order.OrderId,
-                Type = PaymentSort.Cash
+                Type = PaymentSort.Wallet
             };
             _paymentManager.CreatePayment(walletPayment);
             _userManager.Pay(order.TotalAmount, user.Id);
@@ -50,25 +73,7 @@ namespace StudentLANv2.Controllers
             return RedirectToAction("Index", "KitchenOrders");
         }
 
-        public ActionResult ChargeWalletCash(int? id)
-        {
 
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            WalletOrderModel newModel = new WalletOrderModel();
-            WalletOrder order = _orderManager.GetWalletOrder(id);
-
-            if (order == null)
-            {
-                return HttpNotFound();
-            }
-
-            newModel.WalletOrder = order;
-            return View(newModel);
-        }
 
         public ActionResult CreateOrder()
         {
