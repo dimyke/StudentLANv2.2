@@ -58,8 +58,7 @@ namespace StudentLANv2.Controllers
         {
            WalletOrder  k = new WalletOrder();
             k.Date = DateTime.Now;
-            k.ApplicationUserId = User.Identity.GetUserId();
-
+            
             _orderManager.CreateWalletOrder(k);
             return RedirectToAction("ChargeWalletCash", new { id = k.OrderId });
         }
