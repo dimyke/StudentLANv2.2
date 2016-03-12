@@ -383,7 +383,7 @@
     <Content Include="Views\KitchenOrders\Index.cshtml" />
     <Content Include="Views\Account\EditAccount.cshtml" />
     <Content Include="Views\Account\Details.cshtml" />
-    <Content Include="Views\Account\ChargeWallet_1.cshtml" />
+    <Content Include="Views\Account\ChargeWalletPaypal.cshtml" />
     <Content Include="Views\Payment\ChargeWalletCash.cshtml" />
     <Content Include="Views\Account\ChargeWallet.cshtml" />
     <Content Include="Views\Payment\WalletOrder.cshtml" />

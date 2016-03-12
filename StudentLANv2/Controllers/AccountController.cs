@@ -519,5 +519,10 @@ namespace StudentLANv2.Controllers
         {
             return View();
         }
+
+        public ActionResult ChargeWalletPaypal()
+        {
+            return  View();
+    }
     }
 }
