@@ -28,6 +28,12 @@ namespace StudentLANv2.Controllers
             return View();
         }
 
+        //Verwijst door naar de view voor het zelf opladen van de wallet met paypal
+        public ActionResult ChargeWalletPaypal()
+        {
+            return View();
+        }
+
         //walletorders ophalen op basis vn naam
         [Authorize(Roles = "Superadmin")]
         public ActionResult WalletOrder(string searchString)
