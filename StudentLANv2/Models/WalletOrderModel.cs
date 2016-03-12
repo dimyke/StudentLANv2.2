@@ -9,9 +9,8 @@ namespace StudentLANv2.Models
     public class WalletOrderModel
     {
         public WalletOrder WalletOrder { get; set; }
-        public ApplicationUser User { get; set; }
-        public IEnumerable<ApplicationUser> AllUsers { get; set; } 
-
+        //public ApplicationUser User { get; set; }
+        public IEnumerable<ApplicationUser> users { get; set; }
 
     }
 }

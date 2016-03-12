@@ -1,0 +1,70 @@
+﻿@*@model IEnumerable<Domain.Entities.ApplicationUser>*@
+@using StudentLANv2.Models
+@model WalletOrderModel
+
+@{
+    ViewBag.Title = "WalletOrder";
+}
+
+<h2>WalletOrder</h2>
+<div>
+    @using (Html.BeginForm())
+    {
+        <p>
+            Username: @Html.TextBox("SearchString")
+            <input type="submit" value="Filter" class="btn btn-default" />
+        </p>
+    }
+
+</div>
+
+@Html.AntiForgeryToken()
+@if (Model != null && Model.users != null)
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>
+                    first
+                </th>
+                <th>
+                    last
+                </th>
+                <th>
+                    money
+                </th>
+            </tr>
+        </thead>
+        @foreach (var user in Model.users)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(u => user.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(u => user.LastName)
+                </td>
+                <td>
+                    € @Html.DisplayFor(u => user.Wallet)
+                </td>
+                <td>
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <form action="~/Controllers/PaymentController/CreateWalletOrder1">
+                        <div class="form-group">
+                            @Html.TextBoxFor(model => model.WalletOrder.TotalAmount)
+                            @Html.ValidationMessageFor(model => model.WalletOrder.TotalAmount, "", new { @class = "text-danger" })
+                            @Html.HiddenFor(model => user.Id)
+                            <input type="submit" class="btn btn-default" value="Charge wallet" />
+                        </div>
+                        </form>
+</td> 
+
+            </tr>
+        }
+    </table>
+}
+     
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

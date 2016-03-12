@@ -46,5 +46,6 @@ namespace DAL
         {
             return new StulanContext();
         }
+
     }
 }

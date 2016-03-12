@@ -4,10 +4,10 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Jouw gegevens</h2>
 
 <div>
-    <h4>ApplicationUser</h4>
+    <h4>Algemeen:</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -99,14 +99,6 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Wallet)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Wallet)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.NewsletterSubscription)
         </dt>
 
@@ -126,3 +118,9 @@
 <p>
     @Html.ActionLink("Edit gegevens", "EditAccount", "Account")
 </p>
+
+<h3>Je wallet</h3>
+<hr />
+Je huidige saldo bedraagd: € @Html.DisplayFor(model => model.Wallet)
+
+

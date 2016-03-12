@@ -45,7 +45,7 @@ namespace StudentLANv2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, [Bind(Include = "Price,Name,Available")] Consumption consumption)
+        public ActionResult Edit(int id, Consumption consumption)
         {
             if (ModelState.IsValid)
             {

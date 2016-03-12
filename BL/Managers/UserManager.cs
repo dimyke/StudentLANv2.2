@@ -43,6 +43,9 @@ namespace BL.Managers
             user.Wallet -= amount;
             Update(id, user);
         }
-
+        public IEnumerable<ApplicationUser> GetUsersWithFirstName(string name)
+        {
+            return _userRepository.GetUsersWithFirstName(name);
+        }
     }
 }

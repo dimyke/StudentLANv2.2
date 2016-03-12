@@ -1,0 +1,69 @@
+﻿@model IEnumerable<Domain.Entities.ApplicationUser>
+
+
+@{
+    ViewBag.Title = "Cash Wallet Charging";
+}
+
+<h2>Users:</h2>
+<div>
+        @using (Html.BeginForm())
+        {
+            <p>
+                Voor welke user wil je de wallet opladen? Vul zijn nickname gedeeltelijk of volledig in.
+            <br/>
+                Username: @Html.TextBox("SearchString")
+                <input type="submit" value="Zoek" class="btn btn-default" />
+            </p>
+    }
+
+</div>
+
+@Html.AntiForgeryToken()
+@if (Model != null)
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>
+                    first
+                </th>
+                <th>
+                    last
+                </th>
+                <th>
+                    money
+                </th>
+            </tr>
+        </thead>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(u => user.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(u => user.LastName)
+                </td>
+                <td>
+                    € @Html.DisplayFor(u => user.Wallet)
+                </td>
+                <td>
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group" >
+                            @*@Html.TextBoxFor(Model => Model.WalletOrder.TotalAmount)
+                            @Html.ValidationMessageFor(model => model.WalletOrder.TotalAmount, "", new { @class = "text-danger" })*@
+                                                        
+                            <input type="submit" class="btn btn-default" value="Charge wallet" onclick="location.href='@Url.Action("CreateWalletOrder", "Payment", new { id = user.Id })'" />
+                    </div>
+                </td> 
+
+            </tr>
+        }
+    </table>
+}
+     
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
