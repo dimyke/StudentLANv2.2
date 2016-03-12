@@ -93,7 +93,7 @@ namespace StudentLANv2.Controllers
             k.AdminId = "paypal";
             k.TotalAmount = amount;
             _orderManager.CreateWalletOrder(k);
-            return RedirectToAction("WalletPaymentWithPaypal", new { id = k.OrderId });
+            return RedirectToAction("WalletPaymentWithPaypal", new { orderid = k.OrderId });
 
         }
 
@@ -246,7 +246,7 @@ namespace StudentLANv2.Controllers
 
             itemList.items.Add(new Item()
             {
-                name = "Bestelling van " + order.User.UserName,
+                name = "Opladen van wallet ",
                 currency = "EUR",
                 price = order.TotalAmount.ToString(),
                 quantity = "1",

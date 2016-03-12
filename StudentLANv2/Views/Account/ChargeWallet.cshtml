@@ -13,7 +13,7 @@
 
 <a>
     <div class="btn-group btn-group-justified">
-        <input type="button" class="btn btn-primary" value="Laad 5 euro op" onclick="location.href = ''" />
+        <input type="button" class="btn btn-primary" value="Laad 5 euro op" onclick="location.href='@Url.Action("CreatePaypalOrder", "Payment", new { amount = 5 })'" />
         <input type="button" class="btn btn-primary" value="Laad 10 euro op" onclick="location.href = ''" />
         <input type="button" class="btn btn-primary" value="Laad 20 euro op" onclick="location.href = ''" />
         <input type="button" class="btn btn-primary" value="Laad 50 euro op" onclick="location.href=''" />
