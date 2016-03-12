@@ -20,13 +20,13 @@ namespace DAL.Repositories.EntitiyFramework
         }
 
         public void PaymentCreate(Payment payment)
-       {
-           _ctx.Payments.Add(payment);
-           _ctx.SaveChanges();
-       }
+        {
+            _ctx.Payments.Add(payment);
+            _ctx.SaveChanges();
+        }
 
-       
 
-      
+
+
     }
 }

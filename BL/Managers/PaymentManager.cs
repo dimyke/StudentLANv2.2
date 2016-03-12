@@ -13,11 +13,13 @@ namespace BL.Managers
     {
         private readonly IPaymentRepository _paymentRepository = new PaymentRepository();
 
+        //Geeft een payment terug
         public Payment FindPayment(int id)
         {
             return _paymentRepository.FindPayment(id);
         }
 
+        //Het aanmaken van een payment
         public void CreatePayment(Payment payment)
         {
             _paymentRepository.PaymentCreate(payment);
@@ -25,6 +27,6 @@ namespace BL.Managers
 
 
 
-       
+
     }
 }

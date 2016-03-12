@@ -1,17 +1,17 @@
-﻿    using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
-    using System.Net;
-    using System.Web;
+using System.Net;
+using System.Web;
 using System.Web.Mvc;
-    using BL.Managers;
-    using Domain.Entities;
-    using log4net.Repository.Hierarchy;
-    using Microsoft.AspNet.Identity;
-    using PayPal.Api;
+using BL.Managers;
+using Domain.Entities;
+using log4net.Repository.Hierarchy;
+using Microsoft.AspNet.Identity;
+using PayPal.Api;
 using StudentLANv2.Models;
-    using Payment = PayPal.Api.Payment;
+using Payment = PayPal.Api.Payment;
 
 
 namespace StudentLANv2.Controllers
@@ -28,6 +28,7 @@ namespace StudentLANv2.Controllers
             return View();
         }
 
+        //walletorders ophalen op basis vn naam
         [Authorize(Roles = "Superadmin")]
         public ActionResult WalletOrder(string searchString)
         {
@@ -37,6 +38,7 @@ namespace StudentLANv2.Controllers
             }
             return View();
         }
+        //walletorder aanmaken deel 1
         [Authorize(Roles = "Superadmin")]
         public ActionResult CreateWalletOrder(string id)
         {
@@ -48,6 +50,7 @@ namespace StudentLANv2.Controllers
             _orderManager.CreateWalletOrder(w);
             return View(w);
         }
+        //walletorder aanmaken deel 2
         [Authorize(Roles = "Superadmin")]
         [HttpPost]
         public ActionResult CreateWalletOrder(int OrderId, WalletOrder wallet)
@@ -62,12 +65,13 @@ namespace StudentLANv2.Controllers
             return RedirectToAction("CompleteCashWallerOrder", new { id = wallet.OrderId });
         }
         [Authorize(Roles = "Superadmin")]
+        //wallet order afronden
         public ActionResult CompleteCashWallerOrder(int id)
         {
             WalletOrder w = _orderManager.GetWalletOrder(id);
             return View(w);
         }
-        
+        //kitchenorder betalen met je wallet
         public ActionResult PaymentWithWallet(int orderid)
         {
             var order = _orderManager.Find(orderid);
@@ -89,16 +93,7 @@ namespace StudentLANv2.Controllers
             _orderManager.UpdateOrder(orderid, order);
             return RedirectToAction("Index", "KitchenOrders");
         }
-        
-        public ActionResult CreateOrder()
-        {
-           WalletOrder  k = new WalletOrder();
-            k.Date = DateTime.Now;
-            
-            _orderManager.CreateWalletOrder(k);
-            return RedirectToAction("ChargeWalletCash", new { id = k.OrderId });
-        }
-
+        //order aanmaken voor de wallet op te laden met paypal
         public ActionResult CreatePaypalOrder(double amount)
         {
             WalletOrder k = new WalletOrder();
@@ -110,7 +105,7 @@ namespace StudentLANv2.Controllers
             return RedirectToAction("WalletPaymentWithPaypal", new { orderid = k.OrderId });
 
         }
-
+        //Wallet opladen met paypal
         public ActionResult WalletPaymentWithPaypal(int orderid)
         {
 
@@ -160,16 +155,17 @@ namespace StudentLANv2.Controllers
                 return View("FailureView");
             }
 
-            
+
             order.Paid = true;
             _orderManager.UpdateWalletOrder(orderid, order);
             _userManager.ChargeWallet(order.TotalAmount, order.ApplicationUserId);
             return RedirectToAction("Details", "Account");
 
         }
+        //Kitchenorder betalen met paypal
         public ActionResult PaymentWithPaypal(int orderid)
         {
-            
+
             APIContext apiContext = PayPalConfiguration.GetAPIContext();
             var order = _orderManager.Find(orderid);
 
@@ -179,9 +175,9 @@ namespace StudentLANv2.Controllers
 
                 if (string.IsNullOrEmpty(payerId))
                 {
-                   
+
                     string baseURI = Request.Url.Scheme + "://" + Request.Url.Authority +
-                                "/Payment/PaymentWithPayPal?orderid=" + orderid +"&";
+                                "/Payment/PaymentWithPayPal?orderid=" + orderid + "&";
 
                     var guid = Convert.ToString((new Random()).Next(100000));
                     var createdPayment = this.CreatePayment(apiContext, baseURI + "guid=" + guid, order);
@@ -226,7 +222,7 @@ namespace StudentLANv2.Controllers
 
             };
 
-            
+
             order.InProces = true;
             order.Paid = true;
             _orderManager.UpdateOrder(orderid, order);
@@ -234,18 +230,18 @@ namespace StudentLANv2.Controllers
             return RedirectToAction("Index", "KitchenOrders");
 
         }
-
+        //het effectief uitvoeren van de Paypal betaling
         private Payment ExecutePayment(APIContext apiContext, string payerId, string paymentId)
         {
             var paymentExecution = new PaymentExecution() { payer_id = payerId };
             this.payment = new Payment() { id = paymentId };
             return this.payment.Execute(apiContext, paymentExecution);
         }
-
+        //het aanmaken van een payment voor paypal van een kitchenorder: de te betalen payment volgens paypal vereisten.
         private Payment CreatePayment(APIContext apiContext, string redirectUrl, KitchenOrder order)
         {
             //eff tijdelijk test ding
-           var itemList = new ItemList() { items = new List<Item>() };
+            var itemList = new ItemList() { items = new List<Item>() };
 
             itemList.items.Add(new Item()
             {
@@ -255,7 +251,7 @@ namespace StudentLANv2.Controllers
                 quantity = "1",
                 sku = order.OrderId.ToString()
 
-                
+
             });
 
             var payer = new Payer() { payment_method = "paypal" };
@@ -300,7 +296,7 @@ namespace StudentLANv2.Controllers
 
             return this.payment.Create(apiContext);
         }
-
+        //het aanmaken van een payment voor paypal van een walletorder: de te betalen payment volgens paypal vereisten.
         private Payment CreatePayment(APIContext apiContext, string redirectUrl, WalletOrder order)
         {
             //eff tijdelijk test ding

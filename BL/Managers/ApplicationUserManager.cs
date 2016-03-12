@@ -11,9 +11,11 @@ using DAL.Repositories.EntitiyFramework;
 
 namespace BL.Managers
 {
-    public class ApplicationUserManager: UserManager<ApplicationUser>
+    //Meer de manager voor identity
+    public class ApplicationUserManager : UserManager<ApplicationUser>
     {
         private readonly IUserRepository _userRepository = new UserRepository();
+
 
         public ApplicationUserManager(IUserStore<ApplicationUser> store)
             : base(store)
@@ -71,23 +73,25 @@ namespace BL.Managers
             return manager;
         }
 
-
+        //Haalt een gebruiker op aan de hand van zijn id
         public ApplicationUser Find(string id)
         {
             return _userRepository.FindUser(id);
         }
 
+        //Update een gebruiker
         public void Update(string id, ApplicationUser user)
         {
             _userRepository.UpdateUser(id, user);
         }
 
+        //kijkt na of de gebruiker bestaat.
         public bool UserExists(string id)
         {
             return _userRepository.UserExists(id);
         }
 
-       
+
         //public void Create(Gebruiker gebruiker)
         //{
         //    _gebruikerRepository.Create(gebruiker);

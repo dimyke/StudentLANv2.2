@@ -21,18 +21,18 @@ namespace StudentLANv2.Controllers
         {
             return View(_consumptionManager.All().ToList());
         }
-    
 
-    public ActionResult Details(int id)
+        //geeft de details van een consumptie weer
+        public ActionResult Details(int id)
         {
             Consumption consumptie = _consumptionManager.Find(id);
             return View(consumptie);
         }
 
-        // make it nullable
+        //Het aanpassen van een consumptie: de view
         public ActionResult Edit(int id)
         {
-           Consumption consumption = _consumptionManager.Find(id);
+            Consumption consumption = _consumptionManager.Find(id);
             if (consumption == null)
             {
                 return HttpNotFound();
@@ -40,9 +40,7 @@ namespace StudentLANv2.Controllers
             return View(consumption);
         }
 
-        // POST: KitchenOrders/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // Het effectieve aanpassen van de consumptie
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, Consumption consumption)
@@ -60,6 +58,7 @@ namespace StudentLANv2.Controllers
             return View();
         }
 
+        //het aanmaken van een consumptie
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Price,Name,Available")] Consumption consumption)
@@ -72,7 +71,7 @@ namespace StudentLANv2.Controllers
             return View(consumption);
         }
 
-        // GET:
+        // Het verwijderen van een consumptie
         public ActionResult Delete(int id)
         {
             if (id == null)
@@ -87,7 +86,7 @@ namespace StudentLANv2.Controllers
             return View(consumption);
         }
 
-        // POST
+        //Het confirmen van het verwijderen
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

@@ -9,12 +9,12 @@ using System.Web.Mvc;
 
 namespace StudentLANv2.Controllers
 {
-    [Authorize(Roles= "Keuken Admin, Superadmin")]
+    [Authorize(Roles = "Keuken Admin, Superadmin")]
     public class KitchenAdminController : Controller
     {
-        // GET: KitchenAdmin
         OrderManager _orderManager = new OrderManager();
 
+        //Het deleten of undeleten van een order
         public ActionResult ToggleDelete(int orderid)
         {
             KitchenOrder k = _orderManager.Find(orderid); ;
@@ -30,7 +30,7 @@ namespace StudentLANv2.Controllers
             return RedirectToAction("Index", "Kitchen");
         }
 
-        // GET: KitchenOrders/Edit/5
+        //Het aanpassen van een order
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -42,13 +42,10 @@ namespace StudentLANv2.Controllers
             {
                 return HttpNotFound();
             }
-            //ViewBag.ApplicationUserId = new SelectList(_orderManager. ApplicationUser, "Id", "UserName", kitchenOrder.ApplicationUserId);
             return View(kitchenOrder);
         }
 
-        // POST: KitchenOrders/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // Het updaten van een order
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, KitchenOrder kitchenOrder)

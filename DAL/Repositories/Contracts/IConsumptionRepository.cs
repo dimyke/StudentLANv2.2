@@ -11,7 +11,7 @@ namespace DAL.Repositories.Contracts
         void Create(Consumption consumption);
         void Update(int id, Consumption consumption);
         void Delete(int id);
-    
+
 
 
 

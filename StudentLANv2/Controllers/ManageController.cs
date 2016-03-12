@@ -34,9 +34,9 @@ namespace StudentLANv2.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<LoginManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -331,7 +331,7 @@ namespace StudentLANv2.Controllers
             }
 
             base.Dispose(disposing);
-        }                
+        }
 
         #region Helpers
         // Used for XSRF protection when adding external logins
@@ -384,6 +384,6 @@ namespace StudentLANv2.Controllers
             Error
         }
 
-#endregion
+        #endregion
     }
 }

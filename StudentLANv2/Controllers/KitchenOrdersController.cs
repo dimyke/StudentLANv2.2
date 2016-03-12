@@ -20,24 +20,23 @@ namespace StudentLANv2.Controllers
             return View(_orderManager.GetUserOrders(User.Identity.GetUserId()).ToList());
         }
 
-        // only shows some stuff. Not important
+        // Details van een order
         public ActionResult Details(int id, int? orderLineId)
         {
             KitchenOrder kitchenOrder = _orderManager.Find(id);
             return View(kitchenOrder);
         }
-        // the menu item 'maak order' calls this method.
-        // this method on its turn calls "addorderine"
+        //Wordt aangeroepen door het menu item maak order. Zorgt voor het aanmaken van een order zodat 
         public ActionResult CreateOrder()
         {
             KitchenOrder k = new KitchenOrder();
             k.Date = DateTime.Now;
             k.ApplicationUserId = User.Identity.GetUserId();
-                        
+
             _orderManager.CreateKitchenOrder(k);
             return RedirectToAction("AddOrder", new { id = k.OrderId });
         }
-
+        //Deel 1 van het aanmaken van een orderline
         public ActionResult AddOrder(int? id)
         {
             if (id == null)
@@ -59,6 +58,7 @@ namespace StudentLANv2.Controllers
 
         }
 
+        //deel 2 + toevoegen van orderline
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult AddOrder(int id, OrderLine orderline)
@@ -75,7 +75,7 @@ namespace StudentLANv2.Controllers
 
                 _orderManager.CreateOrderLine(orderline);
 
-                
+
                 k.TotalAmount += price;
 
                 _orderManager.UpdateOrder(id, k);
@@ -90,11 +90,11 @@ namespace StudentLANv2.Controllers
         {
             KitchenOrder k = _orderManager.Find(orderid);
 
-            if(k.InProces == false && k.Completed == false)
+            if (k.InProces == false && k.Completed == false)
             {
                 k.TotalAmount -= k.OrderLines.SingleOrDefault(x => (x.OrderLineId == orderLineId)).PriceAmount;
                 _orderManager.DelteOrderLine(orderLineId);
-                _orderManager.UpdateOrder(k.OrderId, k);                
+                _orderManager.UpdateOrder(k.OrderId, k);
             }
             return RedirectToAction("AddOrder", new { id = k.OrderId });
         }

@@ -11,6 +11,7 @@ using Microsoft.Owin;
 
 namespace BL.Managers
 {
+    //Zorgt voor de rollen van de gebruikers.
     class UserRoleManager : RoleManager<IdentityRole>
     {
         private UserRoleManager(IRoleStore<IdentityRole, string> store) : base(store)
@@ -23,6 +24,6 @@ namespace BL.Managers
             return new UserRoleManager(new RoleStore<IdentityRole>(context.Get<StulanContext>()));
         }
     }
-    
-    
+
+
 }

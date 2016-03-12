@@ -11,6 +11,8 @@ namespace StudentLANv2.Controllers
     public class KitchenController : Controller
     {
         private OrderManager _orderManager = new OrderManager();
+
+        //orders weergeven aan de hand van usernames met zoekfunctie
         public ActionResult Index(string searchString)
         {
             var orders = _orderManager.AllKitchenOrders().ToList();
@@ -28,6 +30,7 @@ namespace StudentLANv2.Controllers
             return View(_orderManager.AllUnfinishedKitchenOrders().ToList());
         }
 
+        //Het afmaken van een order
         [HttpPost]
         public ActionResult FinishOrder(int orderId)
         {
