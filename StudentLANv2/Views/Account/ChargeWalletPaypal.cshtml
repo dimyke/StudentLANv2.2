@@ -5,45 +5,39 @@
 }
 
 <h2>Charge Wallet with PayPal.</h2>
-<br/>
-<br/>
+<br />
+<br />
 <div class="row">
-    <div class="col-sm-4">
-        <img class="img-responsive" src="~/content/images/wallet_icon.jpg" alt="...">
+
+
+
+    <div class="col-md-6">
+        <img class="img-responsive" src="~/content/images/wallet_icon.jpg">
 
     </div>
-    <div class="col-sm-4">
-        <div class="row">
-            <div class="col-sm-6">
-                <input type="button" class="btn btn-large btn-block btn-primary" st value="Laad 5 euro op" onclick="location.href = '@Url.Action("CreatePaypalOrder", "Payment", new {amount = 5})'"/>
-                
-                <input type="button" class="btn btn-primary" value="Laad 10 euro op" onclick="location.href = '@Url.Action("CreatePaypalOrder", "Payment", new {amount = 10})'"/>
-            </div>
-
-            <div class="col-sm-6">
-                <input type="button" class="btn btn-primary" value="Laad 20 euro op" onclick="location.href = '@Url.Action("CreatePaypalOrder", "Payment", new {amount = 20})'"/>
-                
-                <input type="button" class="btn btn-primary" value="Laad 50 euro op" onclick="location.href = '@Url.Action("CreatePaypalOrder", "Payment", new {amount = 50})'"/>
-            </div>
+    <div class="col-md-6">
+        <div class="col-md-3 paddingpaypal">
+            <input type="button" class="btn btn-default" value="Laad 5 euro op" onclick="location.href = '@Url.Action("CreatePaypalOrder", "Payment", new {amount = 5})'" />
+        </div>
+        <div class="col-md-3 paddingpaypal">
+            <input type="button" class="btn btn-default" value="Laad 10 euro op" onclick="location.href = '@Url.Action("CreatePaypalOrder", "Payment", new {amount = 10})'" />
         </div>
     </div>
+
+ 
+    <div class="col-md-6">
+        <div class="col-md-3 paddingpaypal">
+            <input type="button" class="btn btn-default" value="Laad 20 euro op" onclick="location.href = '@Url.Action("CreatePaypalOrder", "Payment", new {amount = 20})'" />
+        </div>
+        <div class="col-md-3 paddingpaypal">
+            <input type="button" class="btn btn-default" value="Laad 50 euro op" onclick="location.href = '@Url.Action("CreatePaypalOrder", "Payment", new {amount = 50})'" />
+        </div>
+    </div>
+    
 </div>
 
 
-<img src="~/content/images/wallet_icon.jpg" alt="...">
-<h2>Charge Wallet with PayPal.</h2>
 
-
-
-<a>
-    <div class="btn-group btn-group-justified">
-        <input type="button" class="btn btn-primary" value="Laad 5 euro op" onclick="location.href = '@Url.Action("CreatePaypalOrder", "Payment", new { amount = 5 })'" />
-        <input type="button" class="btn btn-primary" value="Laad 10 euro op" onclick="location.href = '@Url.Action("CreatePaypalOrder", "Payment", new { amount = 10 })'" />
-        <input type="button" class="btn btn-primary" value="Laad 20 euro op" onclick="location.href = '@Url.Action("CreatePaypalOrder", "Payment", new { amount = 20 })'" />
-        <input type="button" class="btn btn-primary" value="Laad 50 euro op" onclick="location.href='@Url.Action("CreatePaypalOrder", "Payment", new { amount = 50 })'" />
-
-    </div>
-</a>
 
 
 
