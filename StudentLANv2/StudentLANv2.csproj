@@ -267,6 +267,11 @@
     <Content Include="Content\Images\league.jpg" />
     <Content Include="Content\Images\logo_s.png" />
     <Content Include="Content\Images\paypal.png" />
+    <Content Include="Content\Images\Sponsors\alternate_klein.png" />
+    <Content Include="Content\Images\Sponsors\cronos.png" />
+    <Content Include="Content\Images\Sponsors\gamegear.png" />
+    <Content Include="Content\Images\Sponsors\Logo-on-WHITE-468x142.jpg" />
+    <Content Include="Content\Images\Sponsors\logohorizontaal.png" />
     <Content Include="Content\Images\swarm-screenshot31-full1.jpg" />
     <Content Include="Content\Images\wallet_icon.jpg" />
     <Content Include="Content\StuLan.css" />
