@@ -22,15 +22,14 @@ namespace DAL.Migrations
         protected override void Seed(DAL.StulanContext context)
         {
             var hasher = new PasswordHasher();
-
             #region Consumption
             var consumptions = new List<Consumption>
             {
-                new Consumption {ConsumptionId=1, Name="Frieten", Price=2 },
-                new Consumption {ConsumptionId=2, Name="Crocskes", Price=2 },
-                new Consumption {ConsumptionId=3, Name="Kevin zijn moeder", Price=0 },
-                new Consumption {ConsumptionId=4, Name="Bitterballen", Price=2 },
-                new Consumption {ConsumptionId=5, Name="Pizza", Price=2 }
+                new Consumption {ConsumptionId=1, Name="Frieten", Price=2, Available = true },
+                new Consumption {ConsumptionId=2, Name="Crocskes", Price=2, Available = true },
+                new Consumption {ConsumptionId=3, Name="Kefjeuh is free", Price=0, Available = true },
+                new Consumption {ConsumptionId=4, Name="Bitterballen", Price=2, Available = true },
+                new Consumption {ConsumptionId=5, Name="Pizza", Price=2, Available = false }
             };
 
             consumptions.ForEach(s => context.Consumptions.Add(s));
@@ -103,6 +102,26 @@ namespace DAL.Migrations
                 new ApplicationUser
                 {
                     Id = Guid.NewGuid().ToString(),
+                    UserName = "keukenadmin",
+                    Email="keukenadmin@gmail.com",
+                    LastName ="keuken",
+                    FirstName ="keuken",
+                    PostalCode ="2930",
+                    DateOfBirth = new DateTime(1991, 11, 8),
+                    Origin = "keuken",
+                    Steam = "keuken",
+                    BatlleNet = "keukent#2348",
+                    Wargaming ="keuken",
+                    PasswordHash = hasher.HashPassword("SupahStronkP@ssword"),
+                    Wallet = 56754,
+                    SecurityStamp = Guid.NewGuid().ToString()
+
+
+                },
+
+                new ApplicationUser
+                {
+                    Id = Guid.NewGuid().ToString(),
                     UserName = "deelnemer",
                     Email="deelnemer@gmail.com",
                     LastName ="deelnemer",
@@ -114,11 +133,70 @@ namespace DAL.Migrations
                     BatlleNet = "deelnemer#2348",
                     Wargaming ="deelnemer",
                     PasswordHash = hasher.HashPassword("SupahStronkP@ssword"),
-                    Wallet = 56754,
+                    Wallet = 1,
+                    SecurityStamp = Guid.NewGuid().ToString()
+                }
+                ,
+
+                new ApplicationUser
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    UserName = "superadmin",
+                    Email="superadmin@gmail.com",
+                    LastName ="superadmin",
+                    FirstName ="superadmin",
+                    PostalCode ="2930",
+                    DateOfBirth = new DateTime(1991, 11, 8),
+                    Origin = "superadmin",
+                    Steam = "superadmin",
+                    BatlleNet = "superadmin#2348",
+                    Wargaming ="superadmin",
+                    PasswordHash = hasher.HashPassword("SupahStronkP@ssword"),
+                    Wallet = 50,
                     SecurityStamp = Guid.NewGuid().ToString()
 
 
                 }
+                ,
+
+                new ApplicationUser
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    UserName = "admin",
+                    Email="admin@gmail.com",
+                    LastName ="admin",
+                    FirstName ="admin",
+                    PostalCode ="2930",
+                    DateOfBirth = new DateTime(1991, 11, 8),
+                    Origin = "admin",
+                    Steam = "admin",
+                    BatlleNet = "admin#2348",
+                    Wargaming ="admin",
+                    PasswordHash = hasher.HashPassword("SupahStronkP@ssword"),
+                    Wallet = 10,
+                    SecurityStamp = Guid.NewGuid().ToString()
+
+
+                },
+                new ApplicationUser
+                {
+                    Id = "paypal",
+                    UserName = "paypal",
+                    Email="paypal@studentlan.be",
+                    LastName ="paypal",
+                    FirstName ="paypal",
+                    PostalCode ="2930",
+                    DateOfBirth = new DateTime(1991, 11, 8),
+                    Origin = "paypal",
+                    Steam = "paypal",
+                    BatlleNet = "paypal",
+                    Wargaming ="paypal",
+                    PasswordHash = hasher.HashPassword("SupahStronkPAYPALP@ssword"),
+                    Wallet = 10,
+                    SecurityStamp = Guid.NewGuid().ToString()
+                }
+
+
             };
 
             users.ForEach(s => context.Users.Add(s));
@@ -217,7 +295,7 @@ namespace DAL.Migrations
 
 
             #endregion
-            
+
             #region Payment
             var payments = new List<Payment>
             {
@@ -228,7 +306,7 @@ namespace DAL.Migrations
                     Type = PaymentSort.PayPal,
                     KitchenOrder = orders.ElementAt(0),
                     User = users.ElementAt(0),
-                    
+
                 },
 
                 new Payment
@@ -238,7 +316,7 @@ namespace DAL.Migrations
                     Type = PaymentSort.PayPal,
                     KitchenOrder = orders.ElementAt(1),
                     User = users.ElementAt(1),
-                    
+
                 }
 
             };
@@ -251,14 +329,18 @@ namespace DAL.Migrations
             roleManager.Create(new IdentityRole("Superadmin"));
             roleManager.Create(new IdentityRole("Administrator"));
             roleManager.Create(new IdentityRole("Keuken Admin"));
+            roleManager.Create(new IdentityRole("Keuken"));
             roleManager.Create(new IdentityRole("Deelnemer"));
 
             var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
 
             userManager.AddToRole(users.ElementAt(0).Id, "Administrator");
             userManager.AddToRole(users.ElementAt(1).Id, "Superadmin");
-            userManager.AddToRole(users.ElementAt(2).Id, "Keuken Admin");
-            userManager.AddToRole(users.ElementAt(1).Id, "Deelnemer");
+            userManager.AddToRole(users.ElementAt(2).Id, "Keuken");
+            userManager.AddToRole(users.ElementAt(3).Id, "Keuken Admin");
+            userManager.AddToRole(users.ElementAt(4).Id, "Deelnemer");
+            userManager.AddToRole(users.ElementAt(5).Id, "Superadmin");
+            userManager.AddToRole(users.ElementAt(6).Id, "Administrator");
             #endregion
 
             context.SaveChanges();

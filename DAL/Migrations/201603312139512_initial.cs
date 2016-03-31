@@ -19,21 +19,6 @@ namespace DAL.Migrations
                 .PrimaryKey(t => t.ConsumptionId);
             
             CreateTable(
-                "dbo.FoodOrders",
-                c => new
-                    {
-                        OrderId = c.Int(nullable: false, identity: true),
-                        Date = c.DateTime(nullable: false, precision: 0),
-                        TotalAmount = c.Double(nullable: false),
-                        Completed = c.Boolean(nullable: false),
-                        Deleted = c.Boolean(nullable: false),
-                        ApplicationUserId = c.String(maxLength: 128, storeType: "nvarchar"),
-                    })
-                .PrimaryKey(t => t.OrderId)
-                .ForeignKey("dbo.ApplicationUsers", t => t.ApplicationUserId)
-                .Index(t => t.ApplicationUserId);
-            
-            CreateTable(
                 "dbo.KitchenOrders",
                 c => new
                     {
@@ -43,6 +28,8 @@ namespace DAL.Migrations
                         Completed = c.Boolean(nullable: false),
                         Deleted = c.Boolean(nullable: false),
                         Paid = c.Boolean(nullable: false),
+                        InProces = c.Boolean(nullable: false),
+                        DateEdited = c.DateTime(precision: 0),
                         ApplicationUserId = c.String(maxLength: 128, storeType: "nvarchar"),
                     })
                 .PrimaryKey(t => t.OrderId)
@@ -79,7 +66,6 @@ namespace DAL.Migrations
                         DateOfBirth = c.DateTime(precision: 0),
                         Origin = c.String(unicode: false),
                         Steam = c.String(unicode: false),
-                        Nickname = c.String(unicode: false),
                         BatlleNet = c.String(unicode: false),
                         Wargaming = c.String(unicode: false),
                         Wallet = c.Double(nullable: false),
@@ -140,22 +126,44 @@ namespace DAL.Migrations
                 .Index(t => t.IdentityRole_Id);
             
             CreateTable(
+                "dbo.WalletOrders",
+                c => new
+                    {
+                        OrderId = c.Int(nullable: false, identity: true),
+                        Date = c.DateTime(nullable: false, precision: 0),
+                        TotalAmount = c.Double(nullable: false),
+                        Completed = c.Boolean(nullable: false),
+                        Deleted = c.Boolean(nullable: false),
+                        Paid = c.Boolean(nullable: false),
+                        DateEdited = c.DateTime(precision: 0),
+                        ApplicationUserId = c.String(unicode: false),
+                        AdminId = c.String(maxLength: 128, storeType: "nvarchar"),
+                        User_Id = c.String(maxLength: 128, storeType: "nvarchar"),
+                        ApplicationUser_Id = c.String(maxLength: 128, storeType: "nvarchar"),
+                    })
+                .PrimaryKey(t => t.OrderId)
+                .ForeignKey("dbo.ApplicationUsers", t => t.AdminId)
+                .ForeignKey("dbo.ApplicationUsers", t => t.User_Id)
+                .ForeignKey("dbo.ApplicationUsers", t => t.ApplicationUser_Id)
+                .Index(t => t.AdminId)
+                .Index(t => t.User_Id)
+                .Index(t => t.ApplicationUser_Id);
+            
+            CreateTable(
                 "dbo.Payments",
                 c => new
                     {
                         PaymentId = c.Int(nullable: false, identity: true),
                         Amount = c.Double(nullable: false),
                         Type = c.Int(nullable: false),
-                        Paid = c.Boolean(nullable: false),
                         OrderID = c.Int(nullable: false),
-                        ApplicationUserId = c.Int(nullable: false),
-                        User_Id = c.String(maxLength: 128, storeType: "nvarchar"),
+                        ApplicationUserId = c.String(maxLength: 128, storeType: "nvarchar"),
                     })
                 .PrimaryKey(t => t.PaymentId)
                 .ForeignKey("dbo.KitchenOrders", t => t.OrderID, cascadeDelete: true)
-                .ForeignKey("dbo.ApplicationUsers", t => t.User_Id)
+                .ForeignKey("dbo.ApplicationUsers", t => t.ApplicationUserId)
                 .Index(t => t.OrderID)
-                .Index(t => t.User_Id);
+                .Index(t => t.ApplicationUserId);
             
             CreateTable(
                 "dbo.IdentityRoles",
@@ -171,17 +179,22 @@ namespace DAL.Migrations
         public override void Down()
         {
             DropForeignKey("dbo.IdentityUserRoles", "IdentityRole_Id", "dbo.IdentityRoles");
-            DropForeignKey("dbo.Payments", "User_Id", "dbo.ApplicationUsers");
+            DropForeignKey("dbo.Payments", "ApplicationUserId", "dbo.ApplicationUsers");
             DropForeignKey("dbo.Payments", "OrderID", "dbo.KitchenOrders");
+            DropForeignKey("dbo.WalletOrders", "ApplicationUser_Id", "dbo.ApplicationUsers");
+            DropForeignKey("dbo.WalletOrders", "User_Id", "dbo.ApplicationUsers");
+            DropForeignKey("dbo.WalletOrders", "AdminId", "dbo.ApplicationUsers");
             DropForeignKey("dbo.IdentityUserRoles", "ApplicationUser_Id", "dbo.ApplicationUsers");
             DropForeignKey("dbo.IdentityUserLogins", "ApplicationUser_Id", "dbo.ApplicationUsers");
             DropForeignKey("dbo.KitchenOrders", "ApplicationUserId", "dbo.ApplicationUsers");
-            DropForeignKey("dbo.FoodOrders", "ApplicationUserId", "dbo.ApplicationUsers");
             DropForeignKey("dbo.IdentityUserClaims", "ApplicationUser_Id", "dbo.ApplicationUsers");
             DropForeignKey("dbo.OrderLines", "OrderId", "dbo.KitchenOrders");
             DropForeignKey("dbo.OrderLines", "ConsumptionId", "dbo.Consumptions");
-            DropIndex("dbo.Payments", new[] { "User_Id" });
+            DropIndex("dbo.Payments", new[] { "ApplicationUserId" });
             DropIndex("dbo.Payments", new[] { "OrderID" });
+            DropIndex("dbo.WalletOrders", new[] { "ApplicationUser_Id" });
+            DropIndex("dbo.WalletOrders", new[] { "User_Id" });
+            DropIndex("dbo.WalletOrders", new[] { "AdminId" });
             DropIndex("dbo.IdentityUserRoles", new[] { "IdentityRole_Id" });
             DropIndex("dbo.IdentityUserRoles", new[] { "ApplicationUser_Id" });
             DropIndex("dbo.IdentityUserLogins", new[] { "ApplicationUser_Id" });
@@ -189,16 +202,15 @@ namespace DAL.Migrations
             DropIndex("dbo.OrderLines", new[] { "ConsumptionId" });
             DropIndex("dbo.OrderLines", new[] { "OrderId" });
             DropIndex("dbo.KitchenOrders", new[] { "ApplicationUserId" });
-            DropIndex("dbo.FoodOrders", new[] { "ApplicationUserId" });
             DropTable("dbo.IdentityRoles");
             DropTable("dbo.Payments");
+            DropTable("dbo.WalletOrders");
             DropTable("dbo.IdentityUserRoles");
             DropTable("dbo.IdentityUserLogins");
             DropTable("dbo.IdentityUserClaims");
             DropTable("dbo.ApplicationUsers");
             DropTable("dbo.OrderLines");
             DropTable("dbo.KitchenOrders");
-            DropTable("dbo.FoodOrders");
             DropTable("dbo.Consumptions");
         }
     }

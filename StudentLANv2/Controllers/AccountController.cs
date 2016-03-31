@@ -516,9 +516,22 @@ namespace StudentLANv2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult EditAccount(ApplicationUser user)
         {
-            if (ModelState.IsValid)
+            string uId = user.Id;
+            if (ModelState.IsValid && uId == User.Identity.GetUserId())
             {
-                UserManager.Update(User.Identity.GetUserId(), user);
+                ApplicationUser u = UserManager.Find(uId);
+                u.Avatar = user.Avatar;
+                u.LastName = user.LastName;
+                u.FirstName = user.FirstName;
+                u.PostalCode = user.PostalCode;
+                u.DateOfBirth = user.DateOfBirth;
+                u.Origin = user.Origin;
+                u.Steam = user.Steam;
+                u.BatlleNet = user.BatlleNet;
+                u.Wargaming = user.Wargaming;
+                u.NewsletterSubscription = user.NewsletterSubscription;
+                u.PhoneNumber = user.PhoneNumber;
+                UserManager.Update(uId, u);
                 return View(user);
             }
             return View(user);

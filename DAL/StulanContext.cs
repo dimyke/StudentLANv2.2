@@ -11,7 +11,7 @@ namespace DAL
     {
         public StulanContext() : base("StulanContext")
         {
-           // Database.SetInitializer(new StulanInitializer());
+           Database.SetInitializer(new StulanInitializer());
         }
 
         public DbSet<KitchenOrder> KitchenOrders { get; set; }
