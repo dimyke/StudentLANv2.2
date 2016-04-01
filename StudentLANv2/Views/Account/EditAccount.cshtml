@@ -4,15 +4,15 @@
     ViewBag.Title = "Jouw gegevens";
 }
 
-<h2>EditAccount</h2>
+<h2>Je account gegevens</h2>
 
 
 @using (Html.BeginForm())
 {
-    @Html.AntiForgeryToken()
+    @Html.AntiForgeryToken()x
     
     <div class="form-horizontal">
-        <h4>Indien nodig kan je ze hier aanpassen</h4>
+        <h4>Pas hier je gegevens aan</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Id)
@@ -114,6 +114,11 @@
         </div>
     </div>
 }
+@if (TempData["success"] != null)
+{
+    <p class="alert alert-success alert-dismissable fade in" id="successMessage">@TempData["success"]</p>
+}
+
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

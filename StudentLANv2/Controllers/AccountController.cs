@@ -532,6 +532,7 @@ namespace StudentLANv2.Controllers
                 u.NewsletterSubscription = user.NewsletterSubscription;
                 u.PhoneNumber = user.PhoneNumber;
                 UserManager.Update(uId, u);
+                TempData["success"] = "uw gegevens zijn correct aangepast";
                 return View(user);
             }
             return View(user);
