@@ -18,6 +18,8 @@ namespace DAL.Repositories.EntitiyFramework
                 .Include("OrderLines")
                 .Include("User")
                 .Include("Orderlines.Consumption")
+                //.Include("Payment")
+                // TODO: show payment
                 .SingleOrDefault(x => (x.OrderId == id));
         }
 
