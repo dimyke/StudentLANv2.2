@@ -23,5 +23,6 @@ namespace Domain.Entities
 
         public ApplicationUser User { get; set; }
         public ICollection<OrderLine> OrderLines { get; set; }
+        public ICollection<Payment> Payments { get; set; }
     }
 }

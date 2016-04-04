@@ -17,6 +17,5 @@ namespace Domain.Entities
 
         //navigational properties
         public KitchenOrder KitchenOrder { get; set; }
-        public ApplicationUser User { get; set; }
     }
 }

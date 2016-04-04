@@ -305,8 +305,6 @@ namespace DAL.Migrations
                     Amount = 1,
                     Type = PaymentSort.PayPal,
                     KitchenOrder = orders.ElementAt(0),
-                    User = users.ElementAt(0),
-
                 },
 
                 new Payment
@@ -315,7 +313,6 @@ namespace DAL.Migrations
                     Amount = 1,
                     Type = PaymentSort.PayPal,
                     KitchenOrder = orders.ElementAt(1),
-                    User = users.ElementAt(1),
 
                 }
 

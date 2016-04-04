@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Domain.Entities
@@ -16,5 +17,8 @@ namespace Domain.Entities
 
         //FK
         string ApplicationUserId { get; set; }
+
+        //navigational properties
+        ICollection<Payment> Payments { get; set; }
     }
 }
