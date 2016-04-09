@@ -93,6 +93,7 @@ namespace StudentLANv2.Controllers
             };
             _paymentManager.CreatePayment(walletPayment);
             _userManager.Pay(order.TotalAmount, user.Id);
+            // order.Payments.Add(walletPayment);
             order.Paid = true;
             order.InProces = true;
 
@@ -161,7 +162,7 @@ namespace StudentLANv2.Controllers
                 return View("FailureView");
             }
 
-
+            // order.Payments.Add(Payment);
             order.Paid = true;
             _orderManager.UpdateWalletOrder(orderid, order);
             _userManager.ChargeWallet(order.TotalAmount, order.ApplicationUserId);
@@ -231,8 +232,9 @@ namespace StudentLANv2.Controllers
 
             order.InProces = true;
             order.Paid = true;
-            _orderManager.UpdateOrder(orderid, order);
             _paymentManager.CreatePayment(paymentToSave);
+            // order.Payments.Add(paymentToSave);
+            _orderManager.UpdateOrder(orderid, order);            
             return RedirectToAction("Index", "KitchenOrders");
 
         }
