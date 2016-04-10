@@ -55,9 +55,10 @@ namespace StudentLANv2.Controllers
             return View(_orderManager.AllCreditOrders().ToList());
         }
 
-        public ActionResult RefundOrder()
+        public ActionResult RefundOrder(int id)
         {
-            return View(_orderManager.AllCreditOrders().ToList());
+            _orderManager.RefundCredit(User.Identity.GetUserId(),id);
+            return RedirectToAction("CreditIndex");
         }
     }
 }

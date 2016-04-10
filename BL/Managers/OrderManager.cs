@@ -24,10 +24,6 @@ namespace BL.Managers
         {
             return _OrderRepository.FindKitchenOrderPayment(id);
         }
-        public IEnumerable<CreditOrder> AllCreditOrders()
-        {
-            return _OrderRepository.AllCreditOrders();
-        }
 
         //haalt alle kitchenorders op
         public IEnumerable<KitchenOrder> AllKitchenOrders()
@@ -59,6 +55,49 @@ namespace BL.Managers
             return _OrderRepository.OrderLineForOrder(id);
         }
 
+        // gets all credit orders
+        public IEnumerable<CreditOrder> AllCreditOrders()
+        {
+            return _OrderRepository.AllCreditOrders();
+        }
+
+        // refunds the credit order to the users his wallet
+        public void RefundCredit(string userId, int creditId)
+        {
+
+            CreditOrder creditOrder = _OrderRepository.FindCreditOrder(creditId);
+
+            if(creditOrder.Paid == false)
+            {
+                UserManager _userManager = new UserManager();
+                PaymentManager _paymentManager = new PaymentManager();
+
+                int orderId = creditOrder.CreditForOrderId;
+                KitchenOrder order = Find(orderId);
+                ApplicationUser user = order.User;
+
+                // create refund payment
+                var payment = new Payment();
+                payment.Amount = creditOrder.TotalAmount;
+                payment.ApplicationUserId = userId;
+                payment.OrderID = orderId;
+                payment.Type = PaymentSort.Wallet;
+                _paymentManager.CreatePayment(payment);
+
+                // recharge user wallet
+                user.Wallet += Math.Abs(creditOrder.TotalAmount);
+                _userManager.Update(userId, user);
+
+                // set the order total to 0
+                order.TotalAmount = 0;
+                UpdateOrder(orderId, order);
+
+                // set credit order to paid
+                creditOrder.Paid = true;
+                _OrderRepository.UpdateCreditOrder(creditId, creditOrder);
+            }
+           
+        }
         //Een order op finished zetten
         public void SetFinished(int id)
         {
@@ -83,6 +122,7 @@ namespace BL.Managers
                 {
                     CreditOrder c = new CreditOrder();
                     c.Date = DateTime.Now;
+                    c.CreditForOrderId = id;
                     c.AdminId = userId;
                     c.TotalAmount -= k.TotalAmount;
                     c.ApplicationUserId = k.ApplicationUserId;

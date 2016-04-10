@@ -8,6 +8,7 @@ namespace DAL.Repositories.Contracts
         KitchenOrder Find(int? id);
         KitchenOrder FindKitchenOrderPayment(int? id);
         WalletOrder FindWalletOrder(int? id);
+        CreditOrder FindCreditOrder(int id);
         IEnumerable<WalletOrder> AllWalletOrders();
         IEnumerable<KitchenOrder> AllKitchenOrder();
         IEnumerable<KitchenOrder> AllUnfinishedKitchen();
@@ -20,7 +21,7 @@ namespace DAL.Repositories.Contracts
         void UpdateWalletOrder(int id, WalletOrder order);
         IEnumerable<CreditOrder> AllCreditOrders();
         void CreateCreditOrder(CreditOrder order);
-
+        void UpdateCreditOrder(int id, CreditOrder kitchenorder);
 
         void createOrderLine(OrderLine orderine);
         IEnumerable<OrderLine> OrderLineForOrder(int? id);

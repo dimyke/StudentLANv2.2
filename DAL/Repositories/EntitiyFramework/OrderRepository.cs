@@ -21,6 +21,13 @@ namespace DAL.Repositories.EntitiyFramework
                 .SingleOrDefault(x => (x.OrderId == id));
         }
 
+        public CreditOrder FindCreditOrder(int id)
+        {
+            return _ctx.CreditOrders
+                .Include("User")
+                .SingleOrDefault(x => (x.OrderId == id));
+        }
+
         public KitchenOrder FindKitchenOrderPayment(int? id)
         {
             return _ctx.KitchenOrders
@@ -83,6 +90,14 @@ namespace DAL.Repositories.EntitiyFramework
             _ctx.SaveChanges();
         }
 
+        public void UpdateOrder(int id, KitchenOrder kitchenorder)
+        {
+            _ctx.Entry(_ctx.KitchenOrders.Find(id)).CurrentValues.SetValues(kitchenorder);
+            _ctx.SaveChanges();
+        }
+
+        #region Orderine
+
         public void CreateOrderLine(OrderLine orderline)
         {
             _ctx.Orderlines.Add(orderline);
@@ -96,11 +111,7 @@ namespace DAL.Repositories.EntitiyFramework
                 .AsEnumerable();
         }
 
-        public void UpdateOrder(int id, KitchenOrder kitchenorder)
-        {
-            _ctx.Entry(_ctx.KitchenOrders.Find(id)).CurrentValues.SetValues(kitchenorder);
-            _ctx.SaveChanges();
-        }
+
 
         public void createOrderLine(OrderLine orderline)
         {
@@ -113,7 +124,9 @@ namespace DAL.Repositories.EntitiyFramework
             _ctx.Orderlines.Remove(_ctx.Orderlines.Find(id));
             _ctx.SaveChanges();
         }
+        #endregion
 
+        #region WalletOrder
         public WalletOrder FindWalletOrder(int? id)
         {
             return _ctx.WalletOrders
@@ -139,7 +152,9 @@ namespace DAL.Repositories.EntitiyFramework
             _ctx.Entry(_ctx.WalletOrders.Find(id)).CurrentValues.SetValues(order);
             _ctx.SaveChanges();
         }
+        #endregion
 
+        #region CreditOrders
         public IEnumerable<CreditOrder> AllCreditOrders()
         {
             return _ctx.CreditOrders
@@ -153,6 +168,12 @@ namespace DAL.Repositories.EntitiyFramework
             _ctx.SaveChanges();
         }
 
+        public void UpdateCreditOrder(int id, CreditOrder order)
+        {
+            _ctx.Entry(_ctx.CreditOrders.Find(id)).CurrentValues.SetValues(order);
+            _ctx.SaveChanges();
+        }
+        #endregion
 
     }
 }
