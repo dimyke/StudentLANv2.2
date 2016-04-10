@@ -28,13 +28,21 @@ namespace StudentLANv2.Controllers
             if (User.IsInRole("Superadmin"))
             {
                 k = _orderManager.FindKitchenOrderPayment(id);
+                return View(k);
             }
             else
             {
                 k = _orderManager.Find(id);
             }
+            if(k.ApplicationUserId == User.Identity.GetUserId())
+            {
+                return View(k);
+            }
+            else
+            {
+                return HttpNotFound();
+            }
             
-            return View(k);
         }
         //Wordt aangeroepen door het menu item maak order. Zorgt voor het aanmaken van een order zodat 
         public ActionResult CreateOrder()
