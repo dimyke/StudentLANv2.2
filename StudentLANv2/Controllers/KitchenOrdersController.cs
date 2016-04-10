@@ -24,8 +24,17 @@ namespace StudentLANv2.Controllers
         // Details van een order
         public ActionResult Details(int id, int? orderLineId)
         {
-            KitchenOrder kitchenOrder = _orderManager.Find(id);
-            return View(kitchenOrder);
+            KitchenOrder k;
+            if (User.IsInRole("Superadmin"))
+            {
+                k = _orderManager.FindKitchenOrderPayment(id);
+            }
+            else
+            {
+                k = _orderManager.Find(id);
+            }
+            
+            return View(k);
         }
         //Wordt aangeroepen door het menu item maak order. Zorgt voor het aanmaken van een order zodat 
         public ActionResult CreateOrder()

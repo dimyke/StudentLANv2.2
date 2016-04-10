@@ -19,6 +19,10 @@ namespace BL.Managers
             return _OrderRepository.Find(id);
         }
 
+        public KitchenOrder FindKitchenOrderPayment(int? id)
+        {
+            return _OrderRepository.FindKitchenOrderPayment(id);
+        }
         //haalt alle kitchenorders op
         public IEnumerable<KitchenOrder> AllKitchenOrders()
         {

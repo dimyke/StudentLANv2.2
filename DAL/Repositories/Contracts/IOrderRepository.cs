@@ -6,6 +6,7 @@ namespace DAL.Repositories.Contracts
     public interface IOrderRepository
     {
         KitchenOrder Find(int? id);
+        KitchenOrder FindKitchenOrderPayment(int? id);
         WalletOrder FindWalletOrder(int? id);
         IEnumerable<WalletOrder> AllWalletOrders();
         IEnumerable<KitchenOrder> AllKitchenOrder();

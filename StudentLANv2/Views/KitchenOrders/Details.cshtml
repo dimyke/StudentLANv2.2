@@ -70,31 +70,71 @@
         </th>
         <th></th>
     </tr>
-    @foreach (var line in Model.OrderLines)
+   
+        @foreach (var line in Model.OrderLines)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => line.NumberOfItems)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => line.Consumption.Name)
+                </td>
+                <td>
+                    € @Html.DisplayFor(modelItem => line.PriceAmount)
+                </td>
+                <td>
+                    @Html.ActionLink("Consumptie details", "Details", "Consumptions", new { id = line.ConsumptionId }, null)
+                </td>
+            </tr>
+        }
+    
+</table>
+<hr />
+@if (User.IsInRole("Superadmin"))
+{
+<h4>Payment info</h4>
+<table class="table">
+    <tr>
+        <th>
+            Payment ID
+        </th>
+        <th>
+            Totaal prijs
+        </th>
+        <th>
+            Type
+        </th>
+        <th>
+            Order ID
+        </th>
+        <th>
+            User ID
+        </th>
+    </tr>
+
+    @foreach (var p in Model.Payments)
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => line.NumberOfItems)
+                @Html.DisplayFor(modelItem => p.PaymentId)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => line.Consumption.Name)
+                @Html.DisplayFor(modelItem => p.Amount)
             </td>
             <td>
-                € @Html.DisplayFor(modelItem => line.PriceAmount)
+                @Html.DisplayFor(modelItem => p.Type)
             </td>
             <td>
-                @Html.ActionLink("Consumptie details", "Details", "Consumptions", new { id = line.ConsumptionId }, null)
+                @Html.DisplayFor(modelItem => p.OrderID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => p.ApplicationUserId)
             </td>
         </tr>
     }
-
 </table>
-
-
-<h2>Details</h2>
-<hr />
-
-
+}
 <p>
     @Html.ActionLink("Back to List", "Index")
 </p>

@@ -18,6 +18,15 @@ namespace DAL.Repositories.EntitiyFramework
                 .Include("OrderLines")
                 .Include("User")
                 .Include("Orderlines.Consumption")
+                .SingleOrDefault(x => (x.OrderId == id));
+        }
+
+        public KitchenOrder FindKitchenOrderPayment(int? id)
+        {
+            return _ctx.KitchenOrders
+                .Include("OrderLines")
+                .Include("User")
+                .Include("Orderlines.Consumption")
                 .Include("Payments")
                 .SingleOrDefault(x => (x.OrderId == id));
         }
