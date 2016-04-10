@@ -81,7 +81,7 @@ namespace StudentLANv2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult AddOrder(int id, OrderLine orderline)
         {
-            _orderManager.AddOrderLine(id, orderline);
+            _orderManager.CreateOrderLine(id, orderline);
             return RedirectToAction("AddOrder", id);
         }
 
@@ -89,15 +89,8 @@ namespace StudentLANv2.Controllers
         // TODO: only for orders not completed. Find another way to get the price.
         public ActionResult DeleteOrderLine(int orderLineId, int orderid)
         {
-            KitchenOrder k = _orderManager.Find(orderid);
-
-            if (k.InProces == false && k.Completed == false)
-            {
-                k.TotalAmount -= k.OrderLines.SingleOrDefault(x => (x.OrderLineId == orderLineId)).PriceAmount;
-                _orderManager.DelteOrderLine(orderLineId);
-                _orderManager.UpdateOrder(k.OrderId, k);
-            }
-            return RedirectToAction("AddOrder", new { id = k.OrderId });
+            _orderManager.DelteOrderLine(orderLineId, orderid);
+            return RedirectToAction("AddOrder", new { id = orderid });
         }
 
 

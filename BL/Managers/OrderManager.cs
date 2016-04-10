@@ -48,12 +48,6 @@ namespace BL.Managers
             _OrderRepository.CreateKitchenOrder(kitchenOrder);
         }
 
-        //maakt een orderline aan (een bepaalde consumptie voor kitchenorder x hoeveelheid)
-        public void CreateOrderLine(OrderLine orderline)
-        {
-            _OrderRepository.createOrderLine(orderline);
-        }
-
         //geeft de orderlines voor een bepaalde order terug
         public IEnumerable<OrderLine> OrderLineForOrder(int? id)
         {
@@ -77,7 +71,7 @@ namespace BL.Managers
             order.Deleted = order.Deleted != true;
         }
 
-        public void AddOrderLine(int id, OrderLine orderline)
+        public void CreateOrderLine(int id, OrderLine orderline)
         {
             KitchenOrder k = new KitchenOrder();
             k = Find(id);
@@ -90,8 +84,7 @@ namespace BL.Managers
                 double price = c.Price * orderline.NumberOfItems;
                 o.PriceAmount += price;
 
-                CreateOrderLine(orderline);
-
+                _OrderRepository.createOrderLine(orderline);
                 k.TotalAmount += price;
 
                 UpdateOrder(id, k);
@@ -117,9 +110,15 @@ namespace BL.Managers
         }
 
         //orderline verwijderen
-        public void DelteOrderLine(int id)
+        public void DelteOrderLine(int orderLineId, int orderid)
         {
-            _OrderRepository.DeleteOrderLine(id);
+            KitchenOrder k = Find(orderid);
+            if (k.InProces == false && k.Completed == false)
+            {
+                k.TotalAmount -= k.OrderLines.SingleOrDefault(x => (x.OrderLineId == orderLineId)).PriceAmount;
+                _OrderRepository.DeleteOrderLine(orderLineId);
+                UpdateOrder(k.OrderId, k);
+            }            
         }
 
         //Een order aanmaken voor de wallet op te laden
