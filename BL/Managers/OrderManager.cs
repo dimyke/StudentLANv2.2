@@ -12,6 +12,7 @@ namespace BL.Managers
     public class OrderManager
     {
         private readonly IOrderRepository _OrderRepository = new OrderRepository();
+        private readonly ConsumptionManager _consumptionManager = new ConsumptionManager();
 
         //haalt een kitchenorder op adh van id
         public KitchenOrder Find(int? id)
@@ -74,6 +75,27 @@ namespace BL.Managers
             var order = Find(id);
 
             order.Deleted = order.Deleted != true;
+        }
+
+        public void AddOrderLine(int id, OrderLine orderline)
+        {
+            KitchenOrder k = new KitchenOrder();
+            k = Find(id);
+
+            Consumption c = _consumptionManager.Find(orderline.ConsumptionId);
+            if (c.Available && k.InProces == false)
+            {
+                OrderLine o = orderline;
+                o.OrderId = id;
+                double price = c.Price * orderline.NumberOfItems;
+                o.PriceAmount += price;
+
+                CreateOrderLine(orderline);
+
+                k.TotalAmount += price;
+
+                UpdateOrder(id, k);
+            }
         }
 
         //een kitchenorder updaten

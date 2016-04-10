@@ -81,25 +81,8 @@ namespace StudentLANv2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult AddOrder(int id, OrderLine orderline)
         {
-            KitchenOrder k = new KitchenOrder();
-            k = _orderManager.Find(id);
-            Consumption c = _consumptionManager.Find(orderline.ConsumptionId);
-            if (ModelState.IsValid && c.Available && k.InProces == false)
-            {
-                OrderLine o = orderline;
-                o.OrderId = id;
-                double price = c.Price * orderline.NumberOfItems;
-                o.PriceAmount += price;
-
-                _orderManager.CreateOrderLine(orderline);
-
-
-                k.TotalAmount += price;
-
-                _orderManager.UpdateOrder(id, k);
-                return RedirectToAction("AddOrder", new { id = k.OrderId });
-            }
-            return RedirectToAction("AddOrder", new { id = k.OrderId });
+            _orderManager.AddOrderLine(id, orderline);
+            return RedirectToAction("AddOrder", id);
         }
 
         //delete an orderline from an order.
