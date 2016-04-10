@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity;
 
 namespace StudentLANv2.Controllers
 {
+    [Authorize]
     public class KitchenOrdersController : Controller
     {
         private readonly OrderManager _orderManager = new OrderManager();
