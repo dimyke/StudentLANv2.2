@@ -396,6 +396,7 @@
     <Content Include="Views\Payment\WalletOrder_TBC.cshtml" />
     <Content Include="Views\Payment\CompleteCashWallerOrder.cshtml" />
     <Content Include="Views\Payment\ChargeWalletPaypal.cshtml" />
+    <Content Include="Views\KitchenAdmin\CreditIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -57,6 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\CreditOrder.cs" />
     <Compile Include="Entities\IOrder.cs" />
     <Compile Include="Entities\KitchenOrder.cs" />
     <Compile Include="Entities\OrderLine.cs" />

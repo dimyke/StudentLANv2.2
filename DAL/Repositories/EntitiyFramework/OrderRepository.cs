@@ -140,6 +140,19 @@ namespace DAL.Repositories.EntitiyFramework
             _ctx.SaveChanges();
         }
 
+        public IEnumerable<CreditOrder> AllCreditOrders()
+        {
+            return _ctx.CreditOrders
+                .Include("User")
+                .Include("Admin")
+                .AsEnumerable();
+        }
+        public void CreateCreditOrder(CreditOrder order)
+        {
+            _ctx.CreditOrders.Add(order);
+            _ctx.SaveChanges();
+        }
+
 
     }
 }

@@ -1,5 +1,6 @@
 ﻿using BL.Managers;
 using Domain.Entities;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,7 @@ namespace StudentLANv2.Controllers
         //Het deleten of undeleten van een order
         public ActionResult ToggleDelete(int orderid)
         {
-            _orderManager.ToggleDeleted(orderid);
+            _orderManager.ToggleDeleted(orderid, User.Identity.GetUserId());
             return RedirectToAction("Index", "Kitchen");
         }
 
@@ -47,6 +48,16 @@ namespace StudentLANv2.Controllers
                 return RedirectToAction("Index", "Kitchen");
             }
             return View(kitchenOrder);
+        }
+                
+        public ActionResult CreditIndex()
+        {
+            return View(_orderManager.AllCreditOrders().ToList());
+        }
+
+        public ActionResult RefundOrder()
+        {
+            return View(_orderManager.AllCreditOrders().ToList());
         }
     }
 }

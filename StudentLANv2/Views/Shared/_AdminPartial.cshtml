@@ -12,6 +12,7 @@
         @if (User.IsInRole("Superadmin"))
         {
             <li>@Html.ActionLink("Consumptiebeheer", "Index", "Consumptions")</li>
+            <li>@Html.ActionLink("Credit orders", "CreditIndex", "KitchenAdmin")</li>
             <li>@Html.ActionLink("Cash charge user wallet", "WalletOrder", "Payment")</li>
         }
     </ul>

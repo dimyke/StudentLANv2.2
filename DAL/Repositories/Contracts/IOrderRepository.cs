@@ -18,6 +18,8 @@ namespace DAL.Repositories.Contracts
         void UpdateOrder(int id, KitchenOrder kitchenorder);
         void CreateWalletOrder(WalletOrder order);
         void UpdateWalletOrder(int id, WalletOrder order);
+        IEnumerable<CreditOrder> AllCreditOrders();
+        void CreateCreditOrder(CreditOrder order);
 
 
         void createOrderLine(OrderLine orderine);

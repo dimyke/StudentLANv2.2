@@ -24,6 +24,11 @@ namespace BL.Managers
         {
             return _OrderRepository.FindKitchenOrderPayment(id);
         }
+        public IEnumerable<CreditOrder> AllCreditOrders()
+        {
+            return _OrderRepository.AllCreditOrders();
+        }
+
         //haalt alle kitchenorders op
         public IEnumerable<KitchenOrder> AllKitchenOrders()
         {
@@ -64,9 +69,9 @@ namespace BL.Managers
         }
 
         //Een order op deleted zetten of undeleted
-        public void ToggleDeleted(int id)
+        public void ToggleDeleted(int id, string userId)
         {
-            KitchenOrder k = Find(id); ;
+            KitchenOrder k = Find(id);
             if (k.Deleted)
             {
                 k.Deleted = false;
@@ -74,6 +79,15 @@ namespace BL.Managers
             else
             {
                 k.Deleted = true;
+                if(k.TotalAmount > 0 && k.Paid == true)
+                {
+                    CreditOrder c = new CreditOrder();
+                    c.Date = DateTime.Now;
+                    c.AdminId = userId;
+                    c.TotalAmount -= k.TotalAmount;
+                    c.ApplicationUserId = k.ApplicationUserId;
+                    _OrderRepository.CreateCreditOrder(c);
+                }
             }
             UpdateOrder(id, k);
         }
