@@ -66,9 +66,16 @@ namespace BL.Managers
         //Een order op deleted zetten of undeleted
         public void ToggleDeleted(int id)
         {
-            var order = Find(id);
-
-            order.Deleted = order.Deleted != true;
+            KitchenOrder k = Find(id); ;
+            if (k.Deleted)
+            {
+                k.Deleted = false;
+            }
+            else
+            {
+                k.Deleted = true;
+            }
+            UpdateOrder(id, k);
         }
 
         public void CreateOrderLine(int id, OrderLine orderline)
@@ -94,6 +101,7 @@ namespace BL.Managers
         //een kitchenorder updaten
         public void UpdateOrder(int id, KitchenOrder order)
         {
+            order.DateEdited = DateTime.Now;
             _OrderRepository.UpdateOrder(id, order);
         }
 
@@ -110,7 +118,7 @@ namespace BL.Managers
         }
 
         //orderline verwijderen
-        public void DelteOrderLine(int orderLineId, int orderid)
+        public void DeleteOrderLine(int orderLineId, int orderid)
         {
             KitchenOrder k = Find(orderid);
             if (k.InProces == false && k.Completed == false)

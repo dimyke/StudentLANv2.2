@@ -17,16 +17,7 @@ namespace StudentLANv2.Controllers
         //Het deleten of undeleten van een order
         public ActionResult ToggleDelete(int orderid)
         {
-            KitchenOrder k = _orderManager.Find(orderid); ;
-            if (k.Deleted)
-            {
-                k.Deleted = false;
-            }
-            else
-            {
-                k.Deleted = true;
-            }
-            _orderManager.UpdateOrder(orderid, k);
+            _orderManager.ToggleDeleted(orderid);
             return RedirectToAction("Index", "Kitchen");
         }
 
@@ -52,7 +43,6 @@ namespace StudentLANv2.Controllers
         {
             if (ModelState.IsValid)
             {
-                kitchenOrder.DateEdited = DateTime.Now;
                 _orderManager.UpdateOrder(id, kitchenOrder);
                 return RedirectToAction("Index", "Kitchen");
             }

@@ -89,19 +89,19 @@ namespace StudentLANv2.Controllers
         // TODO: only for orders not completed. Find another way to get the price.
         public ActionResult DeleteOrderLine(int orderLineId, int orderid)
         {
-            _orderManager.DelteOrderLine(orderLineId, orderid);
+            _orderManager.DeleteOrderLine(orderLineId, orderid);
             return RedirectToAction("AddOrder", new { id = orderid });
         }
 
 
         //TODO: if = inproces && role = admin then toggle else u have 2 b admin!
-        public ActionResult ToggleInProces(int orderid)
-        {
-            KitchenOrder k = _orderManager.Find(orderid);
-            k.InProces = true;
-            _orderManager.UpdateOrder(orderid, k);
-            return RedirectToAction("AddOrder", new { id = k.OrderId });
-        }
+        //public ActionResult ToggleInProces(int orderid)
+        //{
+        //    KitchenOrder k = _orderManager.Find(orderid);
+        //    k.InProces = true;
+        //    _orderManager.UpdateOrder(orderid, k);
+        //    return RedirectToAction("AddOrder", new { id = k.OrderId });
+        //}
 
 
         private IEnumerable<SelectListItem> GetSelectListItems(IEnumerable<Consumption> elements)
