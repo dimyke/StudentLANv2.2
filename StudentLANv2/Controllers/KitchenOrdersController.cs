@@ -77,8 +77,6 @@ namespace StudentLANv2.Controllers
             }
             else { return new HttpStatusCodeResult(HttpStatusCode.BadRequest); }
 
-
-
         }
 
         //deel 2 + toevoegen van orderline
@@ -86,15 +84,14 @@ namespace StudentLANv2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult AddOrder(int id, OrderLine orderline)
         {
-            _orderManager.CreateOrderLine(id, orderline);
+            _orderManager.CreateOrderLine(id, orderline, User.Identity.GetUserId());
             return RedirectToAction("AddOrder", id);
         }
 
         //delete an orderline from an order.
-        // TODO: only for orders not completed. Find another way to get the price.
         public ActionResult DeleteOrderLine(int orderLineId, int orderid)
         {
-            _orderManager.DeleteOrderLine(orderLineId, orderid);
+            _orderManager.DeleteOrderLine(orderLineId, orderid, User.Identity.GetUserId());
             return RedirectToAction("AddOrder", new { id = orderid });
         }
 

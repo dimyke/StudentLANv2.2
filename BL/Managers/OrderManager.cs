@@ -1,6 +1,7 @@
 ﻿using DAL.Repositories.Contracts;
 using DAL.Repositories.EntitiyFramework;
 using Domain.Entities;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,52 @@ namespace BL.Managers
     {
         private readonly IOrderRepository _OrderRepository = new OrderRepository();
         private readonly ConsumptionManager _consumptionManager = new ConsumptionManager();
+
+        #region orderline
+        //geeft de orderlines voor een bepaalde order terug
+        public IEnumerable<OrderLine> OrderLineForOrder(int? id)
+        {
+            return _OrderRepository.OrderLineForOrder(id);
+        }
+
+        public void CreateOrderLine(int id, OrderLine orderline, string currentUser)
+        {
+            KitchenOrder k = new KitchenOrder();
+            k = Find(id);
+            if (currentUser == k.User.Id)
+            {
+                Consumption c = _consumptionManager.Find(orderline.ConsumptionId);
+                if (c.Available && k.InProces == false)
+                {
+                    OrderLine o = orderline;
+                    o.OrderId = id;
+                    double price = c.Price * orderline.NumberOfItems;
+                    o.PriceAmount += price;
+
+                    _OrderRepository.createOrderLine(orderline);
+                    k.TotalAmount += price;
+
+                    UpdateOrder(id, k);
+                }
+            }
+
+        }
+
+        //orderline verwijderen
+        public void DeleteOrderLine(int orderLineId, int orderid, string currentUser)
+        {
+            KitchenOrder k = Find(orderid);
+            if (currentUser == k.User.Id) {
+                if (k.InProces == false && k.Completed == false)
+                {
+                    k.TotalAmount -= k.OrderLines.SingleOrDefault(x => (x.OrderLineId == orderLineId)).PriceAmount;
+                    _OrderRepository.DeleteOrderLine(orderLineId);
+                    UpdateOrder(k.OrderId, k);
+                }
+            }
+                
+        }
+        #endregion
 
         //haalt een kitchenorder op adh van id
         public KitchenOrder Find(int? id)
@@ -49,11 +96,7 @@ namespace BL.Managers
             _OrderRepository.CreateKitchenOrder(kitchenOrder);
         }
 
-        //geeft de orderlines voor een bepaalde order terug
-        public IEnumerable<OrderLine> OrderLineForOrder(int? id)
-        {
-            return _OrderRepository.OrderLineForOrder(id);
-        }
+
 
         // gets all credit orders
         public IEnumerable<CreditOrder> AllCreditOrders()
@@ -132,26 +175,6 @@ namespace BL.Managers
             UpdateOrder(id, k);
         }
 
-        public void CreateOrderLine(int id, OrderLine orderline)
-        {
-            KitchenOrder k = new KitchenOrder();
-            k = Find(id);
-
-            Consumption c = _consumptionManager.Find(orderline.ConsumptionId);
-            if (c.Available && k.InProces == false)
-            {
-                OrderLine o = orderline;
-                o.OrderId = id;
-                double price = c.Price * orderline.NumberOfItems;
-                o.PriceAmount += price;
-
-                _OrderRepository.createOrderLine(orderline);
-                k.TotalAmount += price;
-
-                UpdateOrder(id, k);
-            }
-        }
-
         //een kitchenorder updaten
         public void UpdateOrder(int id, KitchenOrder order)
         {
@@ -171,17 +194,7 @@ namespace BL.Managers
             return _OrderRepository.UserOrdersByName(nick);
         }
 
-        //orderline verwijderen
-        public void DeleteOrderLine(int orderLineId, int orderid)
-        {
-            KitchenOrder k = Find(orderid);
-            if (k.InProces == false && k.Completed == false)
-            {
-                k.TotalAmount -= k.OrderLines.SingleOrDefault(x => (x.OrderLineId == orderLineId)).PriceAmount;
-                _OrderRepository.DeleteOrderLine(orderLineId);
-                UpdateOrder(k.OrderId, k);
-            }            
-        }
+
 
         //Een order aanmaken voor de wallet op te laden
         public void CreateWalletOrder(WalletOrder order)
