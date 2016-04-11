@@ -76,6 +76,14 @@ namespace BL.Managers
                 KitchenOrder order = Find(orderId);
                 ApplicationUser user = order.User;
 
+                // set the order total to 0
+                //order.TotalAmount = 0;
+                //UpdateOrder(orderId, order);
+
+                // set credit order to paid
+                creditOrder.Paid = true;
+                _OrderRepository.UpdateCreditOrder(creditId, creditOrder);
+
                 // create refund payment
                 var payment = new Payment();
                 payment.Amount = creditOrder.TotalAmount;
@@ -86,15 +94,7 @@ namespace BL.Managers
 
                 // recharge user wallet
                 user.Wallet += Math.Abs(creditOrder.TotalAmount);
-                _userManager.Update(userId, user);
-
-                // set the order total to 0
-                order.TotalAmount = 0;
-                UpdateOrder(orderId, order);
-
-                // set credit order to paid
-                creditOrder.Paid = true;
-                _OrderRepository.UpdateCreditOrder(creditId, creditOrder);
+                _userManager.Update(user.Id, user);
             }
            
         }
@@ -118,7 +118,7 @@ namespace BL.Managers
             else
             {
                 k.Deleted = true;
-                if(k.TotalAmount > 0 && k.Paid == true)
+                if(k.Paid == true)
                 {
                     CreditOrder c = new CreditOrder();
                     c.Date = DateTime.Now;

@@ -12,7 +12,10 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Admin.UserName)
+            Admin
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreditForOrderId)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Date)
@@ -30,10 +33,10 @@
             @Html.DisplayNameFor(model => model.Paid)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DateEdited)
+            Terug betaald op
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ApplicationUserId)
+            Gebruiker
         </th>
         <th></th>
     </tr>
@@ -42,6 +45,9 @@
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Admin.UserName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreditForOrderId)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Date)
@@ -62,11 +68,15 @@
             @Html.DisplayFor(modelItem => item.DateEdited)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ApplicationUserId)
+            @Html.DisplayFor(modelItem => item.User.UserName)
         </td>
         <td>
-            @Html.ActionLink("Refund", "RefundOrder", new { id=item.OrderId })
+        @if (item.Paid == false)
+        {
+            @Html.ActionLink("Refund", "RefundOrder", new { id = item.OrderId })
+        }
         </td>
+
     </tr>
 }
 

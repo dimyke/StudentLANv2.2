@@ -7,7 +7,7 @@
     var modal = $(this)
     console.log(modal.find('.orderid-hier'));
     modal.find('.orderid-hier').attr('onclick', 'location.href=\'/KitchenAdmin/ToggleDelete?orderid=' + id + '\'')
-    modal.find('.modal-body').text('Ben je zeker dat je orderid: ' + id + ' van user: ' + name + ' wilt verwijderen?')
+    modal.find('.modal-body').text('Ben je zeker dat je orderid: ' + id + ' van user: ' + name + ' wilt verwijderen? Als de order al betaald is, wordt er automatisch een credit order aangemaakt.')
 
 
 })

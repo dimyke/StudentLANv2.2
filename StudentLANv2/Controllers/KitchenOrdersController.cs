@@ -66,13 +66,18 @@ namespace StudentLANv2.Controllers
             newModel.Consumptions = GetSelectListItems(_consumptionManager.AllAvaible());
             KitchenOrder kitchenOrder = _orderManager.Find(id);
 
-            if (kitchenOrder == null)
-            {
-                return HttpNotFound();
-            }
+            if (IsCorrectUser(kitchenOrder.User.Id)) {
+                if (kitchenOrder == null)
+                {
+                    return HttpNotFound();
+                }
 
-            newModel.KitchenOrder = kitchenOrder;
-            return View(newModel);
+                newModel.KitchenOrder = kitchenOrder;
+                return View(newModel);
+            }
+            else { return new HttpStatusCodeResult(HttpStatusCode.BadRequest); }
+
+
 
         }
 
@@ -125,7 +130,14 @@ namespace StudentLANv2.Controllers
             return selectList;
         }
 
-
+        private bool IsCorrectUser(string user)
+        {
+            if(User.Identity.GetUserId() == user)
+            {
+                return true;
+            }
+            return false;
+        }
 
         //protected override void Dispose(bool disposing)
         //{
