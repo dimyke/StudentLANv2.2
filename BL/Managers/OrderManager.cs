@@ -175,9 +175,9 @@ namespace BL.Managers
                 KitchenOrder order = Find(orderId);
                 ApplicationUser user = order.User;
 
-                // set the order total to 0
-                //order.TotalAmount = 0;
-                //UpdateOrder(orderId, order);
+                //set the order date edited to today
+                creditOrder.DateEdited = DateTime.Now;
+                UpdateOrder(orderId, order);
 
                 // set credit order to paid
                 creditOrder.Paid = true;
