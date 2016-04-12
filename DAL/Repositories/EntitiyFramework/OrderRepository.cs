@@ -12,6 +12,7 @@ namespace DAL.Repositories.EntitiyFramework
     {
         private readonly StulanContext _ctx = new StulanContext();
 
+        #region kitchenorders
         public KitchenOrder Find(int? id)
         {
             return _ctx.KitchenOrders
@@ -21,12 +22,7 @@ namespace DAL.Repositories.EntitiyFramework
                 .SingleOrDefault(x => (x.OrderId == id));
         }
 
-        public CreditOrder FindCreditOrder(int id)
-        {
-            return _ctx.CreditOrders
-                .Include("User")
-                .SingleOrDefault(x => (x.OrderId == id));
-        }
+
 
         public KitchenOrder FindKitchenOrderPayment(int? id)
         {
@@ -95,6 +91,7 @@ namespace DAL.Repositories.EntitiyFramework
             _ctx.Entry(_ctx.KitchenOrders.Find(id)).CurrentValues.SetValues(kitchenorder);
             _ctx.SaveChanges();
         }
+        #endregion
 
         #region Orderine
 
@@ -155,6 +152,12 @@ namespace DAL.Repositories.EntitiyFramework
         #endregion
 
         #region CreditOrders
+        public CreditOrder FindCreditOrder(int id)
+        {
+            return _ctx.CreditOrders
+                .Include("User")
+                .SingleOrDefault(x => (x.OrderId == id));
+        }
         public IEnumerable<CreditOrder> AllCreditOrders()
         {
             return _ctx.CreditOrders

@@ -61,6 +61,7 @@ namespace BL.Managers
         }
         #endregion
 
+        #region kitchenorder
         //haalt een kitchenorder op adh van id
         public KitchenOrder Find(int? id)
         {
@@ -96,8 +97,63 @@ namespace BL.Managers
             _OrderRepository.CreateKitchenOrder(kitchenOrder);
         }
 
+        //Een order op finished zetten
+        public void SetFinished(int id)
+        {
+            var order = Find(id);
+            order.Completed = true;
+            UpdateOrder(id, order);
+
+        }
+
+        //Een order op deleted zetten of undeleted
+        public void ToggleDeleted(int id, string userId)
+        {
+            KitchenOrder k = Find(id);
+            if (k.Deleted)
+            {
+                k.Deleted = false;
+            }
+            else
+            {
+                k.Deleted = true;
+                if (k.Paid == true)
+                {
+                    CreditOrder c = new CreditOrder();
+                    c.Date = DateTime.Now;
+                    c.CreditForOrderId = id;
+                    c.AdminId = userId;
+                    c.TotalAmount -= k.TotalAmount;
+                    c.ApplicationUserId = k.ApplicationUserId;
+                    _OrderRepository.CreateCreditOrder(c);
+                }
+            }
+            UpdateOrder(id, k);
+        }
+
+        //een kitchenorder updaten
+        public void UpdateOrder(int id, KitchenOrder order)
+        {
+            order.DateEdited = DateTime.Now;
+            _OrderRepository.UpdateOrder(id, order);
+        }
+
+        //Alle kitchenorders van een user ophalen
+        public IEnumerable<KitchenOrder> GetUserOrders(string id)
+        {
+            return _OrderRepository.UserOrders(id);
+        }
+
+        //Alle orders van een user adh naam ophalen
+        public IEnumerable<KitchenOrder> GetUserOrdersByName(string nick)
+        {
+            return _OrderRepository.UserOrdersByName(nick);
+        }
 
 
+        #endregion
+
+        #region creditorders
         // gets all credit orders
         public IEnumerable<CreditOrder> AllCreditOrders()
         {
@@ -141,60 +197,10 @@ namespace BL.Managers
             }
            
         }
-        //Een order op finished zetten
-        public void SetFinished(int id)
-        {
-            var order = Find(id);
-            order.Completed = true;
-            UpdateOrder(id, order);
 
-        }
+        #endregion
 
-        //Een order op deleted zetten of undeleted
-        public void ToggleDeleted(int id, string userId)
-        {
-            KitchenOrder k = Find(id);
-            if (k.Deleted)
-            {
-                k.Deleted = false;
-            }
-            else
-            {
-                k.Deleted = true;
-                if(k.Paid == true)
-                {
-                    CreditOrder c = new CreditOrder();
-                    c.Date = DateTime.Now;
-                    c.CreditForOrderId = id;
-                    c.AdminId = userId;
-                    c.TotalAmount -= k.TotalAmount;
-                    c.ApplicationUserId = k.ApplicationUserId;
-                    _OrderRepository.CreateCreditOrder(c);
-                }
-            }
-            UpdateOrder(id, k);
-        }
-
-        //een kitchenorder updaten
-        public void UpdateOrder(int id, KitchenOrder order)
-        {
-            order.DateEdited = DateTime.Now;
-            _OrderRepository.UpdateOrder(id, order);
-        }
-
-        //Alle kitchenorders van een user ophalen
-        public IEnumerable<KitchenOrder> GetUserOrders(string id)
-        {
-            return _OrderRepository.UserOrders(id);
-        }
-
-        //Alle orders van een user adh naam ophalen
-        public IEnumerable<KitchenOrder> GetUserOrdersByName(string nick)
-        {
-            return _OrderRepository.UserOrdersByName(nick);
-        }
-
-
+        #region walletorder
 
         //Een order aanmaken voor de wallet op te laden
         public void CreateWalletOrder(WalletOrder order)
@@ -220,5 +226,6 @@ namespace BL.Managers
             _OrderRepository.UpdateWalletOrder(id, order);
         }
 
+        #endregion
     }
 }
