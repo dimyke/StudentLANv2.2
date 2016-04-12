@@ -65,6 +65,11 @@
     <Compile Include="Entities\Payment.cs" />
     <Compile Include="Entities\PaymentSort.cs" />
     <Compile Include="Entities\ApplicationUser.cs" />
+    <Compile Include="Entities\Seat.cs" />
+    <Compile Include="Entities\Seatsort.cs" />
+    <Compile Include="Entities\TicketDay.cs" />
+    <Compile Include="Entities\TicketOrder.cs" />
+    <Compile Include="Entities\TicketType.cs" />
     <Compile Include="Entities\WalletOrder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

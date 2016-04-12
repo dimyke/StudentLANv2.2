@@ -199,7 +199,7 @@ namespace BL.Managers
         }
 
         #endregion
-
+        
         #region walletorder
 
         //Een order aanmaken voor de wallet op te laden

@@ -19,7 +19,11 @@ namespace DAL
         public DbSet<CreditOrder> CreditOrders { get; set; }
         public DbSet<Payment> Payments { get; set; }
         public DbSet<OrderLine> Orderlines { get; set; }
-        public DbSet<Consumption> Consumptions { get; set; }
+        public DbSet<Consumption> Consumptions { get; set;}
+        public DbSet<Seat> Seats { get; set; }
+        public DbSet<TicketOrder> TicketOrders { get; set; }
+        public DbSet<TicketType> TicketTypes { get; set; }
+
         public override IDbSet<ApplicationUser> Users { get; set; }
         
 
