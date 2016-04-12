@@ -21,7 +21,7 @@ namespace Domain.Entities
         public string AdminId { get; set; }
 
         //Navigational properties
-        public ApplicationUser User { get; set; }
+        public ApplicationUser ApplicationUser { get; set; }
         public ApplicationUser Admin { get; set; }
     }
 }

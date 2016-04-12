@@ -68,7 +68,7 @@
             @Html.DisplayFor(modelItem => item.DateEdited)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.User.UserName)
+            @Html.DisplayFor(modelItem => item.ApplicationUser.UserName)
         </td>
         <td>
         @if (item.Paid == false)

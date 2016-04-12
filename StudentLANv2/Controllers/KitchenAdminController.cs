@@ -57,7 +57,7 @@ namespace StudentLANv2.Controllers
 
         public ActionResult RefundOrder(int id)
         {
-            _orderManager.RefundCredit(User.Identity.GetUserId(),id);
+            _orderManager.RefundCredit(id);
             return RedirectToAction("CreditIndex");
         }
     }

@@ -161,7 +161,7 @@ namespace BL.Managers
         }
 
         // refunds the credit order to the users his wallet
-        public void RefundCredit(string userId, int creditId)
+        public void RefundCredit(int creditId)
         {
 
             CreditOrder creditOrder = _OrderRepository.FindCreditOrder(creditId);
@@ -186,7 +186,7 @@ namespace BL.Managers
                 // create refund payment
                 var payment = new Payment();
                 payment.Amount = creditOrder.TotalAmount;
-                payment.ApplicationUserId = userId;
+                payment.ApplicationUserId = creditOrder.ApplicationUserId;
                 payment.OrderID = orderId;
                 payment.Type = PaymentSort.Wallet;
                 _paymentManager.CreatePayment(payment);

@@ -155,13 +155,13 @@ namespace DAL.Repositories.EntitiyFramework
         public CreditOrder FindCreditOrder(int id)
         {
             return _ctx.CreditOrders
-                .Include("User")
+                .Include("ApplicationUser")
                 .SingleOrDefault(x => (x.OrderId == id));
         }
         public IEnumerable<CreditOrder> AllCreditOrders()
         {
             return _ctx.CreditOrders
-                .Include("User")
+                .Include("ApplicationUser")
                 .Include("Admin")
                 .AsEnumerable();
         }
