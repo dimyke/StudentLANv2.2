@@ -23,6 +23,8 @@ namespace DAL.Repositories.Contracts
         void CreateCreditOrder(CreditOrder order);
         void UpdateCreditOrder(int id, CreditOrder kitchenorder);
 
+        CreditOrder FindCreditForOrder(int id);
+
         void createOrderLine(OrderLine orderine);
         IEnumerable<OrderLine> OrderLineForOrder(int? id);
         void DeleteOrderLine(int id);

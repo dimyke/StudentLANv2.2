@@ -158,6 +158,11 @@ namespace DAL.Repositories.EntitiyFramework
                 .Include("ApplicationUser")
                 .SingleOrDefault(x => (x.OrderId == id));
         }
+        public CreditOrder FindCreditForOrder(int id)
+        {
+            return _ctx.CreditOrders
+                .SingleOrDefault(x => (x.CreditForOrderId == id));
+        }
         public IEnumerable<CreditOrder> AllCreditOrders()
         {
             return _ctx.CreditOrders

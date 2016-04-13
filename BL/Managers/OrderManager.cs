@@ -117,7 +117,9 @@ namespace BL.Managers
             else
             {
                 k.Deleted = true;
-                if (k.Paid == true)
+                
+                // only make a creditorder when there doesn't excists one
+                if (k.Paid == true && _OrderRepository.FindCreditForOrder(id) == null)
                 {
                     CreditOrder c = new CreditOrder();
                     c.Date = DateTime.Now;
