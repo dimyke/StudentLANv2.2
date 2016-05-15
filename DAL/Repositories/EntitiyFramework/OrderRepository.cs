@@ -191,11 +191,11 @@ namespace DAL.Repositories.EntitiyFramework
         }
         public TicketOrder FindTicketOrder(int id)
         {
-            return  _ctx.TicketOrders.Find(id); ;
+            return  _ctx.TicketOrders.Find(id);
         }
         public IEnumerable<TicketOrder> AllTicketOrders()
         {
-            return _ctx.TicketOrders.AsEnumerable(); ;
+            return _ctx.TicketOrders.AsEnumerable();
         }
         public IEnumerable<TicketOrder> UserTickets(string id)
         {

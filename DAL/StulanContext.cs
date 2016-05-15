@@ -23,7 +23,6 @@ namespace DAL
         public DbSet<Seat> Seats { get; set; }
         public DbSet<TicketOrder> TicketOrders { get; set; }
         public DbSet<TicketType> TicketTypes { get; set; }
-
         public override IDbSet<ApplicationUser> Users { get; set; }
         
 
