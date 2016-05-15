@@ -183,5 +183,33 @@ namespace DAL.Repositories.EntitiyFramework
         }
         #endregion
 
+        #region TicketOrders
+        public void CreateTicketOrder(TicketOrder ticketOrder)
+        {
+            _ctx.TicketOrders.Add(ticketOrder);
+            _ctx.SaveChanges();
+        }
+        public TicketOrder FindTicketOrder(int id)
+        {
+            return  _ctx.TicketOrders.Find(id); ;
+        }
+        public IEnumerable<TicketOrder> AllTicketOrders()
+        {
+            return _ctx.TicketOrders.AsEnumerable(); ;
+        }
+        public IEnumerable<TicketOrder> UserTickets(string id)
+        {
+            return _ctx.TicketOrders
+                  .Include("User")
+                  .Where(x => (x.ApplicationUserId == id))
+                  .AsEnumerable();
+        }
+        public void UpdateTicketOrder(int id, TicketOrder ticketOrder)
+        {
+            _ctx.Entry(_ctx.TicketOrders.Find(id)).CurrentValues.SetValues(ticketOrder);
+            _ctx.SaveChanges();
+        }
+        #endregion
+
     }
 }
