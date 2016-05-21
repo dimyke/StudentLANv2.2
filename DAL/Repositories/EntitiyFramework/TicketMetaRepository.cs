@@ -10,7 +10,7 @@ using DAL.Repositories.Contracts;
 
 namespace DAL.Repositories.EntitiyFramework
 {
-    public class TicketMeta : ITicketMeta
+    public class TicketMetaRepository : ITicketMetaRepository
     {
         private readonly StulanContext _ctx = new StulanContext();
         public IEnumerable<Seat> AllSeats()

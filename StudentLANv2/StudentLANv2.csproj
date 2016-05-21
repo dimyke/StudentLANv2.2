@@ -247,6 +247,7 @@
     <Compile Include="Controllers\KitchenOrdersController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PaymentController.cs" />
+    <Compile Include="Controllers\TicketMetaController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -397,6 +398,11 @@
     <Content Include="Views\Payment\CompleteCashWallerOrder.cshtml" />
     <Content Include="Views\Payment\ChargeWalletPaypal.cshtml" />
     <Content Include="Views\KitchenAdmin\CreditIndex.cshtml" />
+    <Content Include="Views\TicketMeta\Create.cshtml" />
+    <Content Include="Views\TicketMeta\Delete.cshtml" />
+    <Content Include="Views\TicketMeta\Details.cshtml" />
+    <Content Include="Views\TicketMeta\Edit.cshtml" />
+    <Content Include="Views\TicketMeta\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

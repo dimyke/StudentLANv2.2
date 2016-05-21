@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Repositories.Contracts
 {
-    public interface ITicketMeta
+    public interface ITicketMetaRepository
     {
         void CreateTicketType(TicketType ticketType);
         TicketType FindTicketType(int id);
