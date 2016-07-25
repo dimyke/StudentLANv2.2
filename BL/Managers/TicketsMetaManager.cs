@@ -23,7 +23,13 @@ namespace BL.Managers
         }
         public void UpdateTicketType(int ticketTypeId, TicketType ticketType)
         {
-            _TicketMetaRepository.UpdateTicketType(ticketTypeId, ticketType);
+            TicketType t = _TicketMetaRepository.FindTicketType(ticketTypeId);
+            // t.EditionId = ticketType.EditionId;
+            t.Day = ticketType.Day;
+            t.Price = ticketType.Price;
+            t.Sort = ticketType.Sort;
+            t.Stock = ticketType.Stock;
+            _TicketMetaRepository.UpdateTicketType(ticketTypeId, t);
         }
         public TicketType FindTicketType(int ticketTypeId)
         {

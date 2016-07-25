@@ -54,9 +54,10 @@ namespace StudentLANv2.Controllers
         // POST: TicketTypes/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // [Bind(Include = "TicketTypeId,Day,Price,Sort")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, [Bind(Include = "TicketTypeId,Day,Price,Sort")] TicketType ticketType)
+        public ActionResult Edit(int id, TicketType ticketType)
         {
             if (ModelState.IsValid)
             {
