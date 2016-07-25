@@ -69,6 +69,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repositories\Contracts\IConsumptionRepository.cs" />
     <Compile Include="Repositories\Contracts\ITicketMetaRepository.cs" />
+    <Compile Include="Repositories\Contracts\ITicketRepository.cs" />
     <Compile Include="Repositories\Contracts\IUserRepository.cs" />
     <Compile Include="Repositories\Contracts\IPaymentRepository.cs" />
     <Compile Include="Repositories\Contracts\IOrderRepository.cs" />

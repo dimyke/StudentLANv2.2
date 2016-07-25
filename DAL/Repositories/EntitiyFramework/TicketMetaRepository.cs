@@ -20,7 +20,9 @@ namespace DAL.Repositories.EntitiyFramework
 
         public IEnumerable<TicketType> AllTickettypes()
         {
-            return _ctx.TicketTypes.AsEnumerable();
+            return _ctx.TicketTypes
+                .Include("edition")
+                .AsEnumerable();
         }
 
         public void CreateSeat(Seat seat)

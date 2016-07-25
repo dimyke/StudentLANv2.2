@@ -33,7 +33,7 @@ namespace StudentLANv2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "TicketTypeId,Day,Price,Sort")] TicketType ticketType)
+        public ActionResult Create([Bind(Include = "TicketTypeId,Day,Price,Sort,EditionId")] TicketType ticketType)
         {
             if (ModelState.IsValid)
             {

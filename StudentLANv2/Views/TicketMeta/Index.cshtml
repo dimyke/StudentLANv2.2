@@ -15,10 +15,19 @@
             @Html.DisplayNameFor(model => model.Day)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.edition.EditionId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.edition.Location)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Price)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Sort)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Stock)
         </th>
         <th></th>
     </tr>
@@ -29,10 +38,19 @@
             @Html.DisplayFor(modelItem => item.Day)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.edition.EditionId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.edition.Location)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.Price)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Sort)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Stock)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.TicketTypeId }) |

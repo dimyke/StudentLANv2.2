@@ -9,7 +9,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace DAL
 {
-    public class StulanInitializer : DropCreateDatabaseIfModelChanges<StulanContext>
+    public class StulanInitializer : DropCreateDatabaseAlways<StulanContext>
     {
         protected override void Seed(StulanContext context)
         {
@@ -310,6 +310,50 @@ namespace DAL
 
             };
             payments.ForEach(p => context.Payments.Add(p));
+            #endregion
+
+            #region Edition
+            var editions = new List<Edition>
+            {
+                new Edition
+                {
+                    EditionId = 1,
+                    Location = "Outpost",
+                    NumberOfSeats = 40
+                },
+                new Edition
+                {
+                    EditionId = 2,
+                    Location = "Outpost",
+                    NumberOfSeats = 40
+                },
+                new Edition
+                {
+                    EditionId = 3,
+                    Location = "Outpost",
+                    NumberOfSeats = 75
+                },
+                new Edition
+                {
+                    EditionId = 4,
+                    Location = "Athena",
+                    NumberOfSeats = 135
+                },
+                new Edition
+                {
+                    EditionId = 5,
+                    Location = "Cronos",
+                    NumberOfSeats = 50
+                },
+
+                new Edition
+                {
+                    EditionId = 6,
+                    Location = "Ramada Plaza",
+                    NumberOfSeats = 186
+                }
+            };
+            editions.ForEach(p => context.Editions.Add(p));
             #endregion
 
             #region UserRoles
