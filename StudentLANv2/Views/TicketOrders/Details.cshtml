@@ -1,0 +1,90 @@
+﻿@model Domain.Entities.TicketOrder
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>TicketOrder</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Seat.SeatID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Seat.SeatID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TicketType.TicketTypeId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TicketType.TicketTypeId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalAmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalAmount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Completed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Completed)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Deleted)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Deleted)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Paid)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Paid)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateEdited)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateEdited)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ApplicationUserId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApplicationUserId)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.OrderId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

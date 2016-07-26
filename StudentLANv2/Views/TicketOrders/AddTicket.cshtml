@@ -1,0 +1,129 @@
+﻿@using StudentLANv2.Models
+@model AddTicketLineModel
+
+@{
+    ViewBag.Title = "AddTicket";
+}
+
+<h2>Bestel hier je tickets!</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    //if (!Model.KitchenOrder.InProces)
+    //{
+        <div class="form">
+            <h4>Kies je product</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <div class="col-md-3">
+                    @Html.DropDownListFor(m => m.TicketLine.TicketTypeId, Model.TicketTypes, "- Gelieve een ticket te kiezen -", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.TicketLine.TicketTypeId, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-3">
+                    @Html.EditorFor(model => model.TicketLine.NumberOfItems, new { htmlAttributes = new { @class = "form-control", placeholder = "Aantal items" } })
+                    @Html.ValidationMessageFor(model => model.TicketLine.NumberOfItems, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-6">
+                    <input type="submit" value="Voeg product toe!" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    @*}*@
+    <br />
+    <br />
+    <h4>Overzicht:</h4>
+    <hr />
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>
+                    Aantal
+                </th>
+                <th>
+                    Dag
+                </th>
+                <th>
+                    Totaal Prijs
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        @if (Model.TicketOrder.TicketLines.Count < 1)
+        {
+            <tr>
+                <td>
+                    0
+                </td>
+                <td>
+                    Je ticket
+                </td>
+                <td>
+                    € x,xx
+                </td>
+                <td></td>
+            </tr>
+        }
+        @foreach (var line in Model.TicketOrder.TicketLines)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => line.NumberOfItems)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => line.TicketType.Day)
+                </td>
+                <td>
+                    € @Html.DisplayFor(modelItem => line.PriceAmount)
+                </td>
+                <td align="right">
+                    @*@if (Model.KitchenOrder.InProces == false)
+                    {*@  
+                        <input type="button" class="btn btn-default" value="Verwijder Lijn" onclick="location.href='@Url.Action("DeleteOrderLine", "KitchenOrders", new { orderLineId = line.TicketLineId, orderid = Model.TicketOrder.OrderId })'" />
+                    @*}*@
+                </td>
+            </tr>
+        }
+        <tr>
+            <td />
+            <td align="right">
+                Totaal bedrag:
+            </td>
+            <td>
+                € @Html.DisplayFor(model => model.TicketOrder.TotalAmount)
+            </td>
+            <td></td>
+        </tr>
+    </table>
+    //if (!Model.KitchenOrder.InProces)
+    //{
+        <br />
+        <div class="form">
+            <div class="form-group">
+                <div class="col-md-12">
+                    <input type="button" class="btn btn-default" value="Betaal met je wallet" onclick="location.href='@Url.Action("PaymentWithWallet", "Payment", new { orderid = Model.TicketOrder.OrderId })'" />
+                    <a alt="Pay using Paypal" href='@Url.Action("PaymentWithPaypal", "Payment", new {orderid = Model.TicketOrder.OrderId}, null)'>
+                        <img src='@Url.Content("~/content/images/paypal.png")' />
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    @*}
+    else
+    {
+        @Html.Raw("Jouw bestelling is in verwerking. Refresh deze pagina later nog eens of neem een kijkje bij de keuken hoe ver je order al staat")
+    }*@
+}
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+
+

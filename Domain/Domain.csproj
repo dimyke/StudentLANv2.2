@@ -69,6 +69,7 @@
     <Compile Include="Entities\Seat.cs" />
     <Compile Include="Entities\Seatsort.cs" />
     <Compile Include="Entities\TicketDay.cs" />
+    <Compile Include="Entities\TicketLine.cs" />
     <Compile Include="Entities\TicketOrder.cs" />
     <Compile Include="Entities\TicketType.cs" />
     <Compile Include="Entities\WalletOrder.cs" />

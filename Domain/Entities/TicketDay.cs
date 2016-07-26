@@ -8,6 +8,6 @@ namespace Domain.Entities
 {
     public enum TicketDay
     {
-        EarlyBirdSaturday, EarlyBirdSunday, EarlyBirdWeekend, EarlyBirdVIP, Saturday, Sunday, Weekend, VIP
+        EarlyBirdSaturday, EarlyBirdSunday, EarlyBirdWeekend, Saturday, Sunday, Weekend
     }
 }

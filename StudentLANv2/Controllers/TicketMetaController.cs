@@ -12,6 +12,7 @@ using BL.Managers;
 
 namespace StudentLANv2.Controllers
 {
+    [Authorize(Roles = "Superadmin")]
     public class TicketMetaController : Controller
     {
         private readonly TicketsMetaManager _ticketMetaManager = new TicketsMetaManager();
@@ -33,7 +34,7 @@ namespace StudentLANv2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "TicketTypeId,Day,Price,Sort,EditionId")] TicketType ticketType)
+        public ActionResult Create(TicketType ticketType)
         {
             if (ModelState.IsValid)
             {

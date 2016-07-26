@@ -76,6 +76,7 @@
     <Compile Include="Repositories\EntitiyFramework\ConsumptionRepository.cs" />
     <Compile Include="Repositories\EntitiyFramework\OrderRepository.cs" />
     <Compile Include="Repositories\EntitiyFramework\PaymentRepository.cs" />
+    <Compile Include="Repositories\EntitiyFramework\TicketRepository.cs" />
     <Compile Include="Repositories\EntitiyFramework\TicketMetaRepository.cs" />
     <Compile Include="Repositories\EntitiyFramework\UserRepository.cs" />
     <Compile Include="StuLanConfiguration.cs" />

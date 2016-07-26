@@ -29,14 +29,7 @@ namespace DAL.Repositories.Contracts
         IEnumerable<OrderLine> OrderLineForOrder(int? id);
         void DeleteOrderLine(int id);
 
-        #region tickets
-        void CreateTicketOrder(TicketOrder ticketOrder);
-        TicketOrder FindTicketOrder(int id);
-        IEnumerable<TicketOrder> AllTicketOrders();
-        IEnumerable<TicketOrder> UserTickets(string id);
-        void UpdateTicketOrder(int id, TicketOrder ticketOrder);
-
-        #endregion
+       
 
     }
 }

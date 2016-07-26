@@ -8,6 +8,6 @@ namespace Domain.Entities
 {
     public enum Seatsort
     {
-        VIP,regular
+        regular,VIP
     }
 }

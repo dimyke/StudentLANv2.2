@@ -29,8 +29,10 @@
                         <li class="dropdown">
                         <a href = "#" class="dropdown-toggle" data-toggle="dropdown">Orders<b class="caret"></b></a>
                         <ul class="dropdown-menu" aria-labelledby="OrderDropdown">
-                            <li>@Html.ActionLink("Maak order", "CreateOrder", "KitchenOrders")</li>
-                            <li>@Html.ActionLink("Order overzicht", "Index", "KitchenOrders")</li>                            
+                            <li>@Html.ActionLink("Bestel eten/drank", "CreateOrder", "KitchenOrders")</li>
+                            <li>@Html.ActionLink("eten/drank overzicht", "Index", "KitchenOrders")</li>
+                            <li>@Html.ActionLink("Bestel ticket(s)", "CreateTicket", "TicketOrders")</li>  
+                            <li>@Html.ActionLink("ticket overzicht", "Index", "TicketOrders")</li>                          
                         </ul>
                     </li>}
                     @if (User.IsInRole("Superadmin") || User.IsInRole("Keuken") || User.IsInRole("Keuken Admin")){ @Html.Partial("_AdminPartial")}

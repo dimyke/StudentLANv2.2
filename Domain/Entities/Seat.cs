@@ -13,5 +13,11 @@ namespace Domain.Entities
         public int SeatColumn { get; set; }
         public Seatsort Sort { get; set; }
         public enum State { Booked,Reserved,Free }
+
+        //fk
+        public int EditionId { get; set; }
+
+        // navigiational
+        public Edition edition { get; set; }
     }
 }

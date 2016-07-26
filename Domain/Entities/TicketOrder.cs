@@ -20,12 +20,14 @@ namespace Domain.Entities
 
         //FK
         public string ApplicationUserId { get; set; }
-        public int TicketTypeId { get; set; }
+        public int TicketLineId { get; set; }
         public int SeatId { get; set; }
 
         // navigation
-        public TicketType TicketType { get; set; }
-        public Seat Seat { get; set; }
+        // meerdere users toevoegen aan een ticket. Bv teamlead koopt 1 ticket voor alle users en moet deze daarna toekennen aan de accounts van het team. De koper zit hier sowieso in.
+        public ICollection<ApplicationUser> Users { get; set; }
+        public ICollection<TicketLine> TicketLines { get; set; }
+        public ICollection<Seat> Seats { get; set; }
 
     }
 }

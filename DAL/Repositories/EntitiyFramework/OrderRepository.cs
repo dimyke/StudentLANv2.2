@@ -93,7 +93,7 @@ namespace DAL.Repositories.EntitiyFramework
         }
         #endregion
 
-        #region Orderine
+        #region OrderLine
 
         public void CreateOrderLine(OrderLine orderline)
         {
@@ -179,34 +179,6 @@ namespace DAL.Repositories.EntitiyFramework
         public void UpdateCreditOrder(int id, CreditOrder order)
         {
             _ctx.Entry(_ctx.CreditOrders.Find(id)).CurrentValues.SetValues(order);
-            _ctx.SaveChanges();
-        }
-        #endregion
-
-        #region TicketOrders
-        public void CreateTicketOrder(TicketOrder ticketOrder)
-        {
-            _ctx.TicketOrders.Add(ticketOrder);
-            _ctx.SaveChanges();
-        }
-        public TicketOrder FindTicketOrder(int id)
-        {
-            return  _ctx.TicketOrders.Find(id);
-        }
-        public IEnumerable<TicketOrder> AllTicketOrders()
-        {
-            return _ctx.TicketOrders.AsEnumerable();
-        }
-        public IEnumerable<TicketOrder> UserTickets(string id)
-        {
-            return _ctx.TicketOrders
-                  .Include("User")
-                  .Where(x => (x.ApplicationUserId == id))
-                  .AsEnumerable();
-        }
-        public void UpdateTicketOrder(int id, TicketOrder ticketOrder)
-        {
-            _ctx.Entry(_ctx.TicketOrders.Find(id)).CurrentValues.SetValues(ticketOrder);
             _ctx.SaveChanges();
         }
         #endregion

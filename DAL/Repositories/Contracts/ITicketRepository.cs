@@ -6,12 +6,19 @@ using System.Threading.Tasks;
 
 namespace DAL.Repositories.Contracts
 {
-    interface ITicketRepository
+    public interface ITicketRepository
     {
-        //void CreateTicket(TicketDay);
-        //TicketType FindTicketType(int id);
-        //IEnumerable<TicketType> AllTickettypes();
-        //void UpdateTicketType(int id, TicketType ticketType);
-        //void DeleteTicketType(int id);
+        #region tickets
+        void CreateTicketOrder(TicketOrder ticketOrder);
+        TicketOrder FindTicketOrder(int? id);
+        IEnumerable<TicketOrder> AllTicketOrders();
+        IEnumerable<TicketOrder> UserTickets(string id);
+        void UpdateTicketOrder(int id, TicketOrder ticketOrder);
+        #endregion
+
+        void createTicketLine(TicketLine orderLine);
+        IEnumerable<TicketLine> OrderLineForOrder(int? id);
+        void DeleteOrderLine(int id);
+
     }
 }

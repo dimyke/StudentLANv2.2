@@ -22,5 +22,7 @@ namespace Domain.Entities
 
         // navigiational
         public Edition edition { get; set; }
+        // Alle tickets per type ophalen?
+        // public int MyProperty { get; set; }
     }
 }
