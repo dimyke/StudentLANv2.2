@@ -11,8 +11,8 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    //if (!Model.KitchenOrder.InProces)
-    //{
+    if (!Model.TicketOrder.Completed)
+    {
         <div class="form">
             <h4>Kies je product</h4>
             <hr />
@@ -31,7 +31,7 @@
                 </div>
             </div>
         </div>
-    @*}*@
+    }
     <br />
     <br />
     <h4>Overzicht:</h4>
@@ -79,10 +79,10 @@
                     € @Html.DisplayFor(modelItem => line.PriceAmount)
                 </td>
                 <td align="right">
-                    @*@if (Model.KitchenOrder.InProces == false)
-                    {*@  
-                        <input type="button" class="btn btn-default" value="Verwijder Lijn" onclick="location.href='@Url.Action("DeleteOrderLine", "KitchenOrders", new { orderLineId = line.TicketLineId, orderid = Model.TicketOrder.OrderId })'" />
-                    @*}*@
+                    @if (Model.TicketOrder.Completed == false)
+                    {  
+                        <input type="button" class="btn btn-default" value="Verwijder Lijn" onclick="location.href='@Url.Action("DeleteTicketLine", "TicketOrders", new { orderLineId = line.TicketLineId, orderid = Model.TicketOrder.OrderId })'" />
+                    }
                 </td>
             </tr>
         }
@@ -97,8 +97,8 @@
             <td></td>
         </tr>
     </table>
-    //if (!Model.KitchenOrder.InProces)
-    //{
+    if (!Model.TicketOrder.Completed)
+    {
         <br />
         <div class="form">
             <div class="form-group">
@@ -111,11 +111,11 @@
             </div>
         </div>
 
-    @*}
+    }
     else
     {
-        @Html.Raw("Jouw bestelling is in verwerking. Refresh deze pagina later nog eens of neem een kijkje bij de keuken hoe ver je order al staat")
-    }*@
+        @Html.Raw("Deze bestelling is alreeds betaald en voltooid. Klik op \"nieuwe bestelling\" om een nieuwe bestelling te maken.")
+    }
 }
 
 

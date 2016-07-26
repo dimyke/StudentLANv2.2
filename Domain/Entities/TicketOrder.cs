@@ -20,7 +20,7 @@ namespace Domain.Entities
 
         //FK
         public string ApplicationUserId { get; set; }
-        public int TicketLineId { get; set; }
+        // public int TicketLineId { get; set; }
         public int SeatId { get; set; }
 
         // navigation

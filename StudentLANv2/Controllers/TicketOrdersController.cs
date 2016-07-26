@@ -72,11 +72,11 @@ namespace StudentLANv2.Controllers
         }
 
         //delete an orderline from an order.
-        //public ActionResult DeleteOrderLine(int orderLineId, int orderid)
-        //{
-        //    _TicketManager.(orderLineId, orderid, User.Identity.GetUserId());
-        //    return RedirectToAction("AddOrder", new { id = orderid });
-        //}
+        public ActionResult DeleteTicketLine(int orderLineId, int orderid)
+        {
+            _TicketManager.DeleteTicketLine(orderLineId, orderid, User.Identity.GetUserId());
+            return RedirectToAction("AddTicket", new { id = orderid });
+        }
 
 
         private IEnumerable<SelectListItem> GetSelectListItems(IEnumerable<TicketType> elements)

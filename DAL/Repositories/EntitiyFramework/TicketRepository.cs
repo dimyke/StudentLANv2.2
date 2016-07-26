@@ -59,7 +59,7 @@ namespace DAL.Repositories.EntitiyFramework
                 .AsEnumerable();
         }
 
-        public void DeleteOrderLine(int id)
+        public void DeleteTicketLine(int id)
         {
             _ctx.TicketLines.Remove(_ctx.TicketLines.Find(id));
             _ctx.SaveChanges();

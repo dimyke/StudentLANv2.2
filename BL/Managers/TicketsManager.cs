@@ -53,6 +53,24 @@ namespace BL.Managers
             }
 
         }
+
+        //orderline verwijderen
+        public void DeleteTicketLine(int orderLineId, int orderid, string currentUser)
+        {
+            TicketOrder t = Find(orderid);
+            if (currentUser == t.ApplicationUserId)
+            {
+                if (t.Completed == false)
+                {
+                    t.TotalAmount -= t.TicketLines.SingleOrDefault(x => (x.TicketLineId == orderLineId)).PriceAmount;
+                    _ITicketRepository.DeleteTicketLine(orderLineId);
+                    UpdateOrder(t.OrderId, t);
+                }
+            }
+
+        }
+
+
         //Een order op deleted zetten of undeleted
         //public void ToggleDeleted(int id, string userId)
         //{
