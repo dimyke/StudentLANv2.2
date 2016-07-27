@@ -103,7 +103,7 @@
         <div class="form">
             <div class="form-group">
                 <div class="col-md-12">
-                    <input type="button" class="btn btn-default" value="Betaal met je wallet" onclick="location.href='@Url.Action("PaymentWithWallet", "Payment", new { orderid = Model.TicketOrder.OrderId })'" />
+                    <input type="button" class="btn btn-default" value="Betaal met je wallet" onclick="location.href='@Url.Action("PaymentWithWallet", "Payment", new { orderid = Model.TicketOrder.OrderId, type="ticket" })'" />
                     <a alt="Pay using Paypal" href='@Url.Action("PaymentWithPaypal", "Payment", new {orderid = Model.TicketOrder.OrderId}, null)'>
                         <img src='@Url.Content("~/content/images/paypal.png")' />
                     </a>

@@ -24,7 +24,7 @@ namespace BL.Managers
         {
             KitchenOrder k = new KitchenOrder();
             k = Find(id);
-            if (currentUser == k.User.Id)
+            if (currentUser == k.User.Id && !k.Paid)
             {
                 Consumption c = _consumptionManager.Find(orderline.ConsumptionId);
                 if (c.Available && k.InProces == false)
@@ -187,7 +187,7 @@ namespace BL.Managers
                 var payment = new Payment();
                 payment.Amount = creditOrder.TotalAmount;
                 payment.ApplicationUserId = creditOrder.ApplicationUserId;
-                payment.OrderID = orderId;
+                // payment.OrderID = orderId;
                 payment.Type = PaymentSort.Wallet;
                 _paymentManager.CreatePayment(payment);
 

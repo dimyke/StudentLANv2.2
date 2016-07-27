@@ -11,7 +11,7 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    if (!Model.KitchenOrder.InProces) { 
+    if (!Model.KitchenOrder.Paid) { 
     <div class="form">
         <h4>Kies je product</h4>
         <hr />
@@ -99,7 +99,7 @@
             </td>
         </tr>
     </table>
-    if (!Model.KitchenOrder.InProces)
+    if (!Model.KitchenOrder.Paid)
     {
         <br />
         <div class="form">

@@ -19,6 +19,6 @@ namespace Domain.Entities
         string ApplicationUserId { get; set; }
 
         //navigational properties
-        //ICollection<Payment> Payments { get; set; }
+        ICollection<Payment> Payments { get; set; }
     }
 }

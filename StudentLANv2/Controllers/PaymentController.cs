@@ -20,6 +20,7 @@ namespace StudentLANv2.Controllers
     {
         private readonly OrderManager _orderManager = new OrderManager();
         private readonly PaymentManager _paymentManager = new PaymentManager();
+        private readonly TicketsManager _ticketManager = new TicketsManager();
         private UserManager _userManager = new UserManager();
         private PayPal.Api.Payment payment;
         // GET: Payment
@@ -78,28 +79,39 @@ namespace StudentLANv2.Controllers
             return View(w);
         }
         //kitchenorder betalen met je wallet
-        public ActionResult PaymentWithWallet(int orderid)
+        public ActionResult PaymentWithWallet(int orderid,string type)
         {
-            var order = _orderManager.Find(orderid);
-            var user = order.User;
-
-            if (!(user.Wallet >= order.TotalAmount)) return View("FailureView");
-            var walletPayment = new Domain.Entities.Payment()
+            IOrder order;
+            if (type == "ticket")
             {
-                Amount = order.TotalAmount,
-                ApplicationUserId = user.Id,
-                OrderID = order.OrderId,
-                Type = PaymentSort.Wallet
+                order = _ticketManager.Find(orderid);
+            }
+            else /*if (type == "kitchen")*/
+            {
+                order = _orderManager.Find(orderid);
             };
-            _paymentManager.CreatePayment(walletPayment);
-            _userManager.Pay(order.TotalAmount, user.Id);
-            // order.Payments.Add(walletPayment);
-            order.Paid = true;
-            order.InProces = true;
+            if ((User.Identity.GetUserId()) != order.ApplicationUserId) { return View("FailureView"); };
 
-            _orderManager.UpdateOrder(orderid, order);
-            return RedirectToAction("Index", "KitchenOrders");
+            Domain.Entities.Payment p = _paymentManager.PayWithWallet(orderid, order.TotalAmount, User.Identity.GetUserId());
+
+            order.Payments.Add(p);
+            order.Paid = true;
+            // order.InProces = true;
+
+            if (type == "ticket")
+            {
+                TicketOrder t = (TicketOrder)order;
+                _ticketManager.UpdateOrder(orderid, t);
+                return RedirectToAction("Index", "TicketOrders");
+            }
+            else /*if (type == "kitchen")*/
+            {
+                KitchenOrder k = (KitchenOrder)order;
+                _orderManager.UpdateOrder(orderid, k);
+                return RedirectToAction("Index", "KitchenOrders");
+            };
         }
+        
         //order aanmaken voor de wallet op te laden met paypal
         public ActionResult CreatePaypalOrder(double amount)
         {
@@ -223,7 +235,7 @@ namespace StudentLANv2.Controllers
             {
                 Amount = order.TotalAmount,
                 ApplicationUserId = order.ApplicationUserId,
-                OrderID = orderid,
+                // OrderID = orderid,
                 Type = PaymentSort.PayPal
 
 

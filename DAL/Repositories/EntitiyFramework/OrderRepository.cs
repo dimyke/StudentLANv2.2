@@ -19,6 +19,16 @@ namespace DAL.Repositories.EntitiyFramework
                 .Include("OrderLines")
                 .Include("User")
                 .Include("Orderlines.Consumption")
+                .Include("Payments")
+                .SingleOrDefault(x => (x.OrderId == id));
+        }
+
+        public IOrder FindOrder(int? id)
+        {
+            return _ctx.KitchenOrders
+                .Include("OrderLines")
+                .Include("User")
+                .Include("Orderlines.Consumption")
                 .SingleOrDefault(x => (x.OrderId == id));
         }
 
@@ -91,6 +101,8 @@ namespace DAL.Repositories.EntitiyFramework
             _ctx.Entry(_ctx.KitchenOrders.Find(id)).CurrentValues.SetValues(kitchenorder);
             _ctx.SaveChanges();
         }
+
+
         #endregion
 
         #region OrderLine
@@ -182,6 +194,12 @@ namespace DAL.Repositories.EntitiyFramework
             _ctx.SaveChanges();
         }
         #endregion
-
+    #region TicketOrder
+        public void UpdateOrder(int id, TicketOrder ticketOrder)
+        {
+            _ctx.Entry(_ctx.TicketOrders.Find(id)).CurrentValues.SetValues(ticketOrder);
+            _ctx.SaveChanges();
+        }
+    #endregion
     }
 }

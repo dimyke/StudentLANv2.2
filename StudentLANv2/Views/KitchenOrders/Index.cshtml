@@ -58,7 +58,7 @@
                     @Html.DisplayFor(modelItem => item.DateEdited)
                 </td>
                 <td>
-                    @if (item.InProces == false)
+                    @if (!item.Paid)
                     {@Html.ActionLink("Ga verder met je bestelling", "AddOrder", new { id = item.OrderId }) @Html.Raw("|") }
                     @Html.ActionLink("Overzicht", "Details", new { id = item.OrderId })
                 </td>

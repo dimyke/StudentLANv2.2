@@ -28,6 +28,7 @@ namespace Domain.Entities
         public ICollection<ApplicationUser> Users { get; set; }
         public ICollection<TicketLine> TicketLines { get; set; }
         public ICollection<Seat> Seats { get; set; }
+        public ICollection<Payment> Payments { get; set; }
 
     }
 }

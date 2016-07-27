@@ -10,10 +10,10 @@ namespace Domain.Entities
         public double Amount { get; set; }
         public PaymentSort Type { get; set; }
         // foreign key
-        public int OrderID { get; set; }
+        // public int OrderID { get; set; }
         public string ApplicationUserId { get; set; }
 
         //navigational properties
-        public KitchenOrder KitchenOrder { get; set; }
+        // public KitchenOrder KitchenOrder { get; set; }
     }
 }

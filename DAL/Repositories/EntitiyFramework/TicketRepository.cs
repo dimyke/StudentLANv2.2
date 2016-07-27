@@ -24,6 +24,7 @@ namespace DAL.Repositories.EntitiyFramework
             return _ctx.TicketOrders
                 .Include("TicketLines")
                 .Include("TicketLines.TicketType")
+                .Include("Payments")
                 .SingleOrDefault(x => (x.OrderId == id)); ;
         }
         public IEnumerable<TicketOrder> AllTicketOrders()

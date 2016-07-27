@@ -297,7 +297,7 @@ namespace DAL
                     PaymentId = 1,
                     Amount = 1,
                     Type = PaymentSort.PayPal,
-                    KitchenOrder = orders.ElementAt(0),
+                    // KitchenOrder = orders.ElementAt(0),
                 },
 
                 new Payment
@@ -305,7 +305,7 @@ namespace DAL
                     PaymentId = 2,
                     Amount = 1,
                     Type = PaymentSort.PayPal,
-                    KitchenOrder = orders.ElementAt(1),
+                    // KitchenOrder = orders.ElementAt(1),
                 }
 
             };

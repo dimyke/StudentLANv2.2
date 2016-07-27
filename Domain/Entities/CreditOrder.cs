@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 
@@ -23,5 +24,6 @@ namespace Domain.Entities
         //Navigational properties
         public ApplicationUser ApplicationUser { get; set; }
         public ApplicationUser Admin { get; set; }
+        public ICollection<Payment> Payments { get; set; }
     }
 }
