@@ -14,7 +14,7 @@ namespace BL.Managers
 
         #region Ticket
         //haalt een ticketorder op adh van id
-        public TicketOrder Find(int? id)
+        public TicketOrder FindTicket(int? id)
         {
             return _ITicketRepository.FindTicketOrder(id);
         }
@@ -33,8 +33,8 @@ namespace BL.Managers
         public void CreateTickeLine(int id, TicketLine orderline, string currentUser)
         {
             TicketOrder t = new TicketOrder();
-            t = Find(id);
-            if (currentUser == t.ApplicationUserId)
+            t = FindTicket(id);
+            if (currentUser == t.ApplicationUserId && !t.Paid)
             {
                 TicketType tt = _ITicketMetaRepository.FindTicketType(orderline.TicketTypeId);
 
@@ -57,7 +57,7 @@ namespace BL.Managers
         //orderline verwijderen
         public void DeleteTicketLine(int orderLineId, int orderid, string currentUser)
         {
-            TicketOrder t = Find(orderid);
+            TicketOrder t = FindTicket(orderid);
             if (currentUser == t.ApplicationUserId)
             {
                 if (t.Completed == false)
@@ -68,6 +68,21 @@ namespace BL.Managers
                 }
             }
 
+        }
+
+        public void AdjustStock(TicketOrder t)
+        {
+            var type = new TicketType();
+            foreach(var lines in t.TicketLines)
+            {
+                type = lines.TicketType;
+                type.Stock -= lines.NumberOfItems;
+                _ITicketMetaRepository.UpdateTicketType(type.TicketTypeId, type);
+                //_ITicketMetaRepository.FindTicketType(lines.TicketType.TicketTypeId);
+                // lines.NumberOfItems;
+
+            }
+            // _ITicketMetaRepository.UpdateTicketType()
         }
 
 

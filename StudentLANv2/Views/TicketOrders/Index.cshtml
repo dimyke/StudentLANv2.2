@@ -65,9 +65,9 @@
             @Html.DisplayFor(modelItem => item.SeatId)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.OrderId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.OrderId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.OrderId })
+            @if (!item.Paid)
+            {@Html.ActionLink("Ga verder met je bestelling", "AddTicket", new { id = item.OrderId }) @Html.Raw(" | ") }
+            @Html.ActionLink("Overzicht", "Details", new { orderid = item.OrderId })
         </td>
     </tr>
 }

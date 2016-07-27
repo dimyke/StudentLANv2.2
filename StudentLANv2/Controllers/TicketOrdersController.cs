@@ -46,7 +46,7 @@ namespace StudentLANv2.Controllers
 
             AddTicketLineModel newModel = new AddTicketLineModel();
             newModel.TicketTypes = GetSelectListItems(_TicketMetaManager.AllTicketTypes());
-            TicketOrder ticketOrder = _TicketManager.Find(id);
+            TicketOrder ticketOrder = _TicketManager.FindTicket(id);
 
             if (IsCorrectUser(ticketOrder.ApplicationUserId))
             {
@@ -78,6 +78,10 @@ namespace StudentLANv2.Controllers
             return RedirectToAction("AddTicket", new { id = orderid });
         }
 
+        public ActionResult Details(int? orderid)
+        {
+            return View(_TicketManager.FindTicket(orderid));
+        }
 
         private IEnumerable<SelectListItem> GetSelectListItems(IEnumerable<TicketType> elements)
         {
@@ -108,6 +112,7 @@ namespace StudentLANv2.Controllers
             }
             return false;
         }
+
 
         //// GET: TicketOrders/Delete/5
         //public ActionResult Delete(int? id)

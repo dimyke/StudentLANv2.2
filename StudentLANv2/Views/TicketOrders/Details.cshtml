@@ -11,22 +11,6 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Seat.SeatID)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Seat.SeatID)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TicketType.TicketTypeId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TicketType.TicketTypeId)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.Date)
         </dt>
 
@@ -82,9 +66,48 @@
             @Html.DisplayFor(model => model.ApplicationUserId)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.SeatId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SeatId)
+        </dd>
+
     </dl>
 </div>
+<table class="table">
+    <tr>
+        <th>
+            Aantal
+        </th>
+        <th>
+            Ticket type
+        </th>
+        <th>
+            Totaal Prijs
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var line in Model.TicketLines)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => line.NumberOfItems)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => line.TicketType.Day)
+            </td>
+            <td>
+                € @Html.DisplayFor(modelItem => line.PriceAmount)
+            </td>
+        </tr>
+    }
+
+</table>
+
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.OrderId }) |
-    @Html.ActionLink("Back to List", "Index")
+    @*@Html.ActionLink("Edit", "Edit", new { id = Model.OrderId }) |
+    @Html.ActionLink("Back to List", "Index")*@
 </p>

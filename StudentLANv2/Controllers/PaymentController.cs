@@ -84,7 +84,7 @@ namespace StudentLANv2.Controllers
             IOrder order;
             if (type == "ticket")
             {
-                order = _ticketManager.Find(orderid);
+                order = _ticketManager.FindTicket(orderid);
             }
             else /*if (type == "kitchen")*/
             {
@@ -102,6 +102,7 @@ namespace StudentLANv2.Controllers
             {
                 TicketOrder t = (TicketOrder)order;
                 _ticketManager.UpdateOrder(orderid, t);
+                _ticketManager.AdjustStock(t);
                 return RedirectToAction("Index", "TicketOrders");
             }
             else /*if (type == "kitchen")*/
