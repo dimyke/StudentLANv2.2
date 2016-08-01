@@ -12,5 +12,6 @@ namespace Domain.Entities
         public double Price { get; set; }
         public string Name { get; set; }
         public Boolean Available { get; set; }
+        public int Stock { get; set; }
     }
 }

@@ -18,11 +18,13 @@ namespace DAL
             #region Consumption
             var consumptions = new List<Consumption>
             {
-                new Consumption {ConsumptionId=1, Name="Frieten", Price=2, Available = true },
-                new Consumption {ConsumptionId=2, Name="Crocskes", Price=2, Available = true },
-                new Consumption {ConsumptionId=3, Name="Kefjeuh is free", Price=0, Available = true },
-                new Consumption {ConsumptionId=4, Name="Bitterballen", Price=2, Available = true },
-                new Consumption {ConsumptionId=5, Name="Pizza", Price=2, Available = false }
+                new Consumption {ConsumptionId=1, Name="Frieten", Price=2, Available = true, Stock = 100 },
+                new Consumption {ConsumptionId=2, Name="Crocskes", Price=2, Available = true, Stock = 100 },
+                new Consumption {ConsumptionId=3, Name="Kefjeuh is free", Price=0, Available = true, Stock = 100 },
+                new Consumption {ConsumptionId=4, Name="Bitterballen", Price=2, Available = true, Stock = 100 },
+                new Consumption {ConsumptionId=5, Name="Pizza", Price=2, Available = false, Stock = 100 },
+                new Consumption {ConsumptionId=5, Name="Water", Price=1, Available = true, Stock = 100 },
+                new Consumption {ConsumptionId=5, Name="Cola", Price=1, Available = true, Stock = 100 }
             };
 
             consumptions.ForEach(s => context.Consumptions.Add(s));
