@@ -1,6 +1,7 @@
 ﻿using DAL.Repositories.Contracts;
 using DAL.Repositories.EntitiyFramework;
 using Domain.Entities;
+using System;
 
 namespace BL.Managers
 {
@@ -23,22 +24,21 @@ namespace BL.Managers
             _paymentRepository.PaymentCreate(payment);
         }
 
-        public Payment PayWithWallet(int orderid,double amount, string userid)
+        public Payment PayWithWallet(int orderid,double amount, ApplicationUser user)
         {
             
-            var user = _userManager.Find(userid);
-            //if (!(user.Wallet >= amount));
+            
 
             var walletPayment = new Payment()
             {
                 Amount = amount,
-                ApplicationUserId = userid,
+                ApplicationUserId = user.Id,
                 // OrderID = orderid,
                 Type = PaymentSort.Wallet
             };
 
             CreatePayment(walletPayment);
-            _userManager.Pay(amount, userid);
+            _userManager.Pay(amount, user);
             return walletPayment;   
         }
 

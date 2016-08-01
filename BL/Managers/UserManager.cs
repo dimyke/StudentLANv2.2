@@ -43,11 +43,10 @@ namespace BL.Managers
         }
 
         //Doe een betaling met de wallet
-        public void Pay(double amount, string id)
+        public void Pay(double amount, ApplicationUser user)
         {
-            var user = Find(id);
             user.Wallet -= amount;
-            Update(id, user);
+            Update(user.Id, user);
         }
 
         //Haal de gebruikers dynamisch op aan de hand van hun naam

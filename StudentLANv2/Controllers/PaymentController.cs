@@ -82,6 +82,8 @@ namespace StudentLANv2.Controllers
         public ActionResult PaymentWithWallet(int orderid,string type)
         {
             IOrder order;
+            var user = _userManager.Find(User.Identity.GetUserId());
+
             if (type == "ticket")
             {
                 order = _ticketManager.FindTicket(orderid);
@@ -90,9 +92,12 @@ namespace StudentLANv2.Controllers
             {
                 order = _orderManager.Find(orderid);
             };
-            if ((User.Identity.GetUserId()) != order.ApplicationUserId) { return View("FailureView"); };
+            if (user.Id != order.ApplicationUserId) { return View("FailureView"); };
+            
+            if (order.TotalAmount >= user.Wallet) { return View("FailureView");};
 
-            Domain.Entities.Payment p = _paymentManager.PayWithWallet(orderid, order.TotalAmount, User.Identity.GetUserId());
+            Domain.Entities.Payment p = _paymentManager.PayWithWallet(orderid, order.TotalAmount, user);
+            
 
             order.Payments.Add(p);
             order.Paid = true;
@@ -108,6 +113,7 @@ namespace StudentLANv2.Controllers
             else /*if (type == "kitchen")*/
             {
                 KitchenOrder k = (KitchenOrder)order;
+                // k.InProces = true;
                 _orderManager.UpdateOrder(orderid, k);
                 return RedirectToAction("Index", "KitchenOrders");
             };
