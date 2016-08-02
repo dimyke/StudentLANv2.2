@@ -34,11 +34,23 @@
                 </td>
 
                 <td>
+                    <table>
                     @foreach (var line in item.OrderLines)
                     {
-                        @Html.DisplayFor(model => line.NumberOfItems) @Html.Raw(" x ") @Html.DisplayFor(model => line.Consumption.Name)
-                        <br>
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(model => line.NumberOfItems) @Html.Raw(" x ") @Html.DisplayFor(model => line.Consumption.Name)
+                            </td>
+                            <td>
+                                @if (!line.Finished)
+                                {
+                                    <input type="button" class="btn btn-default" value="Finish" onclick="location.href = '@Url.Action("FinishOrderLine", "Kitchen", new {orderLineId  = line.OrderLineId})'" /> 
+                                }
+                                
+                            </td>
+                        </tr>
                     }
+                   </table>
                 </td>
 
 

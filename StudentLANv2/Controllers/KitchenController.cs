@@ -37,5 +37,11 @@ namespace StudentLANv2.Controllers
             _orderManager.SetFinished(orderId);
             return RedirectToAction("KitchenView");
         }
+
+        public ActionResult FinishOrderLine(int orderLineId)
+        {
+            _orderManager.SetOrderLineFinished(orderLineId);
+            return RedirectToAction("KitchenView");
+        }
     }
 }

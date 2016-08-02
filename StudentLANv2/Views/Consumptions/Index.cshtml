@@ -21,7 +21,12 @@
             <th>
                 @Html.DisplayNameFor(model => model.Available)
             </th>
-            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.Stock)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Type)
+            </th>
         </tr>
     </thead>
         @foreach (var item in Model)
@@ -35,6 +40,12 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Available)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Stock)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Type)
                 </td>
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.ConsumptionId }) |

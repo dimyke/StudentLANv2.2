@@ -14,6 +14,21 @@ namespace BL.Managers
         private readonly ConsumptionManager _consumptionManager = new ConsumptionManager();
 
         #region orderline
+
+        // orderine ophalen
+        public OrderLine FindOrderLine(int? id)
+        {
+            return _OrderRepository.FindOrderLine(id);
+        }
+
+        //Een orderline op finished zetten
+        public void SetOrderLineFinished(int id)
+        {
+            var order = FindOrderLine(id);
+            order.Finished = true;
+            _OrderRepository.UpdateOrderLine(id, order);
+
+        }
         //geeft de orderlines voor een bepaalde order terug
         public IEnumerable<OrderLine> OrderLineForOrder(int? id)
         {
@@ -38,6 +53,10 @@ namespace BL.Managers
                     k.TotalAmount += price;
 
                     UpdateOrder(id, k);
+
+                    //update stock
+                    c.Stock -= orderline.NumberOfItems;
+                    _consumptionManager.Update(c.ConsumptionId, c);
                 }
             }
 
@@ -57,6 +76,7 @@ namespace BL.Managers
             }
                 
         }
+
         #endregion
 
         #region kitchenorder
@@ -99,9 +119,23 @@ namespace BL.Managers
         public void SetFinished(int id)
         {
             var order = Find(id);
-            order.Completed = true;
-            UpdateOrder(id, order);
-
+            bool proceed = false;
+            foreach(var line in order.OrderLines)
+            {
+                if (!line.Finished)
+                {
+                    proceed = false;
+                }
+                else
+                {
+                    proceed = true;
+                }
+            }
+            if (proceed)
+            {
+                order.Completed = true;
+                UpdateOrder(id, order);
+            }            
         }
 
         //Een order op deleted zetten of undeleted

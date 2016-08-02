@@ -57,6 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\ConsumptionType.cs" />
     <Compile Include="Entities\CreditOrder.cs" />
     <Compile Include="Entities\Edition.cs" />
     <Compile Include="Entities\IOrder.cs" />

@@ -18,13 +18,13 @@ namespace DAL
             #region Consumption
             var consumptions = new List<Consumption>
             {
-                new Consumption {ConsumptionId=1, Name="Frieten", Price=2, Available = true, Stock = 100 },
-                new Consumption {ConsumptionId=2, Name="Crocskes", Price=2, Available = true, Stock = 100 },
-                new Consumption {ConsumptionId=3, Name="Kefjeuh is free", Price=0, Available = true, Stock = 100 },
-                new Consumption {ConsumptionId=4, Name="Bitterballen", Price=2, Available = true, Stock = 100 },
-                new Consumption {ConsumptionId=5, Name="Pizza", Price=2, Available = false, Stock = 100 },
-                new Consumption {ConsumptionId=5, Name="Water", Price=1, Available = true, Stock = 100 },
-                new Consumption {ConsumptionId=5, Name="Cola", Price=1, Available = true, Stock = 100 }
+                new Consumption {ConsumptionId=1, Name="Frieten", Price=2, Available = true, Stock = 100, Type = ConsumptionType.Food },
+                new Consumption {ConsumptionId=2, Name="Crocskes", Price=2, Available = true, Stock = 100,Type = ConsumptionType.Food },
+                new Consumption {ConsumptionId=3, Name="Kefjeuh is free", Price=0, Available = true, Stock = 100,Type = ConsumptionType.Food },
+                new Consumption {ConsumptionId=4, Name="Bitterballen", Price=2, Available = true, Stock = 100,Type = ConsumptionType.Food },
+                new Consumption {ConsumptionId=5, Name="Pizza", Price=2, Available = false, Stock = 100,Type = ConsumptionType.Food },
+                new Consumption {ConsumptionId=5, Name="Water", Price=1, Available = true, Stock = 100,Type = ConsumptionType.Drinks },
+                new Consumption {ConsumptionId=5, Name="Cola", Price=1, Available = true, Stock = 100,Type = ConsumptionType.Drinks }
             };
 
             consumptions.ForEach(s => context.Consumptions.Add(s));
@@ -50,7 +50,7 @@ namespace DAL
                     BatlleNet = "Dimyke#6969",
                     Wargaming ="dimyke",
                     PasswordHash = hasher.HashPassword("SupahStronkP@ssword"),
-                    Wallet = 656065465,
+                    Wallet = 656,
                     SecurityStamp = Guid.NewGuid().ToString()
 
                 },
@@ -68,7 +68,7 @@ namespace DAL
                     BatlleNet = "xelset#2348",
                     Wargaming ="xelset",
                     PasswordHash = hasher.HashPassword("SupahStronkP@ssword"),
-                    Wallet = 56754,
+                    Wallet = 5675,
                     SecurityStamp = Guid.NewGuid().ToString()
 
 
@@ -147,7 +147,7 @@ namespace DAL
                     BatlleNet = "superadmin#2348",
                     Wargaming ="superadmin",
                     PasswordHash = hasher.HashPassword("SupahStronkP@ssword"),
-                    Wallet = 50,
+                    Wallet = 508,
                     SecurityStamp = Guid.NewGuid().ToString()
 
 
@@ -352,10 +352,43 @@ namespace DAL
                 {
                     EditionId = 6,
                     Location = "Ramada Plaza",
-                    NumberOfSeats = 186
+                    NumberOfSeats = 168
                 }
             };
             editions.ForEach(p => context.Editions.Add(p));
+            #endregion
+
+            #region tickettype
+            var ticketTypes = new List<TicketType>{
+                new TicketType
+                {
+                    EditionId = 1,
+                    Day = TicketDay.EarlyBirdSaturday,
+                    Price = 15,
+                    Sort = Seatsort.regular,
+                    Stock = 100,
+                    TicketTypeId = 1
+                },
+                new TicketType
+                {
+                    EditionId = 1,
+                    Day = TicketDay.EarlyBirdSunday,
+                    Price = 15,
+                    Sort = Seatsort.regular,
+                    Stock = 100,
+                    TicketTypeId = 2
+                },
+                new TicketType
+                {
+                    EditionId = 1,
+                    Day = TicketDay.EarlyBirdWeekend,
+                    Price = 25,
+                    Sort = Seatsort.regular,
+                    Stock = 100,
+                    TicketTypeId = 3
+                }
+            };
+            ticketTypes.ForEach(p => context.TicketTypes.Add(p));
             #endregion
 
             #region UserRoles

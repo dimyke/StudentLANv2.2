@@ -7,29 +7,26 @@ namespace DAL.Repositories.Contracts
     {
         KitchenOrder Find(int? id);
         KitchenOrder FindKitchenOrderPayment(int? id);
+        OrderLine FindOrderLine(int? id);
         WalletOrder FindWalletOrder(int? id);
         CreditOrder FindCreditOrder(int id);
+        CreditOrder FindCreditForOrder(int id);
         IEnumerable<WalletOrder> AllWalletOrders();
         IEnumerable<KitchenOrder> AllKitchenOrder();
         IEnumerable<KitchenOrder> AllUnfinishedKitchen();
         IEnumerable<KitchenOrder> AllFinishedKitchen();
         IEnumerable<KitchenOrder> UserOrders(string id);
         IEnumerable<KitchenOrder> UserOrdersByName(string nick);
-        void CreateKitchenOrder(KitchenOrder kitchenorder);
-        void UpdateOrder(int id, KitchenOrder kitchenorder);
-        void CreateWalletOrder(WalletOrder order);
-        void UpdateWalletOrder(int id, WalletOrder order);
         IEnumerable<CreditOrder> AllCreditOrders();
-        void CreateCreditOrder(CreditOrder order);
-        void UpdateCreditOrder(int id, CreditOrder kitchenorder);
-
-        CreditOrder FindCreditForOrder(int id);
-
-        void createOrderLine(OrderLine orderine);
         IEnumerable<OrderLine> OrderLineForOrder(int? id);
+        void CreateKitchenOrder(KitchenOrder kitchenorder);
+        void CreateCreditOrder(CreditOrder order);
+        void CreateWalletOrder(WalletOrder order);
+        void createOrderLine(OrderLine orderine);
+        void UpdateWalletOrder(int id, WalletOrder order);
+        void UpdateOrder(int id, KitchenOrder kitchenorder);        
+        void UpdateCreditOrder(int id, CreditOrder kitchenorder);
+        void UpdateOrderLine(int id, OrderLine orderline);
         void DeleteOrderLine(int id);
-
-       
-
     }
 }

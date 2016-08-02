@@ -14,6 +14,7 @@ namespace Domain.Entities
         public double Price { get; set; }
         public Seatsort Sort { get; set; }
         [Required(ErrorMessage = "Hoeveel zijn er beschikbaar?")]
+        [Range(1, int.MaxValue, ErrorMessage = "Dit item is niet langer voorradig.")]
         public int Stock { get; set; }
 
 

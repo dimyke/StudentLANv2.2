@@ -13,6 +13,7 @@ namespace DAL.Repositories.EntitiyFramework
         private readonly StulanContext _ctx = new StulanContext();
 
         #region kitchenorders
+
         public KitchenOrder Find(int? id)
         {
             return _ctx.KitchenOrders
@@ -106,8 +107,18 @@ namespace DAL.Repositories.EntitiyFramework
         #endregion
 
         #region OrderLine
+        public OrderLine FindOrderLine(int? id)
+        {
+            return _ctx.Orderlines.Find(id);
+        }
 
         public void CreateOrderLine(OrderLine orderline)
+        {
+            _ctx.Orderlines.Add(orderline);
+            _ctx.SaveChanges();
+        }
+
+        public void createOrderLine(OrderLine orderline)
         {
             _ctx.Orderlines.Add(orderline);
             _ctx.SaveChanges();
@@ -120,13 +131,13 @@ namespace DAL.Repositories.EntitiyFramework
                 .AsEnumerable();
         }
 
-
-
-        public void createOrderLine(OrderLine orderline)
+        public void UpdateOrderLine(int id, OrderLine orderline)
         {
-            _ctx.Orderlines.Add(orderline);
+            _ctx.Entry(_ctx.Orderlines.Find(id)).CurrentValues.SetValues(orderline);
             _ctx.SaveChanges();
         }
+
+
 
         public void DeleteOrderLine(int id)
         {
@@ -194,12 +205,13 @@ namespace DAL.Repositories.EntitiyFramework
             _ctx.SaveChanges();
         }
         #endregion
-    #region TicketOrder
+
+        #region TicketOrder
         public void UpdateOrder(int id, TicketOrder ticketOrder)
         {
             _ctx.Entry(_ctx.TicketOrders.Find(id)).CurrentValues.SetValues(ticketOrder);
             _ctx.SaveChanges();
         }
-    #endregion
+         #endregion
     }
 }
