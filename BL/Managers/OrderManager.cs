@@ -119,16 +119,12 @@ namespace BL.Managers
         public void SetFinished(int id)
         {
             var order = Find(id);
-            bool proceed = false;
+            bool proceed = true;
             foreach(var line in order.OrderLines)
             {
                 if (!line.Finished)
                 {
                     proceed = false;
-                }
-                else
-                {
-                    proceed = true;
                 }
             }
             if (proceed)

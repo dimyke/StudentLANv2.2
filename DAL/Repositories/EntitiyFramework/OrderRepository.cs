@@ -63,7 +63,7 @@ namespace DAL.Repositories.EntitiyFramework
                 .Include("OrderLines")
                 .Include("Orderlines.Consumption")
                 .Include("User")
-                .AsEnumerable();
+                .AsEnumerable().OrderBy(orders => orders.DateEdited);
         }
 
         public IEnumerable<KitchenOrder> AllFinishedKitchen()
