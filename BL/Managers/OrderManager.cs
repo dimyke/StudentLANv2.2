@@ -135,9 +135,9 @@ namespace BL.Managers
         }
 
         //Een order op deleted zetten of undeleted
-        public void ToggleDeleted(int id, string userId)
+        public void ToggleDeleted(int id, KitchenOrder k)
         {
-            KitchenOrder k = Find(id);
+            
             if (k.Deleted)
             {
                 k.Deleted = false;
@@ -146,17 +146,7 @@ namespace BL.Managers
             {
                 k.Deleted = true;
                 
-                // only make a creditorder when there doesn't excists one
-                if (k.Paid == true && _OrderRepository.FindCreditForOrder(id) == null)
-                {
-                    CreditOrder c = new CreditOrder();
-                    c.Date = DateTime.Now;
-                    c.CreditForOrderId = id;
-                    c.AdminId = userId;
-                    c.TotalAmount -= k.TotalAmount;
-                    c.ApplicationUserId = k.ApplicationUserId;
-                    _OrderRepository.CreateCreditOrder(c);
-                }
+                
             }
             UpdateOrder(id, k);
         }

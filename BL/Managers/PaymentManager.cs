@@ -42,6 +42,21 @@ namespace BL.Managers
             return walletPayment;   
         }
 
+        public void CreateCreditOrder(KitchenOrder k, int id, string userId)
+        {
+            // only make a creditorder when there doesn't excists one
+            if (k.Paid == true && _orderRepository.FindCreditForOrder(id) == null)
+            {
+                CreditOrder c = new CreditOrder();
+                c.Date = DateTime.Now;
+                c.CreditForOrderId = id;
+                c.AdminId = userId;
+                c.TotalAmount -= k.TotalAmount;
+                c.ApplicationUserId = k.ApplicationUserId;
+                _orderRepository.CreateCreditOrder(c);
+            }
+        }
+
         private bool checkuser(string applicationUserId, string id)
         {
             if (applicationUserId == id){return true;}else { return false; };

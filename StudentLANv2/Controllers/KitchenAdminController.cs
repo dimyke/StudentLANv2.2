@@ -14,11 +14,16 @@ namespace StudentLANv2.Controllers
     public class KitchenAdminController : Controller
     {
         OrderManager _orderManager = new OrderManager();
+        PaymentManager _paymentManger = new PaymentManager();
 
         //Het deleten of undeleten van een order
         public ActionResult ToggleDelete(int orderid)
         {
-            _orderManager.ToggleDeleted(orderid, User.Identity.GetUserId());
+            KitchenOrder k = _orderManager.Find(orderid);
+            // toggle delete
+            _orderManager.ToggleDeleted(orderid, k);
+            // create credit
+            _paymentManger.CreateCreditOrder(k, orderid, User.Identity.GetUserId());
             return RedirectToAction("Index", "Kitchen");
         }
 
